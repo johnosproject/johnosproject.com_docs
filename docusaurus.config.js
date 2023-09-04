@@ -54,7 +54,7 @@ module.exports = {
   title: 'JOSP Documentation',
   tagline: 'John O.S. Project documentation web site',
   url: 'https://www.johnosproject.org',
-  baseUrl: '/docs/',
+  baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/logo/logo_100.ico',
