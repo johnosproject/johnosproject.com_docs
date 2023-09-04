@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkjosp_docs=self.webpackChunkjosp_docs||[]).push([[533],{28017:e=>{e.exports=JSON.parse('{"permalink":"/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":9,"blogDescription":"JOSP project official blog!","blogTitle":"Keep IT Simple"}')}}]);
