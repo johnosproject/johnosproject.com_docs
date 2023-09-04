@@ -1,0 +1,138 @@
+/* stylelint-disable docusaurus/copyright-header */
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary: rgb(48, 100, 183);
+  /*--ifm-color-primary: rgb(146, 218, 203);*/
+  /*--ifm-color-primary-dark: rgb(33, 175, 144);
+  --ifm-color-primary-darker: rgb(31, 165, 136);
+  --ifm-color-primary-darkest: rgb(26, 136, 112);
+  --ifm-color-primary-light: rgb(70, 203, 174);
+  --ifm-color-primary-lighter: rgb(102, 212, 189);
+  --ifm-color-primary-lightest: rgb(146, 224, 208);*/
+  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: "Roboto", "Helvetica", "Arial", sans-serif;
+  --ifm-navbar-height: 64px;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+html[data-theme='dark'] .docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Navbar links formatters */
+
+.navbar__items > .navbar__link[href="/docs/blog"] {
+  color: var(--ifm-color-primary);
+  margin: 0 1rem;
+}
+
+.navbar__items > .navbar__link[href$="frontend/index.html"],
+.menu__list-item > .menu__link[href$="frontend/index.html"] {
+  color: white;
+  background-color: var(--ifm-color-primary);
+  border-radius: var(--ifm-pagination-nav-border-radius);
+}
+.navbar__items > .navbar__link[href$="frontend/index.html"]:hover,
+.menu__list-item > .menu__link[href$="frontend/index.html"]:hover {
+  text-decoration-line: none;
+}
+
+/* Hide theme dark/light togle button from navbar */
+
+.navbar__items > .react-toggle,
+.navbar-sidebar__brand > .react-toggle {
+  display: none;
+}
+
+
+/* Bottom alignment for footer's cols */
+
+.footer__links .footer__col {
+  align-self: flex-end;
+}
+
+
+
+/** Blog post's titles in list */
+.blog-wrapper article h2 {
+    font-size: 2rem !important;
+}
+
+
+
+/* Navbar backgorund gradient */
+.navbar-sidebar__brand,
+.navbar {
+  background: linear-gradient(-90deg, rgb(146, 218, 203) 0%, rgb(48, 100, 183) 100%);
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+
+}
+
+/* Navbar title roboto */
+.navbar__title {
+  font-size: 1.25rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+}
+
+/* Navbar's sub-items text color */
+.navbar__title,
+.navbar__toggle,
+.navbar__items .navbar__item {
+  color: white;
+}
+
+/* Navbar's sub-items text decoration and color */
+.navbar__items .navbar__item:hover {
+  text-decoration: underline;
+}
+.navbar__items .navbar__item:hover,
+.navbar__items .navbar__link--active {
+  color: rgb(146, 218, 203);
+}
+.navbar__items--right .navbar__item:hover,
+.navbar__items--right .navbar__link--active {
+  color: #92abda;
+}
+
+/* Sidebar's sub-items text color */
+.menu__link--active,
+.menu__link--active:hover {
+  /*color: rgb(146, 218, 203);*/
+  color: rgb(126 189 176);/*darker*/
+}
+
+
+
+
+/* Tabs background and border */
+.tabs-container > div.margin-vert--md {
+    background-color: #00000008;
+    padding: 1rem;
+    margin: 0 !important;
+    border-color: var(--ifm-tabs-color-active-border);
+    border-style: solid;
+    border-width: thin;
+    border-radius: 10px;
+    box-shadow: var(--ifm-alert-shadow);
+}
+
+/* Tabs labels fix according to Tabs border */
+.tabs-container > ul.tabs {
+    margin-left: 10px;
+}

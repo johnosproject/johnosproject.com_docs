@@ -1,0 +1,30 @@
+---
+title: Configs
+---
+# Distribution configuration
+
+The JOD Meteo Web distribution can be configured **setting the location name** of the represent meteo station with the JOSP Object.
+
+Edit the ```configs/configs.sh``` files and set ```JOD_MWO_LOCATION``` property with a valid location id.<br/>
+From the open Weather API documentation:
+
+    City name, state code and country code divided by comma, Please, refer to ISO 3166 for the state codes or country codes.
+    You can specify the parameter not only in English. In this case, the API response should be returned in the same language as the language of requested location name if the location is in our predefined list of more than 200,000 locations.
+
+You can try different location id with following url, replacing the ```${JOD_MWO_LOCATION}``` placeholder.
+
+```
+https://api.openweathermap.org/data/2.5/weather?q=${JOD_MWO_LOCATION}&units=metric&appid=03317c1f2de6827424efd170890ffd3c
+```
+
+Once you set the ```configs/configs.sh``` file, you can [execute](usage) the JOSP Object.
+
+You can also **change configured location after the JOSP Object startup**.
+Update the location's id and restart the JOSP Object.
+It will be disconnected from all JOSP Service (and from the JCP Gateway), and then reconnected with the updated object's structure.
+
+:::tip
+For common JOD Distribution configs, please see the following page:
+
+* [JOD Distribution TEMPLATE/How to use a JOD Distribution/Configure a JOD Distribution](/docs/references/tools/jod_dist_template/how_to_use_a_jod_distribution/configure_a_jod_distribution)
+:::

@@ -1,0 +1,52 @@
+# Requirements
+
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import CodeBlock from '@theme/CodeBlock';
+
+To create and customize a new JOD Distribution, depending on your working OS, please install following requirements:
+
+<Tabs groupId="os"
+defaultValue="linux"
+values={[
+{label: 'Linux', value: 'linux'}, {label: 'MacOS', value: 'macos'}, {label: 'Windows', value: 'windows'},
+]}>
+<TabItem value="linux">
+<ul>
+<li>
+Java Development Kit (preferred java version 9)<br/>
+<CodeBlock>sudo apt install default-jdk</CodeBlock>
+</li>
+<li>
+curl<br/>
+<CodeBlock>sudo apt install curl</CodeBlock>
+</li>
+<li>
+zip (optional)<br/>
+<CodeBlock>sudo apt install zip</CodeBlock>
+</li>
+</ul>
+</TabItem>
+<TabItem value="macos">
+<ul>
+<li>
+Java Development Kit (preferred java version 8)<br/>
+(Download and install it from <a href="https://www.java.com/download/ie_manual.jsp">java.com</a>)
+</li>
+</ul>
+</TabItem>
+<TabItem value="windows">
+<ul>
+<li>
+Java Development Kit (preferred java version 8)<br/>
+(Download and install it from <a href="https://www.java.com/download/ie_manual.jsp">java.com</a>)
+</li>
+<li>
+Enable powershell scripts execution<br/>
+<CodeBlock>
+Set-ExecutionPolicy -ExecutionPolicy remotesigned -Scope CurrentUser
+Get-ChildItem *.ps1 -Recurse | Unblock-File
+</CodeBlock>
+(More inf at <a href="https:/go.microsoft.com/fwlink/?LinkID=135170">microsoft</a>)
+</li>
+</ul>
+</TabItem>
+</Tabs>

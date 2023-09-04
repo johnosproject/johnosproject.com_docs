@@ -1,0 +1,117 @@
+# Get a JOD Distribution
+
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import CodeBlock from '@theme/CodeBlock';
+
+JOD Distributions are released as compressed zip or tgz files. You can find it from distribution's website, or from the official [JOD Distributions](/docs/references/jod_dists/) list. On the same websites you can also get the full distribution's url, simply right-click on download link and select 'Copy link address'; this will be useful to install distributions on remote devices via commandline.
+
+---
+
+## Get on local machine
+
+When you would run the JOD Distribution on your working machine (aka local machine), you just download the distribution required and extract his archive.
+
+You can download the distribution compressed archive and extract it with your favourite GUI tools (browser and zip), or you can use following commands depending on your working operating system:
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+Download the [JOD PC Linux](/docs/references/jod_dists/jod_pc_linux/) distribution and extract it on local directory:
+
+```shell title="Download and extract JOD distribution"
+$ curl -fo JOD-PC-Linux-1.0.tgz https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.pc.linux/downloads/JOD-PC-Linux-1.0.tgz
+$ tar -xvz JOD-PC-Linux-1.0.tgz
+$ cd JOD-PC-Linux-1.0
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+Download the [JOD PC Linux](/docs/references/jod_dists/jod_pc_linux/) distribution and extract it on local directory:
+
+```shell title="Download and extract JOD distribution"
+TODO Write Download and extract JOD distribution
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Get on remote machine
+
+When you would run the JOD Distribution on a remote device, you can download the distribution required directly on remote device and then extract it. By default, you can connect a remote device via [SSH](https://en.wikipedia.org/wiki/Secure_Shell) session like the ```ssh``` or the ```scp``` unix commands.
+
+Those tools allow you to connect with many remote devices from local IoT devices to cloud hosts. Depending on JOD Distribution purpose and requirements, with those tools you are able to install a JOD Distribution on any kind of connected object that meet [JOD Distribution Requirements](requirements).
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+Open an SSH terminal session to the remote device, then download and extract required JOD Distribution:
+
+```shell title="Open SSH session, then download and extract JOD distribution"
+$ ssh pi@raspberrypi.local
+pi@raspberrypi $ curl -fo JOD-PC-Linux-1.0.tgz https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.pc.linux/downloads/JOD-PC-Linux-1.0.tgz
+pi@raspberrypi $ tar -xvz JOD-PC-Linux-1.0.tgz
+pi@raspberrypi $ cd JOD-PC-Linux-1.0
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+Download the [JOD PC Linux](/docs/references/jod_dists/jod_pc_linux/) distribution and extract it on local directory:
+
+```shell title="Open SSH session, then download and extract JOD distribution"
+TODO Write Open SSH session, then download and extract JOD distribution
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Get locally and upload on remote machine
+
+Sometimes remote machines can allow incoming connection, but prevent outgoing request. For example when a firewall is set for security reasons, or because we are deploying on a outdoor device without cloud connectivity, or for any other reason...
+
+When we would deploy a JOD Distribution to a remote device that can't download the distribution from internet, we can also download first on working machine and then, in a second step, upload it to the remote device. To do that you will need to use some [SSH](https://en.wikipedia.org/wiki/Secure_Shell) tools like the ```ssh``` or the ```scp``` unix commands.
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+Open an SSH terminal session to the remote device, then download and extract required JOD Distribution:
+
+```shell title="Download JOD distribution, upload to remote device, then open SSH session and extract JOD distribution"
+$ curl -fo JOD-PC-Linux-1.0.tgz https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.pc.linux/downloads/JOD-PC-Linux-1.0.tgz
+$
+$ // now you have the JOD-PC-Linux-1.0.tgz stored on your working machine
+$ // you can wait until the remote device is available
+$
+$ scp JOD-PC-Linux-1.0.tgz pi@raspberrypi.local:/home/pi
+$ ssh pi@raspberrypi.local
+pi@raspberrypi $ tar -xvz JOD-PC-Linux-1.0.tgz
+pi@raspberrypi $ cd JOD-PC-Linux-1.0
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+Download the [JOD PC Linux](/docs/references/jod_dists/jod_pc_linux/) distribution and extract it on local directory:
+
+```shell title="Download JOD distribution, upload to remote device, then open SSH session and extract JOD distribution"
+TODO Write Download JOD distribution, upload to remote device, then open SSH session and extract JOD distribution
+```
+
+  </TabItem>
+</Tabs>

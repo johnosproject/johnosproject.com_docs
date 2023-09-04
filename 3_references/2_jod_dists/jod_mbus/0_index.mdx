@@ -1,0 +1,77 @@
+---
+slug: ./
+---
+# JOD MBus References
+
+import ReferenceIntro from '../../_references_intro.mdx'
+import ReferenceInfo from '../../_references_info.mdx'
+
+<ReferenceIntro
+  logo_path="JOD_MBus_Logo_250.png">
+
+The __JOD MBus represent all devices connected to a MBus master devices as a JOSP Object__.
+
+This distribution expose a single JOSP Object with Statues grouped by device connected to the MBus master.<br/>
+This distribution communicate with the MBus master via ```mbus-serial-scan``` and ```mbus-serial-request-data``` commands from [```libmbus```](https://github.com/rscada/libmbus) tool.
+So your MBus master must be available to those command to work with this distribution.
+</ReferenceIntro>
+
+<ReferenceInfo
+  proj_name="JOD Philips Hue"
+  refs_dir="jod_dists/philips_hue"
+  ver_stable="1.0"
+  ver_dev="1.1-DEV"
+  repo_name="com.robypomper.josp.jod.philips_hue"
+  />
+
+---
+
+**Distribution documentation**
+
+* [Exported object](exported_object)<br/>
+  distribution's specification like object's info and structure
+* [Requirements](requirements)<br/>
+  distribution specific requirements like software or hardware dependencies
+* [Distribution configs](distribution_configs)<br/>
+  how to configure this distribution
+* [Usage](usage)<br/>
+  how to manage current distribution
+
+---
+
+import YoutubeVideo from '../../_video_youtube.mdx'
+
+<YoutubeVideo videoId="9wPoEweUVJI" />
+ToDo Update video url JOD MBus
+
+---
+
+import Paper from '@mui/material/Paper';
+
+<Paper style={{
+  textAlign: "center",
+  width: "fit-content",
+  padding: "10px 30px",
+  margin: "auto",
+  backgroundColor: "#1976d2",
+  color: "#fff"
+  }}>
+    <b>Download latest JOD Philips Hue</b><br/>
+    <a style={{
+      color: "#92dacb",
+      margin: "0 10px"
+      }}
+      href="https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.meteo_web/downloads/JOD-Meteo-Web-1.0.zip">*.ZIP</a> |
+    <a style={{
+      color: "#92dacb",
+      margin: "0 10px"
+      }}
+      href="https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.meteo_web/downloads/JOD-Meteo-Web-1.0.tgz">*.TGZ</a>
+</Paper>
+
+---
+
+**The JOD MBus distribution was developed and tested with the [M-Bus Master Hat](https://www.packom.net/m-bus-master-hat/) on a [Raspberry Pi](https://www.raspberrypi.org/).**<br/>
+This is the reference HW for this distribution.
+That means, you can still use this distribution with other MBus master (as long as your MBus master can be reachable from libmbus's tools), but this documentation is based on that HW configuration.<br/>
+Here the [M-Bus Master Hat setup guide](https://www.packom.net/m-bus-master-hat-instructions/), follow it until 'Using libmbus'.

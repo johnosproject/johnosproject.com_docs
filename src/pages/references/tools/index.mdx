@@ -1,0 +1,27 @@
+# JOSP Utils & Tools
+
+Here the list of JOSP utils & tools.
+
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+
+import JOSPTool from '../_references_josp_tools_card.mdx'
+
+<Box sx={{ flexGrow: 1 }}>
+<Grid container spacing={2}
+direction="row"
+justifyContent="left"
+alignItems="stretch">
+<Grid item sm={6} md={4} lg={3}>
+<JOSPTool name="JOD Dist TEMPLATE" dir="tools/jod_dist_template" logoFullPath="/docs/references/tools/jod_dist_template/JOD_Dist_TMPL_Logo_250.png">
+The JOD Distribution TEMPLATE is the starting point for Makers to generates custom JOD Distributions.
+</JOSPTool>
+</Grid>
+<Grid item sm={6} md={4} lg={3}>
+<JOSPTool name="John Object Remote" dir="tools/john_object_remote" logoFullPath="/docs/references/tools/john_object_remote/John_Object_Remote_Logo_250.png">
+With John Object Remote you can control easily JOSP Objects installed on remote devices.
+</JOSPTool>
+</Grid>
+</Grid>
+</Box>

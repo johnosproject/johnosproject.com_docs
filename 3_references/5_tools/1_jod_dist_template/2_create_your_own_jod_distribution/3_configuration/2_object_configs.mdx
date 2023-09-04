@@ -1,0 +1,35 @@
+# Object Configs
+
+Once you configured your distribution properly, you can proceed to configure the JOSP Object exposed by your distribution.
+
+---
+
+## JOD configs
+
+This is the main config file used by the End User to configure your distribution, once they installed it. It can be used to override default properties used by [JOD Distribution Commands](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/dists.md) like the ```JAVA_HOME``` path, or to set properties specific to JOD Distribution configs.
+
+Or JOD Dist Commands configs, like the JOD Template Commands, also the JOD Dist Cmd are using a script file as configs file. So any variable defined in this file will be visible by all other JOD Distribution Commands scripts.<br/>
+By default, the ```dists/configs/jod_configs.(sh|ps1)``` do nothing, but it can be used to set the ```JAVA_HOME``` path or other variables used by other scripts, included the [PRE-POST scripts](#object-pre-post-scripts). That make this file perfect to add your distribution specific configurations.
+
+---
+
+## JOD Agent configs
+
+:::caution Editing this file you can force JOD Agent execution. Edit at your own risk. Normally it is not necessary to modify this file, so you can safely move on to the next step.
+:::
+
+Another file that define the object behaviour is the ```jod.yml``` file. This file is used as config file for the JOD Agent. During the build process, the JOD Dist TMPL, generate a new ```jod.yml``` file, replacing all placeholder contained in the ```dists/configs/jod_TMPL.yml``` file with values generated during the build process setup.
+
+For a complete list of available placeholder, see the latest [jod_TMPL.yml](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/src/dists/configs/jod_TMPL.yml) file.
+
+You can override default ```jod_TMPL.yml``` path using the ```JOD_CONFIG_TMPL``` property in the ```configs/jod_dist_configs.sh|ps1``` file.
+
+---
+
+## Logs configs
+
+This file allows you to customize the JOD Agent log level. The JOD Dist TMPL build process, use the default ```dists/configs/log4j2_TMPL.xml``` file to replace the ```%JOD_VER%``` placeholder with current selected JOD version.
+
+This replacement is required because the ```log4j.xml``` dependencies to the jospCommons library.
+
+Update the Loggers configuration to increment or decrement log verbosity. You can reference to the [log4j2 documentation](https://logging.apache.org/log4j/2.x/manual/configuration.html).

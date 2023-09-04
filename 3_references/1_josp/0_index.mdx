@@ -1,0 +1,104 @@
+---
+slug: ./
+---
+# JOSP Components References
+
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+
+The JOSP project is split in many different components. Starting from his **3 main components**, then you can find all **JCP micro-services** and finally **internal libraries** used by components and micro-services.
+
+## JOSP Main Components
+
+export const paper_style = {
+  textAlign: 'center',
+  padding: '10px',
+  height: '250px',
+  maxWidth: '400px',
+  overflow: 'scroll',
+  margin: 'auto'
+}
+export const title_style = {
+  fontSize: '1rem',
+  margin: 'auto'
+}
+export const icon_style = {
+width: '40%',
+margin: 'auto'
+}
+
+<Box sx={{ flexGrow: 1 }}>
+  <Grid container spacing={2}
+    direction="row"
+    justifyContent="left"
+    alignItems="stretch">
+    <Grid item sm={6} style={{textAlign: 'center'}}>
+      <a href={"jod/"}>
+        <Paper style={paper_style}>
+          <img src="/docs/img/icons/JOD_Icon_250.png" style={icon_style}/>
+          <Typography variant="button" component="h2" gutterBottom style={title_style}>
+            John Object Daemon
+          </Typography>
+        <Typography variant="caption" component="div" color="text.secondary" gutterBottom style={{}}>
+          The object's agent that expose JOSP Objects. It can be executed on personal computer, embedded devices, servers...
+        </Typography>
+        </Paper>
+      </a>
+    </Grid>
+    <Grid item sm={6} style={{textAlign: 'center'}}>
+      <a href={"jsl/"}>
+        <Paper style={paper_style}>
+          <img src="/docs/img/icons/JSL_Icon_250.png" style={icon_style}/>
+          <Typography variant="button" component="h2" gutterBottom style={title_style}>
+            John Service Library
+          </Typography>
+          <Typography variant="caption" component="div" color="text.secondary" gutterBottom style={{}}>
+            The software library that allow 3rd party software list and interact with JOSP Objects. Those softwares are calle JOSP Services.
+          </Typography>
+        </Paper>
+      </a>
+    </Grid>
+    <Grid item sm={12} style={{textAlign: 'center'}}>
+      <a href={"jcp/"}>
+        <Paper style={paper_style}>
+          <img src="/docs/img/icons/JCP_Icon_250.png" style={icon_style}/>
+          <Typography variant="button" component="h2" gutterBottom style={title_style}>
+            John Cloud Platform
+          </Typography>
+          <Typography variant="caption" component="div" color="text.secondary" gutterBottom style={{}}>
+            The JOSP component that allow cloud communication trough JOSP Objects and Services.
+          </Typography>
+        </Paper>
+      </a>
+    </Grid>
+  </Grid>
+</Box>
+
+---
+
+## JCP Micro-Services
+
+| JCP Micro Service | Description and default ports |
+|---|---|
+| [JCP Database](jcp/microservices/dbms/) | DBMS based on [MySQL](https://www.mysql.com/) listening on port ```8999```. |
+| [JCP Auth](jcp/microservices/auth/) | Auth service provided by a configured [Keycloak](https://www.keycloak.org/) listening on port ```8998```. |
+| [JCP APIs](jcp/microservices/apis/) | Public APIs for JOSP EcoSystem. Used by JOSP Objects and Services to register them self, connect to gateways, uploads events.... This service is listening on port ```9001```. |
+| [JCP Gateways](jcp/microservices/gws/) | A GW service that dispatch messages from JOSP Objects to JOSP Services and viceversa for cloud communication. This service is listening on port ```9002```. |
+| [JCP JSL Web Bridge](jcp/microservices/jslwb/) | HTTP API wrapper for the [JSL](jsl/) library. It allow clients, like JavaScript websites, to initialize a JSL session and access to the JOSP EcoSystem as JOSP Services. This service is listening on port ```9003```. |
+| [JCP Front End](jcp/microservices/fe/) | The main JCP web interface. It provides the web dashboard for users to manage their objects. This service is listening on port ```9004```. |
+
+---
+
+## JOSP Internal Libraries
+
+* [JOSP APIs](internal/josp_apis/): collection of definitions commons to all 3 main JOSP components.
+* [JOSP Commons](internal/josp_commons/): set of utilities commons to all 3 main JOSP components.
+* [JCP Commons](internal/jcp_commons/): collection of definitions commons to all JCP micro-services.
+* [JCP Service](internal/jcp_service/): set of utilities commons to all JCP micro-services.
+* [JCP DB](internal/jcp_db/): collection of definitions commons to all JCP DB's library.
+* [JCP DB APIs](internal/jcp_db_apis/): DB's library for JCP APIs micro-service.
+* [JCP DB GWs](internal/jcp_db_gws/): DB's library for JCP GWs micro-service.
+* [JCP DB FE](internal/jcp_db_fe/): DB's library for JCP FE micro-service.

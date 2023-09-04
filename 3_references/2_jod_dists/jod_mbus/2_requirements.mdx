@@ -1,0 +1,34 @@
+---
+title: Requirements
+---
+# Distribution's requirements
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+:::caution
+This distribution can be installed on Linux or MacOS.
+:::
+
+This distribution use the [```scripts/hw/generateObjectStructure_ALL.sh```](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.mbus/src/master/dists/resources/scripts/hw/generateObjectStructure_ALL.sh) or [```scripts/hw/generateObjectStructure_SLAVE.sh```](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.mbus/src/master/dists/resources/scripts/hw/generateObjectStructure_SLAVE.sh) scripts to generate the object structure on his startup.
+Those scripts and the resulting object's structure require the ```mbus-serial-scan``` and ```mbus-serial-request-data``` external commands.
+
+Those commands are provided within the [```libmbus```](https://github.com/rscada/libmbus) library.
+
+:::tip
+For common JOD Distribution requirements, please see the [JOD Distribution TEMPLATE/How to use a JOD Distribution/Configure JOD Distribution](/docs/references/tools/jod_dist_template/how_to_use_a_jod_distribution/requirements) page.
+:::
+
+---
+
+## Install ```libmbus```
+
+The ```libmbus``` library provide also a set of tools to interact with a MBus master via serial or tcp communication.
+This distribution, at this moment, support only serial communication.
+
+To install this library on your system (where you intend run the JOD MBus distribution), you can download it from the [download libmbus](http://www.rscada.se/libmbus/) page or following instruction from your MBus master.
+Here the links to setup guides of some MBus master available for RaspberryPi:
+
+* [M-Bus Master Hat](https://www.packom.net/m-bus-master-hat-instructions/) from [packom.net](https://www.packom.net/product/m-bus-master-hat/)
+* [ISO-MBUS](https://www.embeddedpi.com/documentation/isolated-mbus/mypi-industrial-raspberry-pi-mbus-card-configuration) from [embeddedpi.com](https://www.embeddedpi.com/iocards)

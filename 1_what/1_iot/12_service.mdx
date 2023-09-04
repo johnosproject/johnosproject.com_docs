@@ -1,0 +1,113 @@
+---
+title: Services
+---
+# IoT Services
+
+**Any software that query data or interact with a connected [object](object) can be considered an IoT Service**.
+
+A lot of software fall under this definition, software with different purposes (monitoring, remote control, analytics...) and different user interfaces (GUI, voice, command line, batch...).
+Software that runs also on different devices (smartphones, pc, cloud servers...) and OSs (windows, linux, mac, android, ios...).
+
+**IoT services are the core of the [IoT Solutions](solution).**
+They define the [user](actor)'s 'digital experience' with connected objects.
+Depending on user's role and purposes, different IoT Services should be available.
+
+Services define how object's data are collected and elaborated and which commands should be requested to the objects.
+Like any other software, **IoT Services are designed around the user**.
+They adapt themselves depending on available objects but also depending on user permissions and preferences.
+
+**IoT Services handle also user's authentication** on behalf of the access control system under the hood of the IoT EcoSystem.
+Then use obtained credentials to query object's values and send command requests.
+
+User's authentication, communication between objects and services and many other features used by services are provided from the [IoT EcoSystem](ecosystem) where the service is connected to.
+
+---
+
+## Services types
+
+Almost any connected object comes with a **monitor and control software**.
+Normally it's a simple service that allows object's owner to show object's statuses and execute command remotely.
+For home appliances this service is normally supplied as a Mobile App for smartphones or tablets.
+For industrial connected machinery this service can be included in a SCADA program as a plugin or extension.
+
+In other cases, the monitor and control service allow user manage hundreds of objects of the same type.
+For example, a vehicle tracking device can be shipped in bundle with a web dashboard to help user manage an entire fleet of hundreds of vehicles.
+
+Some other IoT Services act as **object's orchestrator.**<br/>
+Those software programs include rules and logic according to which objects must be collaborating.
+
+They can automate object's interactions (M2M) like the basic example:
+When a sensor from object A reach a preset threshold, the valve from object B must be opened.<br/>
+Otherwise, they can also collect and analyze data for a while, then send object's commands according to the results obtained from analytics.
+Such as in a SmartGardening solution, humidity sensors provides data to an analytics software that cross sensors' data with meteo forecasts, finally analytics results can tell the sprinkler system whether to run or not.
+Like this one, also all ML/AI solutions are based on this principle (collect/analyze/decide).
+
+A perfect example as object's orchestrator is the [IFTTT](https://ifttt.com/) service that do something when configured events occurs (it works also with many IoT objects).
+
+Another IoT Service type is composed by **analytics services**.
+Software that collect data from objects and then process collected data to perform various kind of reports.<br/>
+Depending on their purpose and from collected data, those services can extract following information:
+
+* environmental stats: to determinate object's working environment, elaborating environment sensors values
+* operating stats: to determinate how object's is working, elaborating object's states values
+* usage stats: to determinate how users interact (digitaly or physically) with object, elaborating object's states values and commands requests
+* behavior stats: to determinate user's activity, elaborating multiple object's states values and commands requests from the user
+
+Another common IoT Service groups is based on **vertical solution for a specific working environment**.
+Those services are designed to solve a specific problem or to help user in a specific tasks.
+Normally we can find this services on the market as all-in-one solution.<br/>
+For example services like Factory 4.0 platforms provides a set of features to help enterprise monitoring products quality, keep employers safely, improve remote assistance...
+Many of those platforms are provided as modular SaaS, so you can adopt only some of those available, or add one feature at a time.
+
+Services of this type have the following points in common:
+
+* can integrate all connected objects present in a specific environment (home and building, office and meeting rooms, production line, agricultural field...) 
+* provide different services for different user's roles (end user, supervisor, warehouse worker, operator...)
+* often they provide also the IT infrastructure required to run such services
+* focused on specific problems or tasks
+
+---
+
+## Object's integration
+
+When **a software** wants to interact with a connected object, it **takes care of what info and what commands can be request to the object**.
+The service must know which values and which action are available from objects, so it can use them properly.<br/>
+Services can get the object's list to the underlying IoT Ecosystem, normally via an API call to a library or a web service.
+Once the service know which objects are available and their features, it can start interact with them.
+Object's values and commands requests are always performed via API calls to a library or a web server from IoT EcoSystem.
+
+Depending on the IoT EcoSystem used by the service, the software can communicate directly to the object or trough other infrastructure components like cloud and local gateways.
+
+With the aim to simplify object's adoption from software, object's manufacturers and IoT Platform vendors provides **software libraries to interact with their objects (or gateways)**.
+A software can integrate one or more of those libraries, configure them and communicate with correspondent objects.
+
+Those software libraries on software side provide a set of API to list and interact with objects.
+On the other side they implement a specific protocol and tx/rx data on a network interface.
+Because of that, IoT Services always require a connection to the IoT EcoSystem available.<br/>
+Generally this is an IP connection like that one provided via local networks or public internet.
+So the only requirements is an common IP network interface (Eth or Wi-Fi).
+
+---
+
+## User account
+
+IoT Services can be considered also as **IoT EcoSystem entrypoint for users.
+
+Many users are already using IoT EcoSystems every day without realizing it.
+Every time you open Google Maps, you are using an IoT service that display the avg speed of cars in visualized roads.
+
+Not all IoT Services show public data, most of them contrariwise, show reserved info and prevent unwanted access.
+Differently to normal software, that authorize users to access to their data, those services **authorize users to access to their objects**.
+To access to the objects, an IoT Service must use the underlying IoT EcoSystem that provides also an AAA services to authenticate users.
+The same AAA service used by other IoT EcoSystem components to authenticate and verify user's permission.
+
+Because of those reasons, the IoT Services handle also the user's authentication.
+There are two common way to handle that from a service.<br/>
+IoT Services can use a **social login provided by the IoT EcoSystem**.
+Many IoT Platforms allow users to create an account and register all their objects under the same account.
+Then different software can use the social login provided by the platform, to authenticate user's and get access to his objects.
+So, the service and to the IoT EcoSystem share the same user account. 
+Another way for services to get access to user's objects is to **require the permission to the IoT EcoSystem as external service**.
+This is how voice assistants like Google Assistant or Amazon Alexa integrate 3rd party connected objects.
+You should log in to voice assistant (with Google or Amazon account), then when you add a new object, the assistant software require the access to the IoT EcoSystem.
+This method requires two different account for each user, one for the service's authentication and another one for the IoT EcoSystem authentication.

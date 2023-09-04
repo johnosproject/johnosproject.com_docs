@@ -1,0 +1,40 @@
+# Objects Resources
+
+All files contained in the ```dists/resources``` directory will be copied to the destination distribution.
+
+So you can add all required resources, script and files into this directory. It includes also JOD Distribution's documentation.
+
+The JOD Dist TMPl provide also a set of example files and dirs that can be used in your distribution. You can recognize those files because they are contained in the ```dists/resources/``` dir and have the suffix ```_EXMPL```. To activate them and use in your distribution, rename required files and dirs and remove the ```_EXMPL``` suffix. Other example's files and dirs can be safely deleted.
+
+### README, CHANGELOG and TODO
+
+Those files allow End User understand and use your JOD Distribution.
+
+The ```README.md``` file is the starting point for the end user when he works with your distribution, he looks for distribution's requirements and configs. So, when you describe your distribution, include also requirements specifications and configs descriptions. Here you can also add link to a documentation websites, like to the installation or hardware purchase/DIY pages.
+
+For each of those files the JOD Dist TMPL provide an example file. Rename it and editing according your distribution specifications.
+
+### scripts/PRE-POST
+
+In the ```dists/resources/scripts``` dir you can find the example files for all PRE-POST scripts. Rename required hooks and add your commands.
+
+You can find examples and more details on PRE-POST scripts configuration at the [PRE-POST Script](pre_post_scripts) page.
+
+### scripts/hw
+
+By default, distribution firmware is placed in the ```dists/resources/scripts/hw``` directory. Here you can put scripts, executables and related resources. Then you can easily access them from [FirmwareProtocol](object_structure#states-and-actions)'s configuration.
+
+JOD Agent is always executed using ```start.sh```'s directory as working dir. That means FirmwareProtocols's configurations can referer to firmware scripts or other resources with the relative path ```scripts/hw/*```. In the following example a ```RangeState``` pillar is configured with 'shell' FirmwareProtocol to use ```scripts/hw/cpu_mpstat.sh``` script for pulling ```RangeState```'s value.
+
+```json title="struct.jod: RangeState/Shell @ JOD PC Linux"
+"CPU MPStat" : {
+    "type": "RangeState",
+    "puller" : "shell://cmd=scripts/hw/cpu_mpstat.sh;freq=30",
+    "min": "0",
+    "max": "100"
+}
+```
+
+### docs and media
+
+Those directories are default location for detailed docs and media resources.

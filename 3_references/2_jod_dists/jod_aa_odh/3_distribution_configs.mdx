@@ -1,0 +1,21 @@
+---
+title: Configs
+---
+# Distribution configuration
+
+The JOD AA ODH distribution can be configured **setting the Alto Adige Open Data Hub station** to represent with current JOSP Object.
+
+Edit the ```configs/configs.sh``` files and set ```JOD_AA_ODH_STATION_TYPE``` and ```JOD_AA_ODH_STATION_CODE``` properties.<br/>
+You can find valid values in the Dataset list from [distribution home page](.#station-types-list).
+
+Once you set the ```configs/configs.sh``` file, you can [execute](usage) the JOSP Object.
+
+You can also **change configured station after the JOSP Object startup**.
+Update the station's values and restart the JOSP Object.
+It will be disconnected from all JOSP Service (and from the JCP Gateway), and then reconnected with the updated object's structure.
+
+:::tip
+For common JOD Distribution configs, please see the following page:
+
+* [JOD Distribution TEMPLATE/How to use a JOD Distribution/Configure a JOD Distribution](/docs/references/tools/jod_dist_template/how_to_use_a_jod_distribution/configure_a_jod_distribution)
+:::

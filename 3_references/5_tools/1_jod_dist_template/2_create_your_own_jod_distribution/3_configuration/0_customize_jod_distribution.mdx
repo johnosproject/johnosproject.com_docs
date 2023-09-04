@@ -1,0 +1,14 @@
+# Customize JOD Distribution
+
+**A JOD Distribution can represent any kind of object in a JOSP EcoSystem, depending on his configs.**
+
+All JOD Distribution projects based on the JOD Dist TMPL, must run the build process to generate their distributable files. So you can **configure the build process to customize the output distribution**.<br/>
+The JOD Distribution TEMPLATE provide a main configuration config files. The ```configs/jod_dist_configs.sh|ps1``` files contains the main distribution's configs like his name, his version, the JOD version to use, the JCP credentials, etc... This file is used by ```build.sh|ps1``` script to configure the build process.<br/>
+On other side, the build process, assemble the distribution using files contained in the ```dists``` dir. The JOD Dist TMPL provide all those files. Mandatory files are provided with the right name, so you must only edit existing files. Other, non mandatory files, are provided with ```_EXAMPLE``` extension, so you need to rename them to enable them. Those files allow you to configure object, to customize his structure, to inject PRE-POST scripts and to add resources to the assembled distribution.
+
+Here the build process diagram:
+
+<img alt="JOD Distribution TEMPLATE Build process diagram" src="/docs/references/tools/jod_dist_template/create_your_own_jod_distribution/JODDistTMPL_BuildProcess.png" title="JOD Distribution TEMPLATE Build process" style={{maxHeight: "600px", display: "block", marginLeft: "auto", marginRight: "auto"}}/><br/>
+
+At [JOD Distributions list](/docs/references/jod_dists/) page of the JOSP Docs, you can find many **ready-to-use JOD Distributions**. Depending on what you would integrate to the JOSP EcoSystem as an Object, maybe there is already a JOD Distribution for your needs. Otherwise, use them as examples for your custom JOD Distribution.<br/>
+To publish your own distribution on this list, please contact us at [tech@johnosproject.com](mailto:tech@johnosproject.com).

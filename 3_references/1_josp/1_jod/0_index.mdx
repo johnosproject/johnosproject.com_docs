@@ -1,0 +1,71 @@
+---
+slug: ./
+---
+# JOD Agent References
+
+import ReferenceIntro from '../../_references_intro.mdx'
+import ReferenceInfo from '../../_references_info.mdx'
+
+<ReferenceIntro
+  logo_path="/docs/img/icons/JOD_Icon_250.png">
+
+The **John Object Daemon is software that expose a [JOSP Object](/docs/what/josp/object) to the [JOSP EcoSystem](/docs/what/josp/ecosystem)**.
+It can be installed on computers, embedded devices, servers, etc...
+
+**NB!**: normally it's distributed within a [JOD Distribution](/docs/references/jod_dists/) designed by [Makers](/docs/what/josp/actors/maker).
+
+</ReferenceIntro>
+
+<ReferenceInfo
+  proj_name="JOD"
+  refs_dir="josp/jod"
+  ver_stable="2.2.1"
+  ver_dev="2.3.0-DEV"
+  repo_name="com.robypomper.josp"
+  />
+
+The JOD Agent read object's structure from ```configs/struct.jod``` file and expose that structure to the [JOSP EcoSystem](/docs/what/josp/ecosystem) and then to [JOSP Services](/docs/what/josp/service) as a [JOSP Object](/docs/what/josp/object).
+Only JOSP Services with the right [permission](/docs/what/josp/specs/permissions) can access to the exposed JOSP Object. Depending on their permissions, they can:
+
+* if permission=[STATE](/docs/what/josp/specs/permissions#state): read object's structure and contained [Pillar's states](specs/pillars#states)
+* if permission=[ACTION](/docs/what/josp/specs/permissions#action): require [Pillar's actions](specs/pillars#actions) executions
+* if permission=[OWNER](/docs/what/josp/specs/permissions#owner): edit object's name, owner or permissions
+* if permission=[NONE](/docs/what/josp/specs/permissions#none): list object but can't get object's info or structure
+
+In the JOSP EcoSystem **each JOSP Object is identified by his ID**. The [Object's ID](specs/object_id), if not yet set, is generated automatically at JOD Agent startup. This, normally happens on object's first startup.
+The only other circumstance when the object's ID changes, is when the object's change his owner. That happen on object's owner registration or when current owner 'sell' the object to another user.
+
+At startup, the JOD Agent loads the [object's structure](specs/structure) and initialize all required object's [Pillars](specs/pillars) and relative [Workers](specs/workers). Then checks if configured [JCP](/docs/references/josp/jcp) is reachable, if it's available, the object opens a connection with returned [JCP Gateways](/docs/references/josp/jcp/microservices/gws).<br/>
+Finally, it startup a local server for direct communication
+
+It's possible to **customize the exposed object** changing the [JOD Agent behaviour](specs/configs) with his main configs file  ```configs/jod.yml``` or editing the ```configs/struct.jod``` file to alter his [structure](specs/structure).
+Here a list of all JOD Agent's [files](specs/files).
+
+JOD Agent was developed to **run on many different type of devices (computers, embedded, server...) and keep running 24/7**.<br/>
+Because of that, normally it's executed as a [background process](usage#daemon), but occasionally it can be executed also as a [foreground command](usage#command) and managed by the [JOD Shell](specs/shell). Mostly for configurations test purposes.
+
+Here a simple guide on **JOD Agent's [usage](usage) and troubleshooting**.
+
+----
+
+## Versions
+
+* v [2.0.0](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.0.0/)
+* v 2.1.0
+* v [2.2.0](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.0/)
+* v [2.2.1](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/)
+* v [2.3.0-DEV](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/develop/)
+
+---
+
+## Collaborate
+
+**Any kind of collaboration is welcome!** This is an Open Source project, so we are happy to share our experience with other developers, makers and users. Bug reporting, extension development, documentation and guides etc... are activities where anybody can help to improve this project.
+
+Please email to [tech@johnosproject.com](mailto:tech@johnosproject.com).
+
+----
+
+## Licences
+
+The John Object Daemon is an open-source project part of the John Os Project and is distributed with a [GPLv3 license](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/master/LICENSES/John%20Object%20Daemon).

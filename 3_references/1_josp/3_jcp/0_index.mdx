@@ -1,0 +1,67 @@
+---
+slug: ./
+---
+# JCP Reference
+
+import ReferenceIntro from '../../_references_intro.mdx'
+import ReferenceInfo from '../../_references_info.mdx'
+
+<ReferenceIntro
+  logo_path="/docs/img/icons/JCP_Icon_250.png">
+
+The **John Cloud Platform is a collection of microservices that compone the cloud component for a [JOSP EcoSystem](/docs/what/josp/ecosystem)**.
+The JOSP Project provide two public instances of the JCP component: [Public JCP](public_jcp#prod) and [Stage JCP](public_jcp#stage).
+
+**NB!**: IoT Solutions based on JOSP EcoSystem commonly use the Public JCP instance as shared cloud component.
+
+</ReferenceIntro>
+
+<ReferenceInfo
+  proj_name="JCP"
+  refs_dir="josp/jcp"
+  ver_stable="2.2.1"
+  ver_dev="2.3.0-DEV"
+  repo_name="com.robypomper.josp"
+  />
+
+The JCP platform main goal is to allow [JOSP Objects](/docs/what/josp/object) and [JOSP Services](/docs/what/josp/service) communicate also when they are not on the seme network.
+Both can connect to the JCP and communicate together, overcoming obstacles such as firewalls and complex networks.
+
+:::caution
+Only on particular circumstances you must run the JCP microservices by your self instead using the Public JCP.<br/>
+Hosting your own JCP it's only required for example when your security policy can't allow move data outside perimeters.
+
+Until extremely necessary, we don't recommend to use your own JCP instance.
+:::
+
+JOSP Objects and Services authenticate their self to the [JCP APIs](microservices/apis/) using the [JCP Auth](microservices/auth/) service. Then they receive the address of the available [JCP Gateways](microservices/gws/) to connect with. Once JOSP Objects and JOSP Services are connected to the JCP GWs, they can start communicate.
+In other words, JCP GWs act as a router and forward JOSP messages from objects to service and vice versa.
+
+The JCP platform offer also other services like:
+* [JCP FrontEnd](microservices/fe/): a web Dashboard where users can handle their JOSP Objects.
+* [JCP JSL Web Bridge](microservices/jslwb/): the server implementation for [JSL Http](/docs/references/josp/jsl/langs/http/) implementation.
+* [JCP DBMS](microservices/dbms/): the DB manager that host all JCP micro-services databases.
+
+----
+
+## Versions
+
+* v [2.0.0](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.0.0/)
+* v 2.1.0
+* v [2.2.0](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.0/)
+* v [2.2.1](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/)
+* v [2.3.0-DEV](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/develop/)
+
+---
+
+## Collaborate
+
+**Any kind of collaboration is welcome!** This is an Open Source project, so we are happy to share our experience with other developers, makers and users. Bug reporting, extension development, documentation and guides etc... are activities where anybody can help to improve this project.
+
+Please email to [tech@johnosproject.com](mailto:tech@johnosproject.com).
+
+----
+
+## Licences
+
+The John Object Daemon is an open-source project part of the John Os Project and is distributed with a [AGPLv3 license](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/master/LICENSES/John%20Cloud%20Platform).

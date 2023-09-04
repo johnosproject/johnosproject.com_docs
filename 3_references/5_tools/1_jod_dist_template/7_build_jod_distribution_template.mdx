@@ -1,0 +1,23 @@
+# Build JOD Distribution TEMPLATE
+
+This project includes a Gradle config that provide the ```buildTMPL``` task. Execute that task to assemble and generate the JOD Distribution TEMPLATE:
+
+```shell
+$ ./gradlew buildTMPL
+```
+
+Once executed, you can find assembled JOD Distribution TEMPLATE in the
+```build/assemble/$JOD_TEMPL_VER``` dir, or in the ```build/publications```
+folder as distributable files. Alternatively, you can download published JOD Distribution TEMPLATE at [Repository > Downloads @ Bitbucket](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/downloads/). Visit that page to list all available versions and then execute following command to download it.
+
+For Bash:
+
+```shell
+$ curl -fo JOD_Dist_TMPL-1.0.1.tgz https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/downloads/JOD_Dist_TMPL-1.0.1.tgz
+```
+
+For Powershell:
+
+```shell
+$ Invoke-WebRequest -Uri "https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/downloads/JOD_Dist_TMPL-1.0.1.zip" -OutFile "JOD_Dist_TMPL-1.0.1.zip"
+```

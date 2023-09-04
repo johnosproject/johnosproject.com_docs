@@ -1,0 +1,133 @@
+---
+title: Requirements
+---
+# Distribution's requirements
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+:::caution
+This distribution can be installed on Linux or MacOS.
+:::
+
+This distribution use the [```scripts/hw/generateObjectStructure.sh```](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.aa_odh/src/master/dists/resources/scripts/hw/generateObjectStructure.sh) script to generate the object structure on his startup.
+This script require the ```curl``` and ```jq``` external commands to require and parse station's structure.
+
+:::tip
+For common JOD Distribution requirements, please see the [JOD Distribution TEMPLATE/How to use a JOD Distribution/Configure JOD Distribution](/docs/references/tools/jod_dist_template/how_to_use_a_jod_distribution/requirements) page.
+:::
+
+---
+
+## Install ```curl```
+
+The command ```curl``` allow to require web pages and query apis methods.
+
+<Tabs groupId="os"
+defaultValue="linux"
+values={[
+{label: 'Linux', value: 'linux'}, {label: 'MacOS', value: 'macos'}, {label: 'Windows', value: 'windows'},
+]}>
+<TabItem value="linux">
+<ul>
+<li>
+curl<br/>
+
+```shell
+$ sudo apt install curl
+```
+
+</li>
+</ul>
+</TabItem>
+<TabItem value="macos">
+
+:::info
+The ```curl``` command is always installed on MacOS.
+:::
+
+</TabItem>
+<TabItem value="windows">
+
+:::caution
+This distribution can't be run on a Windows PC.
+:::
+
+</TabItem>
+</Tabs>
+
+---
+
+## Install ```jq```
+
+```jq``` is a lightweight and flexible command-line JSON processor.<br/>
+You can download latest version from jq's [Download](https://stedolan.github.io/jq/download/) page or following below steps.
+
+<Tabs groupId="os"
+defaultValue="linux"
+values={[
+{label: 'Linux', value: 'linux'}, {label: 'MacOS', value: 'macos'}, {label: 'Windows', value: 'windows'},
+]}>
+<TabItem value="linux">
+
+<Tabs
+  groupId="linux-package_managers"
+  defaultValue="apt"
+  values={[
+    {label: 'APT (Debian, Ubuntu...)', value: 'apt'},
+    {label: 'YUM (CentOS, RedHat, Fedora...)', value: 'yum'},
+  ]}>
+  <TabItem value="apt">
+
+```shell
+$ sudo apt-get install jq
+```
+
+  </TabItem>
+  <TabItem value="yum">
+
+```shell
+$ yum install epel-release
+$ yum update
+$ yum install jq
+```
+
+  </TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="macos">
+
+<Tabs
+  groupId="macos-package_managers"
+  defaultValue="brew"
+  values={[
+    {label: 'Homebrew', value: 'brew'},
+    {label: 'MacPorts', value: 'port'},
+  ]}>
+  <TabItem value="brew">
+
+```shell
+$ brew install jq
+```
+
+  </TabItem>
+  <TabItem value="port">
+
+```shell
+$ port install jq
+```
+
+  </TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="windows">
+
+:::caution
+This distribution can't be run on a Windows PC.
+:::
+
+</TabItem>
+</Tabs>

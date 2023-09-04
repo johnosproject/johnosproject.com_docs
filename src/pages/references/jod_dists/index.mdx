@@ -1,0 +1,114 @@
+# John Object Daemon Distributions
+
+The [JOD Distribution TEMPLATE](/docs/references/tools/jod_dist_template/) is the main tool to create a new JOD Distribution.<br/>
+That's necessary only if you can't find a distribution that fits your needs on the bellow lists.
+
+More distribution will be available soon, come back and check again.<br/>
+To publish your own distribution on this list, please contact us at [tech@johnosproject.com](mailto:tech@johnosproject.com).
+
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+
+import JODDist from '../_references_jod_dist_card.mdx'
+
+---
+
+## Real physical objects
+
+<Box sx={{ flexGrow: 1 }}>
+  <Grid container spacing={2}
+  direction="row"
+  justifyContent="left"
+  alignItems="stretch">
+    <Grid item sm={6} md={4} lg={3}>
+      <JODDist name="JOD PC Linux" dir="jod_pc_linux" logo="JOD_PC_Linux_Logo_250.png">
+        Represents a Linux computer as a JOSP Object.
+      </JODDist>
+    </Grid>
+    <Grid item sm={6} md={4} lg={3}>
+      <JODDist name="JOD PC MacOS" dir="jod_pc_mac" logo="JOD_PC_Mac_Logo_250.png">
+        Represents a MacOS computer as a JOSP Object.
+      </JODDist>
+    </Grid>
+    <Grid item sm={6} md={4} lg={3}>
+      <JODDist name="JOD PC Windows" dir="jod_pc_win" logo="JOD_PC_Windows_Logo_250.png">
+        Represents a Windows computer as a JOSP Object.
+      </JODDist>
+    </Grid>
+    <Grid item sm={6} md={4} lg={3} style={{display: 'none'}}>
+      <JODDist name="JOD SmartPowerStrip" dir="jod_smart_power_strip" logo="JOD_Smart_Power_Strip_Logo_250.png">
+        A connected power strip that represent a set of On/Off and Dimmerable controls as a JOSP Object.
+      </JODDist>
+    </Grid>
+    <Grid item sm={6} md={4} lg={3} style={{display: 'none'}}>
+      <JODDist name="JOD Aladino Kit" dir="jod_aladino_kit" logo="JOD_Aladino_Kit_Logo_250.png">
+        A windows, doors and gates smart device that represent a window, door or gate as a JOSP Object.
+      </JODDist>
+    </Grid>
+  </Grid>
+</Box>
+
+---
+
+## Protocols / Gateways / Etc
+
+<Box sx={{ flexGrow: 1 }}>
+  <Grid container spacing={2}
+  direction="row"
+  justifyContent="left"
+  alignItems="stretch">
+    <Grid item sm={6} md={4} lg={3}>
+      <JODDist name="JOD Philips Hue" dir="jod_philips_hue" logo="JOD_Philips_Hue_Logo_250.png">
+        Represents a local Philips Hue Hub and all connected lights and switches as a single JOSP Object.
+      </JODDist>
+    </Grid>
+    <Grid item sm={6} md={4} lg={3}>
+      <JODDist name="JOD MBus" dir="jod_mbus" logo="JOD_MBus_Logo_250.png">
+        Represents a single or multiple MBus Slave devices as a JOSP Object, slaves must be connected with a MBus Master reachable via serial communication.
+      </JODDist>
+    </Grid>
+    <Grid item sm={6} md={4} lg={3} style={{display: 'none'}}>
+      <JODDist name="JOD MQTT" dir="jod_mqtt" logo="JOD_MQTT_Logo_250.png">
+        The base distribution for MQTT based objects. It represents MQTT's topics in a user-configured object's structure as a different JOSP Objects. End user can customize this distribution to integrate their own objects connected via MQTT. Then those objects can be shared again as a JOD Distributions.
+      </JODDist>
+    </Grid>
+    <Grid item sm={6} md={4} lg={3} style={{display: 'none'}}>
+      <JODDist name="JOD ZigBee" dir="jod_zigbee" logo="JOD_ZigBee_Logo_250.png">
+        ...
+      </JODDist>
+    </Grid>
+    <Grid item sm={6} md={4} lg={3} style={{display: 'none'}}>
+      <JODDist name="JOD OPC-UA" dir="jod_opc_ua" logo="JOD_OPC_UA_Logo_250.png">
+        ...
+      </JODDist>
+    </Grid>
+  </Grid>
+</Box>
+
+---
+
+## Web and Cloud
+
+<Box sx={{ flexGrow: 1 }}>
+  <Grid container spacing={2}
+  direction="row"
+  justifyContent="left"
+  alignItems="stretch">
+    <Grid item sm={6} md={4} lg={3} style={{display: 'none'}}>
+      <JODDist name="JOD Web Object" dir="jod_web_object" logo="JOD_Web_Object_Logo_250.png">
+        The base distribution for Web based objects. It represents a set of urls in a user-configured object's structure as a different JOSP Objects. End user can customize this distribution and create their own JOSP obejcts interacting with web pages, APIs or other cloud based services. Then those objects can be shared again as a JOD Distributions.
+      </JODDist>
+    </Grid>
+    <Grid item sm={6} md={4} lg={3}>
+      <JODDist name="JOD Meteo Web" dir="jod_meteo_web" logo="JOD_Meteo_Web_Logo_250.png">
+        Represents a meteo station that query his values to <a href="https://openweathermap.org/">OpenWhetherMap</a>'s APIs as a JOSP Object.
+      </JODDist>
+    </Grid>
+    <Grid item sm={6} md={4} lg={3}>
+      <JODDist name="JOD Alto Adige OpenDataHub" dir="jod_aa_odh" logo="JOD_AA_OpenDataHub_Logo_250.png">
+        Represents <a href="https://opendatahub.bz.it/">AltoAdige OpenData Hub</a> Dataset as JOSP Objects.
+      </JODDist>
+    </Grid>
+  </Grid>
+</Box>

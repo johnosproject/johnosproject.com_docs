@@ -1,0 +1,237 @@
+# Glossary
+
+---
+
+## The John Project
+
+**John O.S. Project**
+
+It’s the Open Source project that provides all softwares and tools to create a complete and easy to use <span style={{textDecoration:'underline'}}>IoT EcoSystem</span>.
+
+This project contains all source code required to build the components (<span style={{textDecoration:'underline'}}>John Object Daemon</span>, <span style={{textDecoration:'underline'}}>John Service Library</span> and the <span style={{textDecoration:'underline'}}>John Cloud Platform</span>) required by any other <span style={{textDecoration:'underline'}}>IoT (John) Solution</span>.
+
+**John O.S. Protocol**
+
+It’s the language used by <span style={{textDecoration:'underline'}}>John Objects</span> and <span style={{textDecoration:'underline'}}>John Services</span> to share object’s info and interact with them, both for <span style={{textDecoration:'underline'}}>Direct Communication</span> and <span style={{textDecoration:'underline'}}>Cloud Communication</span>.
+
+**John Object Daemon**
+
+The software that represents an <span style={{textDecoration:'underline'}}>John Object</span> in a <span style={{textDecoration:'underline'}}>John EcoSystem</span>.
+
+His main tasks are to share the Object’s info to the John EcoSystem and translate the <span style={{textDecoration:'underline'}}>John O.S. Protocol</span> to/from <span style={{textDecoration:'underline'}}>John Object’s Utils & Apps</span>. Once a John Object is shared on the John EcoSystem, <span style={{textDecoration:'underline'}}>John Services</span> can interact with it.
+
+The JOD can be configured to adapt it to any kind of object. It’s main configuration is the <span style={{textDecoration:'underline'}}>John Object Structure</span> that hierarchically defines which <span style={{textDecoration:'underline'}}>Status</span> and <span style={{textDecoration:'underline'}}>Actions</span> expose the Object to the John EcoSystem. Status and Actions can handle JOD requests in different ways depending on the <span style={{textDecoration:'underline'}}>Utils & Apps</span> availables for the JOD instance.
+
+<span style={{textDecoration:'underline'}}>Makers</span> can package (1) JOD, (2) his configs, (3) required Utils & Apps and create a <span style={{textDecoration:'underline'}}>John Object Distribution</span> ready to distribute and to install.
+
+In a John EcoSystem, a John Object is identified by his ID and his model.
+
+Same John Object’s models share the same John Object Structure.
+
+**John Service Library**
+
+Multi-language library that can be included by developers in their softwares.
+
+Once the JSL is included in a software then it can be considered a <span style={{textDecoration:'underline'}}>John Service</span>.
+
+The JSL helps developers to list, interact and manage user’s objects. It also provides <span style={{textDecoration:'underline'}}>John User</span>’s authentication methods.
+
+**John Cloud Platform**
+
+The (optional) cloud component for a <span style={{textDecoration:'underline'}}>John EcoSystem</span>.
+
+The JCP is a microservice cloud platform that can be executed locally (for development purpose) or deployed on cloud.
+
+**Public John Cloud Platform**
+
+The shared <span style={{textDecoration:'underline'}}>John EcoSystem</span>. It’s a public accessibile <span style={{textDecoration:'underline'}}>John Cloud Platform</span> instance reachable at [www.johnosproject.org/frontend/index.html](https://www.johnosproject.org/frontend/index.html).
+
+Any <span style={{textDecoration:'underline'}}>John Object</span> connected to this JCP can be accessible from anyone (after object’s permissions check); the same for all <span style={{textDecoration:'underline'}}>John Services</span> configured to connect to Public JCP.
+
+---
+
+## The IoT EcoSystem
+
+**IoT EcoSystem**
+
+The set of all components and their configs required by an <span style={{textDecoration:'underline'}}>IoT Solution</span>.
+
+Normally there are some physical components (the <span style={{textDecoration:'underline'}}>Object</span>) and some user’s interfaces or batch/storage processes (the <span style={{textDecoration:'underline'}}>Service</span>).
+
+Between them can be dozens of technologies: electronic components, hw interfaces, communication modules, gateways, cloud services, authorization servers…
+
+Finally the IoT EcoSystem’s scalability depends on the number and size of the IoT Solutions deployed. The IoT EcoSystem must be scalable in step with the growth of deployed IoT Solutions.
+
+**IoT Solution**
+
+Every time an <span style={{textDecoration:'underline'}}>Object</span> communicates with a <span style={{textDecoration:'underline'}}>Service</span>, we can see it as an IoT Solution.
+
+IoT Solutions are based on only 3 components: Objects, Services and optionally a cloud service for remote communication. Then these components can be used by 3 actors: <span style={{textDecoration:'underline'}}>Makers</span>, <span style={{textDecoration:'underline'}}>Developers</span> and <span style={{textDecoration:'underline'}}>End Users</span>.
+
+With this set of components and actors, you can design any type of IoT Solution like Data Collection, Digital Twin, Predictive Maintenance, Car Sharing and many many more.
+
+### Users
+
+**Makers**
+
+The <span style={{textDecoration:'underline'}}>IoT EcoSystem</span> actor that designed the <span style={{textDecoration:'underline'}}>Object</span>.
+
+Maker is anyone that creates a connected Object. He can be a hobbyist or a manufacturer that produces and sells connected Objects.
+
+**Developers**
+
+The <span style={{textDecoration:'underline'}}>IoT EcoSystem</span> actor that implemented the <span style={{textDecoration:'underline'}}>Service</span>.
+
+Any developer that must interact with a connected <span style={{textDecoration:'underline'}}>Object</span>. Typically, he must integrate different standards and approaches, depending on how many technologies are implied in the solution developed. He is also in charge of implementing object’s interactions logic and user interfaces.
+
+**End Users**
+
+The <span style={{textDecoration:'underline'}}>IoT EcoSystem</span> actor that uses the <span style={{textDecoration:'underline'}}>Object</span> and/or <span style={{textDecoration:'underline'}}>Service</span>.
+
+Users, in an IoT EcoSystem, can interact with an Object directly (physically) or remotely (via a Service). Normally, Services are also used by Users to configure and manage their Objects.
+
+### Components
+
+**Object**
+
+Any connected Object, regardless of the technologies used for his communication. But depending on that, it can be used only on certain <span style={{textDecoration:'underline'}}>IoT Solutions</span>.
+
+**Object’s Firmware**
+
+Each <span style={{textDecoration:'underline'}}>Object</span> is composed of HW and SW components.
+
+The Firmware, typically it’s the low-level SW dedicated to control the HW components (read sensor data and/or activate actuators).
+
+Firmware is used by other SW components that Tx/Rx sensors data and actuators commands to other <span style={{textDecoration:'underline'}}>IoT EcoSystem</span> components (generally to aggregator or storage components; local or cloud).
+
+**Service**
+
+Any software that elaborate/store <span style={{textDecoration:'underline'}}>Object</span>’s data and/or interact with it.
+
+Typically, Services are User Interfaces like Mobile Apps or Web Dashboards. Other times Services can be AI algorithms or Data Lakes.
+
+Infrastructure softwares, like agents, gateways, load balancers, APIs…; are not considered Services of an IoT EcoSystem. because they are part of the IoT EcoSystem’s infrastructure.
+
+### Communication
+
+**Direct Communication**
+
+When a connected Object and a Service communicate directly, without intermediates like cloud platforms or gateways.
+
+**Cloud Communication**
+
+When a connected Object and a Service communicate through intermediates like cloud platforms or gateways.
+
+---
+
+## The John EcoSystem
+
+**John EcoSystem**
+
+The John EcoSystem is an <span style={{textDecoration:'underline'}}>IoT EcoSystem</span> based on <span style={{textDecoration:'underline'}}>John O.S. Project</span>’s components.
+
+The John EcoSystem allows <span style={{textDecoration:'underline'}}>Makers</span> create <span style={{textDecoration:'underline'}}>John Objects</span> in minutes without coding skills. At the same time <span style={{textDecoration:'underline'}}>Developers</span> can include the John Service Library in their software to make them <span style={{textDecoration:'underline'}}>John Services</span>.
+
+A John EcoSystem can be self hosted for development or security reasons, or can be used the <span style={{textDecoration:'underline'}}>Public John Cloud Platform</span> as a shared John EcoSystem.
+
+### Users
+
+**John User**
+
+It’s an <span style={{textDecoration:'underline'}}>End User</span> of a <span style={{textDecoration:'underline'}}>John EcoSystem</span>.
+
+### Components
+
+#### Object
+
+**John Object**
+
+The <span style={{textDecoration:'underline'}}>Object</span> of a <span style={{textDecoration:'underline'}}>John EcoSystem</span>.
+
+Every running instance of the <span style={{textDecoration:'underline'}}>John Object Daemon</span> represents a John Object.
+
+A John Object can be bought in a shop; or a user can download and install a <span style={{textDecoration:'underline'}}> John Object Distribution</span>; or even a <span style={{textDecoration:'underline'}}>Maker</span> can configure a JOD instance and build his own John Object.
+
+Each John Object is configured with a <span style={{textDecoration:'underline'}}>John Object Structure</span> that defines his <span style={{textDecoration:'underline'}}>Status</span> and <span style={{textDecoration:'underline'}}> Actions</span>. Then, <span style={{textDecoration:'underline'}}>End Users</span> can query Object’s Status and/or execute his Actions from <span style={{textDecoration:'underline'}}>John Services</span>.
+
+Depending on the technologies used in the connected Object, John Objects are splitted in 3 groups: <span style={{textDecoration:'underline'}}>John Native Objects</span>, <span style={{textDecoration:'underline'}}>John Gateway Objects</span>, <span style={{textDecoration:'underline'}}>John Web Objects</span>.
+
+**John Native Object**
+
+An object is considered a John Native Object when his States and Actions interact directly with the object's HW.
+
+This kind of John Objects are composed of HW (processor, local storage, communication module, sensor and/or actuators) and SW (JOD, Utils & Apps and optionally extra firmware) components. For example a SoC board like Raspberry Pi in conjunction with some sensors and actuators, can be used as HW for a John Native Object.
+
+**John Gateway Object**
+
+A John Object can also represent a set of objects, for example all devices managed by a home automation gateway/hub.
+
+Many home automation, but also industrial, standards use local gateways to aggregate multiple devices communication. Sometimes those local gateways act as bridges from device’s standard and IP networks and (optionally) can expose a web server as UI or API interfaces.
+
+When configured to represent this kind of objects, the JOD can be installed directly on the local gateway (that requires sysadmin access to the gateway, that invalidates the local gateway’s warranty). If that’s not possible, the JOD can be also installed on another local machine that can access the local gateway’s UI or API.
+
+**John Web Object**
+
+When a connected Object exposes its info and features from a cloud service, we can integrate it to a John EcoSystem, as a John Web Object.
+
+In a John Web Object his States and Actions send HTTP requests to query/execute the object's status/actions.
+
+**John Object Distribution**
+
+A pre-configured and ready-to-run John Object Daemon distribution.
+
+**John Object’s Utils & Apps (Utils & Apps)**
+
+Utils & Apps extends the <span style={{textDecoration:'underline'}}>John Object Daemon</span> and acts as <span style={{textDecoration:'underline'}}>Object’s Firmware</span>.
+
+That mean, the JOD interact with the real world (outside the <span style={{textDecoration:'underline'}}>John EcoSystem</span>) via Utils & Apps calls.
+
+Depending on configured Utils & Apps in the <span style={{textDecoration:'underline'}}>John Object Structures</span>, <span style={{textDecoration:'underline'}}>Makers</span> can create <span style={{textDecoration:'underline'}}>John Objects</span> that interact with HW modules (GPIO, I2C, 1-wire..), other protocols (MQTT, MBus, KNX…) or even with web pages (HTTP APIs)..
+
+**John Object’s Structure**
+
+It is the principal <span style={{textDecoration:'underline'}}>John Object Daemon</span> configuration. It defines how <span style={{textDecoration:'underline'}}>John Services</span> can see the current <span style={{textDecoration:'underline'}}>John Object</span>.
+
+Object’s Structure contains all <span style={{textDecoration:'underline'}}>Statuses</span>/<span style={{textDecoration:'underline'}}>Actions</span> the Object can provide/execute. With the aim to help <span style={{textDecoration:'underline'}}>Developers</span> identify the right Object to use, all Statuses/Actions are organized into a hierarchy of containers. The main container, common on all John Objects, is the ‘root’ container.
+
+The Object’s Structure depends on <span style={{textDecoration:'underline'}}>John Object</span>’s model. That means all Objects with the same model, share the same Object’s Structure.
+
+**Status**
+
+Read-only data from <span style={{textDecoration:'underline'}}>John Object</span>, like a Sensor value.
+
+Statuses are the basic components of a <span style={{textDecoration:'underline'}}>John Object’s Structure</span>. They define how the <span style={{textDecoration:'underline'}}>John Object Daemon</span> should translate the <span style={{textDecoration:'underline'}}>John O.S. Protocol</span> messages to/from the <span style={{textDecoration:'underline'}}>Utils & Apps</span>.
+
+Each time a Status updated his value, a ‘Status Update’ message is sent to all John Services connected.
+
+**Actions**
+
+<span style={{textDecoration:'underline'}}>John Object</span> executable commands from a <span style={{textDecoration:'underline'}}>John Service</span>.
+
+Like <span style={{textDecoration:'underline'}}>Statuses</span>, Actions are the basic components of a <span style={{textDecoration:'underline'}}>John Object’s Structure</span>, but in addition to Statuses, Actions allow John Services execute a specific command on the <span style={{textDecoration:'underline'}}>John Object</span>.
+
+Actions extends Statuses. Then, Actions also share a value to the <span style={{textDecoration:'underline'}}>John EcoSystem</span> and send ‘Status Update’ message on value change.
+
+#### Service
+
+**John Service**
+
+The <span style={{textDecoration:'underline'}}>Service</span> of a <span style={{textDecoration:'underline'}}>John EcoSystem</span>.
+
+Any software can be a John Service, just include the <span style={{textDecoration:'underline'}}>John Service Library</span>.
+
+Once the JSL is included, any software can list, query and interact with all available <span style={{textDecoration:'underline'}}>John Objects</span>.
+
+The JSL manages <span style={{textDecoration:'underline'}}>Direct</span> and <span style={{textDecoration:'underline'}}> Cloud Communication</span> with John Objects.
+
+The JSL also provides user authentication methods. So softwares can ask <span style={{textDecoration:'underline'}}>End User</span> to login with their JCP Accounts and then access to restricted John Objects.
+
+**John Manager Service**
+
+Like other <span style={{textDecoration:'underline'}}>John Services</span> but it can also access <span style={{textDecoration:'underline'}}>Makers</span> and <span style={{textDecoration:'underline'}}>Developers</span> info.
+
+Makers and Developers can obtain special <span style={{textDecoration:'underline'}}>John Cloud Platform</span> accounts that allow them to manage released <span style={{textDecoration:'underline'}}>John Objects</span> or get info on how <span style={{textDecoration:'underline'}}>End Users</span> interact with their <span style={{textDecoration:'underline'}}>John Services</span>.
+
+**John Admin Service**
+
+Like <span style={{textDecoration:'underline'}}>John Manager Service</span> but for <span style={{textDecoration:'underline'}}>John Cloud Platform</span> admins.

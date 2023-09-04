@@ -1,0 +1,116 @@
+---
+title: Requirements
+---
+# Distribution's requirements
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+:::caution
+This distribution can be installed only on Linux. For other JOD PC distributions that support different OS, please see [JOD PC MacOS](/docs/references/jod_dists/jod_pc_mac/) and [JOD PC Windows](/docs/references/jod_dists/jod_pc_win/).
+:::
+
+This distribution use an object structure that calls different scripts from ```scripts/hw``` directory.
+Those scripts queries the host's OS to get object's statuses values. Some of them are dependant to external commands.
+
+**All of the following requirements are optionals**.<br/>
+If a required command is not installed, then corresponding script will return always ```0```.
+
+:::tip
+For common JOD Distribution requirements, please see the [JOD Distribution TEMPLATE/How to use a JOD Distribution/Configure JOD Distribution](/docs/references/tools/jod_dist_template/how_to_use_a_jod_distribution/requirements) page.
+:::
+
+---
+
+## Install ```mpstat```
+
+The command ```mpstat``` allow to query info about system memory and get values like the memory usage.
+
+<Tabs
+  groupId="linux-package_managers"
+  defaultValue="apt"
+  values={[
+    {label: 'APT (Debian, Ubuntu...)', value: 'apt'},
+    {label: 'YUM (CentOS, RedHat, Fedora...)', value: 'yum'},
+  ]}>
+  <TabItem value="apt">
+    <p>Install <i>ps</i> contained in the <i>procps</i> package:</p>
+
+```shell
+$ apt-get install sysstat
+```
+
+  </TabItem>
+  <TabItem value="yum">
+    <p>Install <i>ps</i> contained in the <i>procps</i> package:</p>
+
+```shell
+$ yum install procps
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Install ```ps``` and ```top```
+
+```ps``` and ```top``` commands allow to query info about running process and get values like the process count and the memory usage.
+Both those command are generally available on all Linux systems.
+
+<Tabs
+  groupId="linux-package_managers"
+  defaultValue="apt"
+  values={[
+    {label: 'APT (Debian, Ubuntu...)', value: 'apt'},
+    {label: 'YUM (CentOS, RedHat, Fedora...)', value: 'yum'},
+  ]}>
+  <TabItem value="apt">
+    <p>Install <i>ps, top</i> contained in the <i>sysstat</i> package:</p>
+
+```shell
+$ apt-get install procps
+```
+
+  </TabItem>
+  <TabItem value="yum">
+    <p>Install <i>ps, top</i> contained in the <i>sysstat</i> package:</p>
+
+```shell
+$ yum install sysstat
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Install ```amixer```
+
+Util ```amixer``` is part of the ALSA framework and allow to list audio interfaces and control them for Volume's actions.
+
+<Tabs
+  groupId="linux-package_managers"
+  defaultValue="apt"
+  values={[
+    {label: 'APT (Debian, Ubuntu...)', value: 'apt'},
+    {label: 'YUM (CentOS, RedHat, Fedora...)', value: 'yum'},
+  ]}>
+  <TabItem value="apt">
+    <p>Install <i>amixer</i> contained in the <i>alsa-utils</i> package:</p>
+
+```shell
+$ sudo apt-get install alsa-utils
+```
+
+  </TabItem>
+  <TabItem value="yum">
+    <p>Install <i>amixer</i> contained in the <i>alsa-utils</i> package:</p>
+
+```shell
+$ yum install alsa-utils
+```
+
+  </TabItem>
+</Tabs>

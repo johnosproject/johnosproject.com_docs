@@ -1,0 +1,89 @@
+# Versions
+
+The John O.S. Project provide multiple artifacts as software libraries, executables, distributions and so on. Because of that here are listed all versions for each artifact provided from the JOSP project.
+
+---
+
+## JOSP Components
+
+This version group include all artifacts buildable from the John O.S. Project source code. It includes all JOSP Core and Internal components.
+
+### JOSP 2.2.1
+
+Released on **01/12/2021**.<br/>
+Git Repository: [com.robypomper.josp:2.2.2](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.2/)
+
+Bug fix and improved component stability:
+
+Release notes - John O.S. Project - Version 2.2.2
+
+Bug
+- [JOSP-82](https://johnosproject.atlassian.net/browse/JOSP-82) HistoryLimit throw a parsing error when used as JSL Web Bridge API's param
+- [JOSP-90](https://johnosproject.atlassian.net/browse/JOSP-90) JavaJSONArrayToFile return wrong elements
+- [JOSP-97](https://johnosproject.atlassian.net/browse/JOSP-97) Wrong comparisons on JOD's JavaJSONArrayToFile subclasses
+- [JOSP-69](https://johnosproject.atlassian.net/browse/JOSP-69) JOD after a while update his Obj Id
+- [JOSP-68](https://johnosproject.atlassian.net/browse/JOSP-68) JOD after a while broke connections to JCP APIs and GWs
+- [JOSP-81](https://johnosproject.atlassian.net/browse/JOSP-81) JOSP JSL don't send StatusHistory/Event requests locally if cloud request failed because missing required permissions
+- [JOSP-46](https://johnosproject.atlassian.net/browse/JOSP-46) JCP Services throw NullPointer exception on Error executing request
+- [JOSP-83](https://johnosproject.atlassian.net/browse/JOSP-83) JCP Service miss the Data type formatter when used as API param
+- [JOSP-89](https://johnosproject.atlassian.net/browse/JOSP-89) JOSP GWs use wrong ID on HistoryStatus responses
+- [JOSP-79](https://johnosproject.atlassian.net/browse/JOSP-79) JCP FE display object not found message during status history fetching
+- [JOSP-78](https://johnosproject.atlassian.net/browse/JOSP-78) JCP FE isn't well displayed on mobile devices
+- [JOSP-76](https://johnosproject.atlassian.net/browse/JOSP-76) JCP FE can't resume after JSL disconnection (triggered on device suspension)
+- [JOSP-75](https://johnosproject.atlassian.net/browse/JOSP-75) JCP FE throw a null variable exception on user logout (before reload the homepage)
+- [JOSP-74](https://johnosproject.atlassian.net/browse/JOSP-74) JCP FE use wrong url to initialize JSL session (on JCP FE)
+- [JOSP-73](https://johnosproject.atlassian.net/browse/JOSP-73) JCP FE throw TypeError on adding an element to the JCPFE _objectActivitiesList array
+- [JOSP-31](https://johnosproject.atlassian.net/browse/JOSP-31) JCP FE display also anonymous objects in last activity objects, it must show only personal or shared objects
+
+Task:
+- [JOSP-33](https://johnosproject.atlassian.net/browse/JOSP-33) Update JOSP Docs to 2.2.0 and write important pages (2.2.2)
+- [JOSP-70](https://johnosproject.atlassian.net/browse/JOSP-70) Update the backdrop image for the JCP FE (static)
+- [JOSP-84](https://johnosproject.atlassian.net/browse/JOSP-84) Implement Page Range and other minor improvements to HistoryLimits
+- [JOSP-42](https://johnosproject.atlassian.net/browse/JOSP-42) Update JOSP Version to 2.2.2 and mode to RELEASE
+
+For a detailed changelist visit [JOSP-4](https://johnosproject.atlassian.net/browse/JOSP-4)
+
+### JOSP 2.2.1
+
+Released on **01/10/2021**.<br/>
+Git Repository: [com.robypomper.josp:2.2.1](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/)
+
+Bug fix and improved component stability:
+
+- Fixed generation bugs on JavaJKS from JOSP Commons
+- Fixed missing instance termination when JCP authentication fails in JOD
+- Improved support for Windows
+- Updated PullerUnixShell and ExecutorUnixShell to PullerShell and ExecutorShell
+- Other minor fixes
+
+For a detailed changelist visit [JOSP-3](https://johnosproject.atlassian.net/browse/JOSP-3)
+
+### JOSP 2.2
+
+Released on **02/08/2021**.<br/>
+Git Repository: [com.robypomper.josp:2.2.0](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.0/)
+
+The first public JOSP version. It improves components stability, provide a new JCP Front End user interface based on React and it's released in conjunction with the [JOSP Documentation](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/wiki/Home).
+
+### JOSP 2.1
+
+Released on **XX/01/2020**.<br/>
+Git Repository: [com.robypomper.josp:2.1.0](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.1.0/)
+
+Introduce new JCP services like the JCP JSL Web bridge and the JCP Front End.
+
+### JOSP 2.0
+
+Released on **XX/08/2020**.<br/>
+Git Repository: [com.robypomper.josp:2.0.0](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.0.0/)
+
+Rewritten version of JOSP base components: JOD, JSL and a basic JCP implementation.
+
+### JOSP 1.0
+
+Released on **XX/12/2015**.<br/>
+Git Repository: [com.robypomper.josp.core:develop](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.core/src/develop/)<br/>
+[com.robypomper.josp.jod:develop](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod/src/develop/)<br/>
+[com.robypomper.josp.jsl:develop](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jsl/src/develop/)
+
+First JOSP EcoSystem version. It provide only JOD and JSL components, his aim was to test JOSP protocol locally.

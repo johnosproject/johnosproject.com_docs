@@ -1,0 +1,28 @@
+---
+title: Usage
+---
+# Distribution usage
+
+**This distribution is based on JOD Distribution TEMPLATE**.
+
+That means it inherits all JOD Distribution Commands to manage installed instance.
+So you can execute
+
+```shell
+$ bash start.sh         # for Linux and MacOS
+$ powershell start.sh   # for Windows
+```
+
+command to run installed JOD Distribution as a JOSP Object instance.
+
+More info on how to install and manage a JOD Distribution at following links from JOD Distribution TEMPLATE's' docs:
+* [Configure a JOD Distribution](/docs/references/tools/jod_dist_template/how_to_use_a_jod_distribution/configure_a_jod_distribution)
+* [Run a JOD Distribution](/docs/references/tools/jod_dist_template/how_to_use_a_jod_distribution/run_a_jod_distribution)
+* [Install a JOD Distribution as a Service](/docs/references/tools/jod_dist_template/how_to_use_a_jod_distribution/install_a_jod_distribution_as_a_service)
+
+:::caution
+The JOD MBus distribution actually can used with a small number of slaves connected to the MBus master.
+Thats because when it's configured with too many statuses (from many slaves), it starts to be unstable, due to sending too many requests through ```mbus-serial-request-data``` command.
+
+This bug is already under resolution at [JOSPTU-75](https://johnosproject.atlassian.net/browse/JOSPTU-75).
+:::

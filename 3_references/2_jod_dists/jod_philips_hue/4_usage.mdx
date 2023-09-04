@@ -1,0 +1,29 @@
+---
+title: Usage
+---
+# Distribution usage
+
+**This distribution is based on JOD Distribution TEMPLATE**.
+
+That means it inherits all JOD Distribution Commands to manage installed instance.
+So you can execute
+
+```shell
+$ bash start.sh         # for Linux and MacOS
+$ powershell start.sh   # for Windows
+```
+
+command to run installed JOD Distribution as a JOSP Object instance.
+
+More info on how to install and manage a JOD Distribution at following links from JOD Distribution TEMPLATE's' docs:
+* [Configure a JOD Distribution](/docs/references/tools/jod_dist_template/how_to_use_a_jod_distribution/configure_a_jod_distribution)
+* [Run a JOD Distribution](/docs/references/tools/jod_dist_template/how_to_use_a_jod_distribution/run_a_jod_distribution)
+* [Install a JOD Distribution as a Service](/docs/references/tools/jod_dist_template/how_to_use_a_jod_distribution/install_a_jod_distribution_as_a_service)
+
+:::info
+The JOD Philips Hue distribution require a valid ```HUE_GW_DEVELOPER``` (the user's id registered on Hub).
+So when it's not set, **at first distribution startup is required to press the bottom on top of the Philips Hue Hub**.
+After a successfully startup, the value is stored for future startups.
+
+If you are not able to press the bottom, the startup fails and no JOSP Object is initialized.
+:::

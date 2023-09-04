@@ -1,0 +1,84 @@
+---
+title: EcoSystem
+---
+# IoT EcoSystem
+
+**The IoT EcoSystem is the entire set of software and hardware required to provide [IoT Solutions](solution).**
+
+An IoT EcoSystem can come in many forms.
+
+The most basic IoT EcoSystem can be composed by a connected [object](object) and a [software](service) that communicate with it.
+For example each Bluetooth communication create what we can call a short-range IoT EcoSystem.
+Another example is when a mobile application interact with a smart lamp via home's router.<br/>
+In all this case there are only a single rvice and a single object to interact with.
+
+Today **business's requirements can easily grow every IoT EcoSystem** in terms of connected objects or software.<br/>
+IoT EcoSystems can be composed by hundreds to millions of connected objects.
+Those connected objects can run different firmware version or represent different objects/models.<br/>
+Then, a dozen of software with multiple purposes, would interact and collect data from those objects.
+There are the end user and maintainer's mobile apps, remote management dashboards, analytics software for usage/billing reports, etc...
+
+Unfortunately **create the right infrastructure for our IoT EcoSystem is a pain**.<br/>
+On a hi-level design, every IoT Solution can be easily designed by identifying its key components like [objects](object) and [services](service) but also [actors](actor) and defining how they interact.
+But, each IoT Solution require and underling EcoSystem and his IT Infrastructure. 
+An IT infrastructure hard to maintain and scale to new business challenges.
+
+---
+
+## Choosing an IoT EcoSystem
+
+To be ready for today's challenges, an IoT EcoSystem must be flexible and provide at least some basic features.
+
+An IoT EcoSystem can be manually composed by setup all infrastructure components (objects connectors, cloud services, databases, access control system...).
+This is a not recommend solution.<br/>
+On the market there are many IoT platforms that provide different types of IoT EcoSystem.
+The John O.S. Project would provide an advanced [IoT EcoSystem](../josp/ecosystem), that can handle multiple IoT Solutions with the minimum effort.
+
+First, when we design an IoT solution, and then when we define the IoT EcoSystem to use, we must check for the **infrastructure scalability**.
+On choosing the tools to use for our IoT solutions, like cloud services or other IoT platforms, we must check that those tools can be easily scaled to our needs.
+In the worst cases we will need to re-structure our IoT EcoSystem with the risk to lose connectivity/compatibility with older objects or services.
+
+Many communication protocols are old and have not been designed with **the right level of security**.
+This could open a breach in our systems and allow unauthorized access to object's communications.
+Depending on the communication channels (local network, public internet, shared connections) used by your IoT Solution, you must encrypt communications.
+
+It's common for IoT Solutions split users by their role in the solution.
+Each role with different purposes and tools.<br/>
+For example, a common role is the end user or the object's owner.
+This user normally would access to his connected object via a mobile app.<br/>
+Another common role is the maintainer, the user who intervenes to install or repair the object.
+The maintainer may want to check the object remotely via a web dashboard, and then move locally and interact with the object from a tablet or AR device.<br/>
+Those roles, like many other, requires **an evolute access control system**.
+An access control system that allow you to set which user can access which object.<br/>
+Sometimes you'll require even more detailed conditions on your access control system.
+For example the user role can't access to his object using the application designed for the maintainer.
+Or even the maintainer should access to user's objects only for a specific period.
+
+Your IoT EcoSystem should allow **interoperable components**.
+That means you must be free to choose between different vendors for both objects and services involved in your solution.
+If you are using a provider's specific technology (for example to connect his objects to your software) you'll always depend on that particular provider.
+
+Commonly objects are placed in a home, in an office or in a factory.
+Sometimes connected objects are located remotely and with a poor network coverage.
+Other times, objects are connected via mobile or IoT networks (NBIoT or SigFox) .
+Regardless of our IoT Solution, **objects and services must be able to communicate whenever possible**.<br/>
+To satisfy this requirements IoT EcoSystems should provide multiple way for services to interact with connected objects.
+Depending on your solution needs, it should be able to provide a connectivity between objects and services locally to improve performances, via cloud to allow users control their objects remotely, with a point-to-point bridge when no network infrastructure is available, etc...
+
+## The IoT Infrastructure
+
+An IoT EcoSystem allow the communication between connected objects and at least one software.<br/>
+The IoT Stack is the list of all software involved to this communication.
+
+Because IoT EcoSystem must support all business requirements, the IoT Stack includes multiple levels (connectivity, encryption, routing, access control, presentation, commands) and quickly becomes really complex to manage.
+All those levels involved in the object-service communication are handled from different tools.
+
+For example, **common tools are cloud services** like APIs to register and handle object connectivity, DataLakes to store time-series data from objects, AAA services for users and roles definitions, etc...
+
+**Also connected objects are part of the ecosystem infrastructure**. Both object's software and hardware.
+The hardware (communication module) determinate how object can be reached by services.
+The software (firmware) expose object's capabilities to services.
+
+Finally, if a software would interact with a connected object must be able to speak object's language.<br/>
+In other words the software must include a library (or implement itself a module) to communicate with the object.
+This SW library (or module) and **the protocol/standard supported are also considered as part of the IoT Infrastructure**.

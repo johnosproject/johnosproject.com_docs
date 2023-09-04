@@ -1,0 +1,30 @@
+# Distribution Life-cycle
+
+From the JOD Distributions TEMPLATE source code (this project) to an operative JOSP Objects there are few steps performed by 3 different actors:
+
+* **JOSP Developer**: who implements the JOD Distribution TEMPLATE project
+* **Maker**: anyone who wants to design a connected object
+* **End User**: anyone who will manage and use a connected object
+
+![JOD Distribution TEMPLATE LifeCycle diagram](/references/tools/jod_dist_template/JODDistTMPL_LifeCycle.png "JOD Distribution TEMPLATE LifeCycle")
+
+First, there is the **JOSP Developer** (or any maintainer of this project) that implements and then release JOD Distribution TEMPLATE's artifacts. *This stage is intended for the sole use of JOD Dist TMPL's developers.* <br/>
+All JOD Distribution TEMPLATES artifacts can be found at [Downloads @ Bitbucket](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/downloads/) page.
+
+Then **Makers** can download and extract it. The resulting folder will be the project dir for a new JOD Distribution. Makers can customize their own JOD Distribution simply editing extracted files. For more info check the README.md file in extracted dir or (at this [link](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/tmpl/resources/README.md)). Once, it's ready, Makers can build and publish their own JOD Distributions.
+
+Finally, the **End User**, who received built JOD Distribution, can copy it on his PC or deploy it on a remote machine (like a RaspberryPi). At this point, a JOD Distribution can be installed as a background service/daemon (managed by the guest OS). Otherwise, it can be executed as a foreground command that expose a shell to interact with running JOD Instance.
+
+For each step, this project provides different scripts to automate his management:
+
+* **Development:** this phase can be handled with [Gradle project](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/gradle/gradle.md) 's tasks like ```buildTMPL``` or ```publishTMPL``` to build or publish JOD Dist TMPL artifacts. *This stage is intended for the sole use of JOD Dist TMPL's developers.*
+* **Customization:** Makers can use [JOD Template Commands](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/tmpl/tmpl.md) contained in ```$JOD_Custom_DIR/scripts``` dir. Those scripts help maker to build, test, install and publish their own JOD Distriubutions.
+* **Usage:** Each JOD Distribution includes the [JOD Distribution Commands](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/dists.md). End User can execute those commands to manage (start/stop, install/uninstall) current JOD installation.
+
+## Cross-OS support
+
+The JOD Distribution TEMPLATE support Linux, MacOS and Windows, and it's agnostic along all those steps.
+
+In other worlds, any actor can perform any steps with his favourite OS. Then, following steps can still be executed by other actors using different OS. That's always true except for JOD Distribution configuration steps, because Makers can add scripts, executables or other resources that are OS dependant. Each JOD Distribution must specify in his README.md file which OS can support.
+
+To support different OS, JOD Distribution TEMPLATE provide all is commands as Bash (for Linux and MacOS) and PowerShell (for Windows) scripts.

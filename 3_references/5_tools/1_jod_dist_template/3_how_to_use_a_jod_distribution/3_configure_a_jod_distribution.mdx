@@ -1,0 +1,34 @@
+# Configure a JOD Distribution
+
+Each distribution based on the JOD Distribution TEMPLATE provides a script to configure his behaviour.
+
+This script is the ```configs/configs.sh|ps1``` file and can be edited to customize JOD distribution. You can edit this file and configure 2 groups of distribution configs:
+
+* JOD Dist TMPL's distribution configs
+* JOD Distribution specific configs
+
+:::caution Depending on your working os you must edit the corresponding file:
+
+* ```configs/configs.sh``` for Bash based system like Linux or MacOS
+* ```configs/configs.ps1``` for Windows operating systems and Powershell
+:::
+
+---
+
+## JOD Dist TMPL's distribution configs
+
+In the ```configs/configs.sh|ps1``` you can add following properties that will alter the [JOD Distribution Commands](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/dists.md) script execution:
+
+| Property | Default value | Description |
+|---|---|---|
+| JOD_YML   | ```configs/jod.yml``` | JOD object's main config file, used by JOD execution as java params and by jod/get-jod-{proeprty}.sh scripts
+| JAVA_HOME | ```""``` | Java JVM path (check that the right path for ```$JAVA_HOME/bin/java``` bin).
+
+---
+
+## JOD Distribution specific configs
+
+Moreover, in the ```configs/configs.sh|ps1``` you can find JOD Distribution specific configs.
+
+Depending on their purposes some distributions require a minimal configuration setup like service credentials or hardware definitions.<br/>
+Each distribution should provide a list and a description of their specific configuration in directly in the distribution's ```configs/configs.sh|ps1```. Else check the distribution's documentation.

@@ -1,0 +1,191 @@
+# Object Structure
+
+The most important configuration in a JOD Distribution is the ```struct.jod``` file. This file contains the structure of JOSP Object exposed by any installation of our distribution. Then that structure will be used by JOSP Service developers to understand and interact with the JOSP Object.
+
+:::tip
+It's extremely important to design this structure well, so that the resulting object can be used by as many services as possible.
+:::
+
+This file contains both object's info and structure.
+
+**Object's info** contained in this file are used to identify the JOSP Object's model among all other objects connected to the JOSP EcoSystem. Those configs must different for one JOD Distribution and another, but remain identical between different versions of the same dist.<br/>
+The **object's structure** contained in the ```struct.jod``` file is a hierarchical list of the features that the JOD Agent must expose to the JOSP EcoSystem.<br/>
+Each feature can be defined as a State or an Action. States can wait for firmware's value updates and update JOSP Services on value changes. Actions are like States, but they can also receive commands requests from JOSP Services and translate those command to firmware calls.<br/>
+
+<img alt="JOD Distribution TEMPLATE Build process diagram" src="/docs/references/josp/jod/specs/JODDistTMPL_ActionStates.png" title="JOD Distribution TEMPLATE Build process" style={{maxHeight: "600px", display: "block", marginLeft: "auto", marginRight: "auto"}}/><br/>
+
+States and Actions, depending on what they must expose to the JOSP EcoSystem, they can be of different types. We call this types **Pillars**.<br/>
+For example if you are designing a JOD Distribution for a connected lamp, probably you would expose the On/Off control as object's feature. To do that, you must add a ```BooleanAction``` pillar to the object's structure. Then configure it as "On/Off switch".<br/>
+Otherwise, if the feature that you would expose is like the environment temperature, then you must add a ```RangeState``` pillar to object's structure.<br/>
+More details and examples on [States and Actions](#states-and-actions) and [Pillars](#pillars) chapters.
+
+Pillars configuration allow the JOD Agent to **expose the feature to JOSP Services** exactly as you desire, and on the other side, **use the right firmware calls** to interact with external world like hardware sensors and actuators. The JOD Agent is very flexible and can interact, not only with hardware peripherals, but also with other software, websites or anything you require. Pillars can be configured to use different firmware interfaces depending on your needs.
+
+---
+
+## Static or dynamic structure
+
+A JOD Distribution can always use the same ```struct.jod``` file, so all his JOSP Objects will have the same structure. This is the common case when the JOD Distribution represent a real object like a lamp, a gate, etc... Other distributions will use **dynamic ```struct.jod``` files, generated during the JOD object startup**. That allow you to customize object's structure depending on running environment.
+
+Dynamic object's structure is useful to add **specific configuration to your distribution**. For example to replace some placeholder from a template ```struct.jod``` file.
+
+The [JOD Mete Web](/docs/references/jod_dists/jod_meteo_web/) distribution, that expose a meteo object retrieve his states from the OpenWeatherMap APIs, provide the ```JOD_MWO_LOCATION``` property to allow end user set the location used to query meteo values at OpenWeatherMap APIs.
+
+Dynamic object's structure is also useful when your distribution is representing an industrial gateway, or a smart home hub that **connect multiple devices at once**. In this case, you can scan available devices and generate corresponding JOSP object's structure before the JOD object startup.
+
+Good examples for this case are the [JOD Philips Hue](/docs/references/jod_dists/jod_philips_hue/) and [JOD MBus](/docs/references/jod_dists/jod_mbus/) distribution that represent respectively a Philips Hue Hub and a MBus protocol interface
+
+To implement this feature on your JOD Distribution simply add object's structure generation code to ```pre-startup``` script of your distribution. More info at [PRE-POST Scripts](pre_post_scripts).
+
+---
+
+## Object info
+
+Object's info are related to your specific JOD Distribution.
+
+From JOSP Service developers, they are intended as model info exposed by JOSP Objects; and can help them to identify connected objects.
+
+* ```model```: unique name that identify your distribution
+* ```brand```: unique name that identify yourself or hardware manufacturer
+* ```descr```: sort object description
+* ```descr_long```: detailed object description
+* ```contains```: the object's structure, contains is the root container
+
+Here an example of a complete object's info section in a ```struct.jod``` file:
+
+```json title="JOD PC Mac/configs/struct.jod"
+{
+    "model": "MacOS JOSP Object",
+    "brand": "Apple Inc.",
+    "descr": "A MacOS computer that expose his features to JOSP's services.",
+    "descr_long": "This object can be used to control remotely functions as system volume, lightning, keyboard, mouse, etc...",
+    "contains": {
+      // Object's structure
+  }
+}
+```
+
+---
+
+## Object structure
+
+Object's structure is a hierarchical list of object's features.
+
+In the ```struct.jod``` file, each feature is defined as a Pillar element. Pillars can be contained in Container elements. The ```contains``` element from ```struct.jod``` files is the root container of the object's structure. Container can contain other containers and create multi-level hierarchy.
+
+<img alt="JOD Distribution TEMPLATE Build process diagram" src="/docs/references/josp/jod/specs/JODDistTMPL_Struct.png" title="JOD Distribution TEMPLATE Build process" style={{maxHeight: "600px", display: "block", marginLeft: "auto", marginRight: "auto"}}/><br/>
+
+Here an example of complete ```struct.jod``` file:
+
+```json title="MyDist/configs/struct.jod"
+{
+    "model": "My Distribution",
+    "brand": "MyMyselfAndI",
+    "descr": "A _full_ featured IoT Object that expose _all_ data and _all_ remote controls to the JOSP EcoSystem",
+    "descr_long": "Long and more detailed configs",
+    "contains": {
+        "Container A" : {
+            "type": "JODContainer",
+            "contains": {
+                "Pillar A" : {
+                    "type": "PillarType",
+                    // PillarType specific configs for Feature A
+                },
+                "Pillar B" : {
+                    "type": "PillarType",
+                    // PillarType specific configs for Feature B
+                }
+            }
+        },
+        "Container B" : {
+            "type": "JODContainer",
+            "contains": {
+                "Pillar ..." : {
+                    "type": "PillarType",
+                    // PillarType specific configs for Feature ...
+                }
+            }
+        },
+  }
+}
+```
+
+Please customize the main ```contains``` section according to the JOSP Object's structure you would expose with your JOD Distribution.
+
+### Containers
+
+```JODContainers```'s name is defined by the element name, so in the following example you define a container called 'MainLamp'.
+
+```json title="struct.json: container example
+    // ...
+    "MainLamp" : {
+        "type": "JODContainer",
+        "contains": {
+            // Pillars list or other container
+        }
+    },
+    // ...
+```
+
+### States and Actions
+
+In a JOSP Objects, each exposed feature is defined as a State or an Action. States can wait for firmware's value updates and update JOSP Services on value changes. Actions are like States, but they can also receive commands requests from JOSP Services and translate those command to firmware calls.<br/>
+
+Because each State/Action is defined in the object's structure as a Pillar, then Pillar's configuration provide 3 special properties:
+
+* ```listener```: define firmware calls for listener's states and actions
+* ```puller```: define firmware calls for puller's states and actions
+* ```executor```: define firmware calls used by actions whene receive a command request
+
+Each pillar configuration must include at least one of the two ```listener``` or ```puller``` properties. Only Action pillars must set also ```executor``` property.
+
+Those properties accept a string formatted with following pattern:
+
+```
+{FirmwareProto}://{FirmwareConfigs}
+```
+
+Where the ```FirmwareProto``` must be one of the **FirmwareProtocols registered in the [JOD Agent configs](#jod-agent-configs)** file with the properties ```jod.executor_mngr.pullers|listeners|executors```. By default, the JOD Distribution TEMPLATE sets following firmware protocols:
+
+* Pullers:
+  * [Shell](/docs/references/josp/jod/specs/workers/puller_shell): On pulling, execute bash or powershell commands and use their output as state's value
+  * [Http](/docs/references/josp/jod/specs/workers/puller_http): On pulling, query configured url and parse the response as state's value
+* Listeners:
+  * [File](/docs/references/josp/jod/specs/workers/listener_file): On startup, start a watchdog service that listen for configured file changes; when the file is updated use his content as state's value
+* Executors:
+  * [Shell](/docs/references/josp/jod/specs/workers/executor_shell): on action request received, execute configured bash or powershell command
+  * [File](/docs/references/josp/jod/specs/workers/executor_file): on action request received, write configured value to a file
+  * [Http](//docs/references/josp/jod/specs/workers/executor_http): on action request received, query configured url
+
+In the following example we defined a 'Temperature' state, that pull every ```freq``` ('600') seconds the ```requestUrl```() url and retrieve the temperature value. The ```puller``` property is set to use the 'http' firmware protocol and pass him the configs string (everything after the '://' separator). In this case the 'http' firmware require the ```requestUrl``` and ```freq``` params among others. More details on firmware protocols params on the next section.
+
+```json title="struct.json: RangeState puller 'http' example"
+    // ...
+    "Temperature" : {
+        "type": "RangeState",
+        "puller" : "http://requestUrl='https://api.openweathermap.org/data/2.5/weather?q=rome&units=metric&appid=03317c1f2de6827424efd170890ffd3c';formatType=JSON;formatPath='$.main.temp';formatPathType=JSONPATH;freq=600",
+        "min": "-50",
+        "max": "100"
+    },
+    // ...
+```
+
+---
+
+## Pillars
+
+Pillars are the base config element for each feature exposed by a JOSP Object to the JOSP Services. They act as a bridge between the JOSP EcoSystem and the external world.
+
+On JOSP side, they expose all details required to JOSP Services to interact with it. On the other side, they configure the object's firmware to interact with hardware, other software, make web request or anything else you require.
+
+Because of that, Pillars configs can be split in 2 groups:
+
+* specific pillar's configs: depending on pillar type different properties become available.
+* state/action configs: includes the ```listener```, ```puller``` and ```executor``` properties.
+
+For detailed Pillar's configuration please check the Pillar's docs on JOD references:
+
+* [Boolean](/docs/references/josp/jod/specs/pillars/boolean):<br/>
+  expose status like Open/Closed, Empty/Full, Enable/Disabled; or actions like On/Off, Fill/Empty, Mute/Unmute...
+* [Range](/docs/references/josp/jod/specs/pillars/range):<br/>
+  expose status like Temperature, Absorbed power; or actions Control volume, Light dimming...

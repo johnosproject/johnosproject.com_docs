@@ -1,0 +1,160 @@
+---
+title: Objects
+---
+# IoT Objects
+
+In 2020, objects connected to the internet exceeded 20 billion, and new ones are created every day.
+
+Today, as End Users **on the market there are thousands types of connected objects to integrate in our [IoT Solutions](solution)**.
+Unfortunately, there are also a lot of different technologies to connect these objects.
+Each of them with different communication channels and protocols.<br/>
+That make harder integrate them in our IoT Solutions.
+
+We have the same problems if, on other hands, our goal is to **create a new connected object to use it in IoT Solutions**.
+We still must select a technology to use to make our object and to use in our services to interact with connected objects.
+
+Once the object is connected to an [EcoSystem](ecosystem), it can become available for all [services](service) connected to the same EcoSystem and then also to solutions [actors](actor).
+
+---
+
+## Choose IoT Objects
+
+When we choose a connected object, or when we create a new one, for our IoT Solution, it **is good to know object's specifications**.
+When we design our IoT Solution, it **is good to know object's specifications**.<br/>
+To keep things simple, we can split each connected object in 2 parts:
+
+* Communication layer: which communication channel and protocols are used by the object
+* Features list: which values and which commands can be read/executed from the object 
+
+A first selection of existing connected objects for our solutions can be made **filtering objects by their features**.
+Depending on what our users need to do with objects, we can choose to design our IoT Solution based on certain products instead of others.
+For example, if we are designing a car sharing IoT Solution, we certainly care that the cars provide the kilometers traveled, so that we can calculate and invoice their use.
+
+In a second step, we can **compare the communication specifications** of each object found.
+Those specifications will affect the infrastructure required by our IoT Solution.<br/>
+Because of that, when the IoT Solution involves many objects of different types (light, door, temperature sensors...), it's common choose objects that supports the same protocol / communication layer.
+So the infrastructure for your solution, have support only that protocol.
+
+Designing your IoT Solution, you must consider also **objects interoperability and alternative products**.<br/>
+What happen if we choose a connected object and then his manufacturer dismiss it? Can we switch to another product? With which effort?
+Because of that, it is always good practice selecting at least one alternative product for each object envisaged in our solution.
+The more alternative products our solution can use, the more it adapts to user needs.
+Furthermore, the use of alternative products can also significantly increase the target market.<br/>
+
+---
+
+## Anatomy of an object
+
+Most of the time, it's enough define an object by his communication layer and the features it exposes.
+
+To go more deep on object's details, we can split it again.
+Both, object's communication and features, can be split in hardware and software subcomponents:
+
+* (HW) Communication Module:<br/>
+  the hardware with a physical interface to tx/rx on the communication channel (lan, wifi, proprietary buses...).
+* (SW) Communication protocol:<br/>
+  communication module's firmware and the protocol implementation are the software in charge to handle the object's communication and defines the object's 'language'.
+* (SW) Firmware:<br/>
+  the software that allow to interact with sensors and actuators, it includes also some basic object's processing logic (aka edge computing).
+* (HW) Sensors and Actuators:<br/>
+  most of the connected objects includes also physical sensors and electromechanical actuators.
+
+As long as we don't have to create our object, we can not worry about these details.
+
+---
+
+## Object's features
+
+To define a connected object by his features is pretty easy.<br/>
+You can group object's features in two groups:
+
+* Values: which values the object can provide to the services
+* Commands: which commands the services can execute on the object
+
+**Each connected object provide values about his state or about his sensors**.
+Those values can be used by services to populate a database for analytics, to execute automation tasks or to display the object's status to the users.
+For example a connected thermostat provide the room's temperature (as value) to the air conditioning software, that decides whether to turn on the heating or cooling. 
+
+**Some object allows connected software execute commands remotely.**
+Services can send a command request to objects, that (after a permissions check) execute required command.
+Commonly commands act to object's actuators like relay, motors or other electromechanical components.
+In most cases for each command to execute on a connected object, there is also a corresponding value.
+For example a connected lamp can be switch on/off from services via command requests, but it also provides his state switched on/off as a value.
+
+While not always completely true, the following table helps you understand how to identify the capabilities of an object.
+
+| Hardware | | Firmware | | Service |
+|---|---|---|---|---|
+| Sensor | > | Value | > | State |
+| Actuator | < | Command | < | Action |
+
+---
+
+## Communication
+
+**An object can be connected with services via many communication channels.**
+
+When the object's support the IP networks (Lan or Wi-Fi), it's the easiest case.
+In this case, the **object is connected to a local network** then it can be reachable by services directly, software must run on the same local network.
+Alternatively, if the local network provides a public internet access, services can reach the object also via cloud.
+Both, services and objects have to connect to a cloud component that act as gateways routing messages between object and services and vice-versa.
+
+Also, when the object can connect to a mobile network, or **any other network with a public internet connection available**, it can connect to the cloud gateway.
+Then it will be reachable from services but only via the cloud gateway.
+
+But what happen if the object don't support IP network natively?<br/>
+Today on the market there are thousands of connected objects that are using dozens of different communication protocols/standard.
+For example KNX, ZigBee and LonWorks are among the most famous standards of this type in home automation.<br/>
+Instead connecting to an IP network, many **objects connects to a proprietary/dedicated bus defined by a protocol/standard**.
+The bus is a physical communication channel used by object to communicate with other objects that support the same protocol.
+For almost all communication protocols exists a gateway (from the specific protocol to IP networks) already available on the market.
+Those gateways allow software interact with objects: the software sends his request to the gateway (over IP network) that translate them to specific protocol's message and finally, forward it to the right object (over the bus).<br/>
+Be careful when choosing the gateway for your IoT Solution, because each gateway provide different interfaces to the software (on IP side).
+Check the gateway's documentation for more details how software can interact with it.
+
+---
+
+## Create connected objects
+
+Sometimes we need to create custom connected object to use in our IoT Solution.
+This generally occurs in two cases:
+
+* there is no product already on the market that meets your requirements
+* you want to create your own IoT object and the related control / monitoring software
+
+To create a connected object you can start from scratch implementing all components and setting up required infrastructure.
+This way is really expensive and hard to maintain or scale up.<br/>
+A better way is to use tools available on the market like IoT Platforms.
+Many of them are based on hardware devices and provides the infrastructure needed to communicate from object to software and vice-versa.
+Others are more flexible and allow you to choose between different hardware devices.
+Basically **those tools provides you an easy way to prototype your connected object and the IoT Infrastructure used by services to interact with objects**.
+
+Because also all those tools are using different communication layers, you must choose the right platform depending on your IoT Solution's requirement.
+Check out [how to choose an IoT EcoSystem](ecosystem#choosing-an-iot-ecosystem) for more info.<br/>
+
+---
+
+## Product’s improved value
+
+From a manufacturer point of view, **connected products open a wide range of possibilities**.
+Such as:
+
+* provide premium services to his customers<br/>
+  (remote support and assistant, predictive maintenance, customer fidelity, product as a services business models…);
+* known better customer and their needs<br/>
+  (product usage stats, consumable refill routines, favourite configurations)
+* keep secure and update products<br/>
+  (JOD and Utils & Apps OTA updates, object structure remote upgrade)
+
+But even more important, a connected object’s value comes from 3rd parties.
+External Developers, from big software houses to garage startups, can use your connected object in their IoT Solutions.
+That means a **single product can be used for multiple purposes**, also on solutions the manufacturer didn't think about.
+
+For example when you purchase a connected car, it is provided with a beautiful mobile app from the car manufacturer.
+But what happens if your home’s gate can talk with vehicles but yours is not included in the integrated cars list?
+You can’t configure your gate to open automatically when you drive back home with your own car.
+Or what happens if you bought that car for your company fleet?
+You must ask your ERP software provider to integrate that connected car to ERP’s vehicle management system.
+That’s can be really expensive.
+
+**When design a connected object remember that: every time a connected object can be used in a new IoT Solutions, more customers would purchase that object.**

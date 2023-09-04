@@ -1,0 +1,202 @@
+# Run a JOD Distribution
+
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import CodeBlock from '@theme/CodeBlock';
+
+Once you [get](get_a_jod_distribution) and [configured](configure_a_jod_distribution) a JOD Distribution, you can **start it and use the JOSP Object** exposed by that distribution.
+
+The best way to handle JOD Distribution is via [JOD Distribution Commands](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/dists.md), a set of script that allow you to start/stop distributions. Those scripts are included on each JOD Distribution and (depending on distribution purpose) can be executed on Linux or MacOS via Bash, or on Windows via PowerShell terminals.
+
+That, in conjunction with an SSH session, allow you **handle local and remote JOD Distribution in the same way**.
+
+:::info When you run a JOSP Object, unless otherwise specified in the documentation, it is executed as "AnonymousObject", that means it has no owner.<br/>
+To **register yourself as a JOSP Object's owner**, your must add it via a JOSP Services like the [JCP FrontEnd](/docs/references/josp/jcp/microservices/fe/).
+
+1. Go to [Public JCP FrontEnd](https://www.johnosproject.org/frontend/index.html)
+1. Login or register using the top-right button
+1. Go to the 'Objects list' and [add your object](/docs/guides/end_users/new_objects/register_object)
+
+Remember to copy the JOSP Object's ID from JOD Agent logs or from the ```state.sh|ps1``` JOD Dist Cmd's output.
+:::
+
+To run a JOD Distribution on each device reboot, please see the [Install JOD Distribution as a service](install_a_jod_distribution_as_a_service) page.
+
+## Open terminal session
+
+Before run downloaded JOD distribution, you must open distribution directory in to a terminal session.
+
+### On local machine
+
+**If downloaded distribution is on your working machine**, simply open the terminal program and go to downloaded JOD Distribution dir (```$JOD_DIST_DIR```).
+
+<Tabs groupId="os"
+defaultValue="linux"
+values={[
+{label: 'Linux', value: 'linux'}, {label: 'MacOS', value: 'macos'}, {label: 'Windows', value: 'windows'},
+]}>
+<TabItem value="linux">
+
+If you are using a Desktop Environment, you can just open your favourite Terminal application.<br/>
+If you are using the Linux machine from a console, you are all right.
+
+Then, go to distribution dir with ```$ cd $JOD_DIST_DIR``` command.
+
+The JOD Dist TMPL projects provide scripts for Bash shell, so every time you call a JOD Dist Cmd, you must use the ```$ bash cmd_name.sh``` command.
+
+  </TabItem>
+  <TabItem value="macos">
+
+Open *Launchpad* or *Applications* dir from *Finder*, then open the *Terminal* app.
+
+Then, go to distribution dir with ```$ cd $JOD_DIST_DIR``` command.
+
+The JOD Dist TMPL projects provide scripts for Bash shell, so every time you call a JOD Dist Cmd, you must use the ```$ bash cmd_name.sh``` command.
+
+  </TabItem>
+  <TabItem value="windows">
+
+From the *Start* menu, open the *Powershell* application.
+
+Then, go to distribution dir with ```$ cd $JOD_DIST_DIR``` command.
+
+The JOD Dist TMPL projects provide scripts for Powershell, so every time you call a JOD Dist Cmd, you must use the ```$ powershell cmd_name.ps1``` command.
+
+  </TabItem>
+</Tabs>
+
+### On remote device
+
+**Otherwise, if you would run the JOD Distribution on a remote device**, you must open an SSH session to the remote device. The SSH connection require remote device's IP or address, there are many ways to get it. Depending on the remote device nature the address can be found via a mDNS/Bonjour discovery service (typical for IoT and Smart Home devices); or it can be got from the service provider that host our cloud services (for those objects that must run on cloud or 24/7); or even it can be the same as the DHCP gateway address (when the remote device is the same as provide the Wi-Fi network).
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+In Linux/MacOS environment you can use the ```ssh``` command to connect to a remote device via SSH protocol. This command accept different params to configure the connection with the remote device.<br/>
+Once the SSH session was opened, you can go to the downloaded JOD Distribution dir.
+
+```shell title="SSH Connection to remote device"
+$ ssh [{REMEOTE_USER}@]{REMOTE_HOST}[:{REMOTE_PORT}]
+REMOTE_USER@REMOTE_HOST $ cd {JOD_DIST_DIR}
+```
+
+* REMOTE_USER: username to use on login to the remote device. During the ssh initialization, it asks you for the user password. Check device's documentation for user and password credentials. If not set, current username from local machine will be used.
+* REMOTE_HOST: hostname or ip address of the remote device. You can discover it as described above, or check the device's documentation.
+* REMOTE_PORT: by default ssh works with port 22, some device may change it. Use this param to override default port.
+
+
+  </TabItem>
+  <TabItem value="powershell">
+
+...
+
+```shell title="SSH Connection to remote device"
+TODO Write SSH Connection to remote device
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Run JOD Agent
+
+Now you are in the JOD Distribution directory and can execute his [JOD Distribution Commands](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/dists.md).
+
+The ```start.sh|ps1``` script runs the JOD Agent, the software that expose the JOSP Object to the JOSP EcoSystem. By default, this script runs the JOD Agent as a background process, then you can close the terminal's session, and the JOD Agent still run after that. Otherwise, with the FOREGROUND param you can run it as a foreground command with the interactive [JOD Shell](/docs/references/josp/jod/specs/shell).<br/>
+Depending on execution mode, you can halt the JOD Agent. Call ```stop.sh|ps1``` script if executed in background mode, or type ```exit``` on running JOD Shell.<br/>
+Logs are always stored in to the ```logs/jospJOD.log``` file.
+
+### As background process
+
+Here an example to **execute the JOD Distribution as a background process** and get his JOSP Object's id with the ```state.sh|ps1``` script:
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+```shell title="Run JOD Agent as background process"
+$JOD_DIST_DIR/ $ bash start.sh
+                 < Start command logs
+$JOD_DIST_DIR/ $ bash state.sh
+                 < JOD Agent state (JOSP Object id, JOD Agent process id...)
+$JOD_DIST_DIR/ $ tail -f logs/jospJOD.log
+                 < JOD Agent logs
+                 < Ctrl+C to exit
+$JOD_DIST_DIR/ $ bash stop.sh
+                 < Stop command logs
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+```shell title="Run JOD Agent as background process"
+$JOD_DIST_DIR/ $ powershell start.ps1
+                 < Start command logs
+$JOD_DIST_DIR/ $ powershell state.ps1
+                 < JOD Agent state (JOSP Object id, JOD Agent process id...)
+$JOD_DIST_DIR/ $ Get-Content -Path logs/jospJOD.log -Tail 100 -Wait
+                 < JOD Agent logs
+                 < Ctrl+C to exit
+$JOD_DIST_DIR/ $ powershell stop.ps1
+                 < Stop command logs
+```
+
+  </TabItem>
+</Tabs>
+
+### As foreground command
+
+Alternatively an example to **execute the JOD Distribution as a foreground command** and get his JOSP Object's id from console logs or via ```objectInfo``` JOD Shell's command.
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+```shell title="Run JOD Agent as background process"
+$JOD_DIST_DIR/ $ bash start.sh true
+                 < Start command logs
+                 < JOD Agent logs (and JOSP Object id)
+                 > JOD Shell
+                 > objectInfo // type 'objectInfo' to print JOSP Object id
+                 > ?list      // type '?list' for JOD Shell command list
+                 > exit       // type 'exit' to shutdown JOD Agent
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+```shell title="Run JOD Agent as background process"
+$JOD_DIST_DIR/ $ powershell start.ps1 FOREGROUND
+                 < Start command logs
+                 < JOD Agent logs (and JOSP Object id)
+                 > JOD Shell
+                 > objectInfo // type 'objectInfo' to print JOSP Object id
+                 > ?list      // type '?list' for JOD Shell command list
+                 > exit       // type 'exit' to shutdown JOD Agent
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Object registration and usage
+
+Now your JOSP Object is running. Then you can proceed with the [object registration]
+(/docs/references/josp/jcp/microservices/fe/usage/register_a_josp_object) to register yourself as the object's owner. After that, you can access to that JOSP Object from any JOSP Service (like the [JCP FrontEnd](/docs/references/josp/jcp/microservices/fe/)), but also share the JOSP Object with your family, friend and colleagues, and may other things.
+
+For more info about the JOSP Objects and understand how your objects and services can interact with the JOSP EcoSystem, see following sections:
+
+* [JOSP Docs > Guides > End User](/docs/guides/end_users/)
+* [JOSP Docs > What is?](/docs/what/)
+
+Please check the official [JSL Service list](/docs/references/jsl_services/) for available software that can interact with your JOSP Objects.

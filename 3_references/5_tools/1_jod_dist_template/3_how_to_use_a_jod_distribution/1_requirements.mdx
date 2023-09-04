@@ -1,0 +1,64 @@
+# Requirements
+
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import CodeBlock from '@theme/CodeBlock';
+
+Any JOD Distribution base on JOD Dist TMPL require only the Java Virtual Machine installed on target device. That means the device where you would install a JOD Distribution require at least the java command. More requirements can be checked on JOD Distribution's specific documentation.
+
+To set up your target device for commons JOD Distribution requirements, please follow instructions relate to your target's operating system.
+
+<Tabs groupId="os"
+defaultValue="linux"
+values={[
+{label: 'Linux', value: 'linux'}, {label: 'MacOS', value: 'macos'}, {label: 'Windows', value: 'windows'},
+]}>
+<TabItem value="linux">
+<ul>
+<li>
+Java Runtime Environment (preferred java version 9)<br/>
+<CodeBlock>sudo apt install default-jre</CodeBlock><br/>
+Alternatively you can check this links:
+<ul>
+<li><a href="https://ubuntu.com/tutorials/install-jre#1-overview">Install Java on Ubuntu</a></li>
+<li><a href="https://phoenixnap.com/kb/install-java-on-centos">Install Java on CentOS</a></li>
+<li><a href="https://www.java.com/it/download/help/linux_x64_install.html">Install Java 8 on Linux x64 (java.com)</a></li>
+</ul>
+</li>
+</ul>
+</TabItem>
+<TabItem value="macos">
+<ul>
+<li>
+Java Runtime Environment (preferred java version 8)<br/>
+Download and install it from <a href="https://www.java.com/download/ie_manual.jsp">java.com</a><br/>
+Alternatively you can check this links:
+<ul>
+<li><a href="https://mkyong.com/java/how-to-install-java-on-mac-osx/">Install Java via Homebrew</a></li>
+<li><a href="https://adoptopenjdk.net/archive.html?variant=openjdk8&jvmVariant=hotspot">Install Java via AdoptOpenJDK</a></li>
+<li><a href="https://java.com/en/download/apple.jsp">Install Java 8 on Mac OS (java.com)</a></li>
+</ul>
+</li>
+</ul>
+</TabItem>
+<TabItem value="windows">
+<ul>
+<li>
+Java Runtime Environment (preferred java version 8)<br/>
+Download and install it from <a href="https://www.java.com/download/ie_manual.jsp">java.com</a><br/>
+</li>
+<li>
+Enable powershell scripts execution<br/>
+<CodeBlock>
+Set-ExecutionPolicy -ExecutionPolicy remotesigned -Scope CurrentUser
+Get-ChildItem *.ps1 -Recurse | Unblock-File
+</CodeBlock>
+(More inf at <a href="https:/go.microsoft.com/fwlink/?LinkID=135170">microsoft</a>)
+</li>
+</ul>
+</TabItem>
+</Tabs>
+
+Now you are ready to get a copy of your desired JOD Distribution and execute it as a JOSP Object.
+
+:::note
+Requirements and commands from the [JOD Agent Requirements](/docs/references/josp/jod/requirements).
+:::

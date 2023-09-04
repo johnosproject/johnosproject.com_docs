@@ -1,0 +1,228 @@
+# Test JOD Distribution
+
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import CodeBlock from '@theme/CodeBlock';
+
+Once you are ready to startup and test your JOD Distribution; depending on wht you need to test, different execution modes are available.
+
+You can change execution mode via the ```JCP_ENV``` property in the ```configs/jod_dist_configs.sh|ps1``` file from [JOD Distribution configs](configuration/distribution_configs). Then each [JOD Template Commands](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/tmpl/tmpl.md) scripts generate a JOD Distribution with updated ```JCP_ENV``` mode. Available modes are:
+
+* ```local```: distribution will use a local John Cloud Platform (local JCP not required)
+* ```stage```: distribution will use the [Stage Public JCP](https://stage.johnosproject.org/frontend/index.html)
+* ```prod```: distribution will use the [Public JCP](https://www.johnosproject.org/frontend/index.html)
+
+Use the ```prod``` mode only when release and publish your distribution.
+
+If you are just **testing that's your distribution works**, you can execute it in ```local``` mode. Then you can execute it in a local environment. Don't worry if you have not a JCP instance running locally, your distribution will run anyway a JOSP Object that allow you to fully test your JOD Distribution.
+
+If **your tests requires a full working environment**, for example for a long-time test or in a real-world conditions test; you can use the ```stage``` mode for JOD Distribution execution and connect also your JOSP Services to the [Stage Public JCP](https://stage.johnosproject.org/frontend/index.html).
+
+The ```configs/jod_dist_configs.sh|ps1``` file from [JOD Distribution configs](configuration/distribution_configs) allow you also build JOD Distribution with prefixed values for object's name, ids and even object's owner. Almost all **properties from ```configs/jod.yml``` file can be overridden**. Only ```JCP_ID``` and ```JCP_SECRET``` properties are mandatory and must be set according to ```JCP_ENV```.
+
+:::info For ```JCP_ENV='local'```, ```JCP_ID``` and ```JCP_SECRET``` values depends on local JCP instance. If no local JCP is available, use any value to skipp mandatory check.<br/>
+For ```JCP_ENV='stage'```, ```JCP_ID``` and ```JCP_SECRET``` values can be ```test-client-obj``` and ```2d1f9b96-70d3-443b-b21b-08a401ddc16c``` or request your own at [tech@johnosproject.com](mailto:tech@johnosproject.com).<br/>
+:::
+
+After configure the execution modes and other JOD Distribution's configs, you must choose if execute the testing distribution locally on your working machine, or remotely on a network device. Then if you choose the local execution, other two options are available: 'build dir' or 'env dir'.
+
+---
+
+## Test locally from build dir
+
+To run your JOD distribution locally from the build dir, before you must build it with the ```scripts/build.sh|ps1``` script. That creates the ```build/assemble/{DEST_VER}``` directory containing your distribution.
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+Run JOD Distribution as a background process and review his logs:
+
+```shell title="Test distribution locally from build dir as Background process"
+$ bash script/build.sh
+$ cd build/assemble/{DEST_VER}
+$ bash start.sh
+$
+$ tail -f logs/jospJOD.log
+$ tail -f logs/console.log    // includes more details (p.e. SIGTERM)
+$
+$ bash stop.sh
+```
+
+or as foreground process:
+
+```shell title="Test distribution locally from build dir as Foreground process"
+$ bash script/build.sh
+$ cd build/assemble/{DEST_VER}
+$ bash start.sh true
+  < Type exit to halt the JOD Agent
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+Run JOD Distribution as a background process and review his logs:
+
+```shell title="Test distribution locally from build dir as Background process"
+$ powershell script/build.ps1
+$ cd build/assemble/{DEST_VER}
+$ powershell start.ps1
+$
+$ Get-Content -Path logs/jospJOD.log -Tail 100 -Wait
+$ Get-Content -Path logs/console.log -Tail 100 -Wait    // includes more details (p.e. SIGTERM)
+$
+$ powershell stop.ps1
+```
+
+or as foreground process:
+
+```shell title="Test distribution locally from build dir as Foreground process"
+$ powershell script/build.ps1
+$ cd build/assemble/{DEST_VER}
+$ powershell start.ps1 FOREGROUND
+  < Type exit to halt the JOD Agent
+```
+
+  </TabItem>
+</Tabs>
+
+:::caution Build directory will reset each time you execute JOD Template Commands. For persistence distribution tests, please see [Test locally from env dir](#test-locally-from-env-dir).
+:::
+
+---
+
+## Test locally from env dir
+
+To help you testing your JOD Distribution in a persistent environment, the JOD Template Commands provides you the ```scripts/install.sh|ps1``` script. That script build your distribution, then copy it to a random directory ```envs/{DEST_ARTIFACT}-{DEST_VER}/{RANDOM_NUMBER}```. So each time you execute the ```scripts/install.sh|ps1``` script, a new directory with a fresh installation will be created.
+
+The ```scripts/install.sh|ps1``` script print the created dir on his log.
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+Install and run JOD Distribution as a background process and review his logs:
+
+```shell title="Test distribution locally from env dir as Background process"
+$ bash script/install.sh
+$ cd envs/{DEST_ARTIFACT}-{DEST_VER}/{RANDOM_NUMBER}
+$ bash start.sh
+$
+$ tail -f logs/jospJOD.log
+$ tail -f logs/console.log    // includes more details (p.e. SIGTERM)
+$
+$ bash stop.sh
+```
+
+or as foreground process:
+
+```shell title="Test distribution locally from env dir as Foreground process"
+$ bash script/install.sh
+$ cd envs/{DEST_ARTIFACT}-{DEST_VER}/{RANDOM_NUMBER}
+$ bash start.sh true
+  < Type exit to halt the JOD Agent
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+Install and run JOD Distribution as a background process and review his logs:
+
+```shell title="Test distribution locally from env dir as Background process"
+$ powershell script/install.ps1
+$ cd envs/{DEST_ARTIFACT}-{DEST_VER}/{RANDOM_NUMBER}
+$ powershell start.ps1
+$
+$ Get-Content -Path logs/jospJOD.log -Tail 100 -Wait
+$ Get-Content -Path logs/console.log -Tail 100 -Wait    // includes more details (p.e. SIGTERM)
+$
+$ powershell stop.ps1
+```
+
+or as foreground process:
+
+```shell title="Test distribution locally from env dir as Foreground process"
+$ powershell script/install.ps1
+$ cd envs/{DEST_ARTIFACT}-{DEST_VER}/{RANDOM_NUMBER}
+$ powershell start.ps1 FOREGROUND
+  < Type exit to halt the JOD Agent
+```
+
+  </TabItem>
+</Tabs>
+
+:::caution Installed JOD Distribution will persist across JOD Template Commands execution. For a fresh installation, please execute again the ```script/install.sh|ps1``` script, or use the [Test locally from env build](#test-locally-from-build-dir).
+:::
+
+---
+
+## Test remotely
+
+Many times you are designing a JOD Distribution that must run on a remote device, so you need to deploy and test it on remote device.
+
+Because of that, here the guide to:
+
+1. create a compressed JOD Distribution archive
+1. upload it to a remote host
+1. run your custom JOD Distribution on remote host
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+Publish, upload and run remotely JOD Distribution as a background process and review his logs:
+
+```shell title="Test distribution remotely as Background process"
+$ bash script/publish.sh
+$ scp build/publications/{DEST_ARTIFACT}-{DEST_VER}.tgz [{REMOTE_USER}@]{REMOTE_HOST}:{REMOTE_PATH}
+$ ssh [{REMOTE_USER}@]{REMOTE_HOST}
+REMOTE_HOST $ cd {REMOTE_PATH}
+REMOTE_HOST $ tar -xvz {DEST_ARTIFACT}-{DEST_VER}.tgz
+REMOTE_HOST $ cd {DEST_ARTIFACT}-{DEST_VER}
+REMOTE_HOST $ bash start.sh
+REMOTE_HOST $
+REMOTE_HOST $ tail -f logs/jospJOD.log
+REMOTE_HOST $ tail -f logs/console.log    // includes more details (p.e. SIGTERM)
+REMOTE_HOST $
+REMOTE_HOST $ bash stop.sh
+REMOTE_HOST $ exit
+```
+
+or as foreground process:
+
+```shell title="Test distribution remotely as Foreground process"
+$ bash script/publish.sh
+$ scp build/publications/{DEST_ARTIFACT}-{DEST_VER}.tgz [{REMOTE_USER}@]{REMOTE_HOST}:{REMOTE_PATH}
+$ ssh [{REMOTE_USER}@]{REMOTE_HOST}
+REMOTE_HOST $ cd {REMOTE_PATH}
+REMOTE_HOST $ tar -xvz {DEST_ARTIFACT}-{DEST_VER}.tgz
+REMOTE_HOST $ cd {DEST_ARTIFACT}-{DEST_VER}
+REMOTE_HOST $ bash start.sh true
+                < Type exit to halt the JOD Agent
+REMOTE_HOST $ exit
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+Publish, upload and run remotely JOD Distribution as a background process and review his logs:
+
+```shell title="Test distribution remotely as Background process"
+TODO Write Test distribution remotely as Background process
+```
+
+or as foreground process:
+
+```shell title="Test distribution remotely as Foreground process"
+TODO Write Test distribution remotely as Foreground process
+```
+
+  </TabItem>
+</Tabs>

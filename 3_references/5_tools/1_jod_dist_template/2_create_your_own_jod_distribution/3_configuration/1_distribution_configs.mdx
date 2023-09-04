@@ -1,0 +1,17 @@
+# Distribution configs
+
+Before building your own distribution, you must edit the ```configs/jod_dist_configs.sh|ps1``` file and populate his properties.
+
+When executed, all [JOD Template Commands](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/tmpl/tmpl.md) use the default ```configs/jod_dist_configs.sh|ps1``` distribution's configs file. Passing them the ```JOD_DIST_CONFIG_FILE``` param allow you to build/install/publish JOD Distribution using different configurations, for example for separate development/testing/release configs.
+
+|Property Name|Default|Description|
+|---|---|---|
+| DEST_NAME | ```JOD Dist Name``` | The JOD Distribution name, a string representing current JOD Distribution. Commonly starts with "JOD something else", must be human-readable. |
+| DEST_ARTIFACT | ```JOD-Tmpl``` | The JOD Distribution code, a string representing current JOD Distribution. This string must be without spaces because it's used for artifact and dir names. |
+| DEST_VER | ```0.1``` | The JOD Distribution version, a custom string representing current JOD Distribution version. |
+| JCP_ID | ```None``` | The JCP Environment Object's credentials id, a string containing the JCP client id for selected JCP Auth (depends on JCP_ENV).<br/>It's mandatory, if not set you can't build JOD Distribution. |
+| JCP_SECRET | ```None``` | The JCP Environment Object's credentials secret. A string containing the JCP client secret for selected JCP Auth (depends on JCP_ENV).<br/>It's mandatory, if not set you can't build JOD Distribution. |
+| JCP_ENV | ```stage``` | The JCP Environment, a string from (local/stage/prod) set. <br/> This property allow to build JOD Distributions with predefined JCP configs for local, stage or production JCP environments.<br/> Depending on JCP_ENV value, different JCP urls are set in the 'jod.yml' file. <br/> <ul> <li> local: set urls for a local JCP environment executed via the 'com.robypomper.josp' project </li><li> stage: set urls for Public JCP - Stage environment (to use for pre-release tests) </li><li> prod: set urls for Public JCP - Production environment  (to use for release build).  </li></ul> |
+| JOD_VER | ```2.2.1``` | The JOD Agent version to include in the generated distribution. JOD agent's and his dependencies will be first downloaded from central maven repository, if not available, then will be copied from local maven repository. |
+
+More properties are available, for a complete list of all JOD Distribution configs, please see the latest version of the ```jod_dist_configs.sh``` file ([bash](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/src/tmpl/configs/jod_dist_configs.sh) or [powershell](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/src/tmpl/configs/jod_dist_configs.ps1)).

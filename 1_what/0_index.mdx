@@ -1,0 +1,53 @@
+---
+slug: /
+---
+
+# What is?
+
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+
+## IoT and JOSP
+
+Behind IoT there are dozens of different technologies, that make IoT complex and hard to maintain. John O.S. Project aim is to reduce this complexity and speed up objects and services development that can be used to create new [IoT Solutions](iot/solution).
+
+**Because technicians must understand what business developer** require, we created this section of the JOSP documentation to define a common language between IoT solution designer and implementers.
+In those pages you can find IoT basic definitions and concepts; and how the JOSP Project interpreted them.
+
+Basically the JOSP project is an implementation of those concepts.
+For the John O.S. Project an IoT EcoSystem must be flexible to support any kind of IoT Solution, and their components must be reusable along different EcoSystems.
+
+---
+
+export const paper_style = {
+textAlign: 'center',
+padding: '10px',
+overflow: 'scroll',
+backgroundColor: '#1976d2',
+color: '#FFFFFF'
+}
+
+<Grid container spacing={4}>
+  <Grid item xs={12} md={6}>
+    <a href={"/docs/what/iot/ecosystem"}>
+      <Paper style={paper_style}>
+        <Typography variant="button" component="h3" gutterBottom>
+          <b>IoT</b>
+        </Typography>
+      </Paper>
+    </a>
+  </Grid>
+  <Grid item xs={12} md={6}>
+    <a href={"/docs/what/josp/"}>
+      <Paper style={paper_style}>
+        <Typography variant="button" component="h3" gutterBottom>
+          <b>John O.S. Project</b>
+        </Typography>
+      </Paper>
+    </a>
+  </Grid>
+</Grid>
+
+<br/>
+<br/>

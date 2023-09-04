@@ -1,0 +1,42 @@
+---
+title: Exported object
+---
+# Object exported by distribution
+
+The JOD Philips Hue distribution, when executed, generate a new object's structure depending on devices currently connected to the Philips Hub.<br/>
+Object's specification are split in 2 groups:
+
+* [Object's info](#object-info):<br/>
+  model, brand and other generic info about the object exported
+* [Object's structure](#object-structure):<br/>
+  exported object's features as a hierarchical list of status and actions
+
+---
+
+## Object info
+
+* **Model**: Philips Hue Gateway
+* **Brand**: Philips
+* **Description**: The Philips Hue Gateway
+
+---
+
+## Object structure
+
+The object structure vary depending on the list of connected devices to the Philips Hue Hub at the JOD distribution startup.
+
+On startup, this distribution create an authorized user (aka [developer registration](https://developers.meethue.com/develop/get-started-2/#so-lets-get-started)) and query the list of all connected lights to the configured Philips Hub.
+For each light returned it create a pillar container with statuses and actions to interact with that light.
+
+* *[BooleanState]* **Online** <br />
+  ```.state.reachable```: True if light is connected to the Philips Hue Hub, false otherwise.
+* *[BooleanAction]* **Switch** <br />
+  ```.state.on```: True if light is switched on, false otherwise.
+* *[RangeAction]* **Brightness** <br />
+  ```.state.bri```: the bringhness of the light (from 0 to 254)
+* *[RangeAction]* **Saturation** (only for ```Extended color light```)<br />
+  ```.state.sat```: the saturation (intensity) of the colors (from 0 to 254)
+* *[RangeAction]* **Color Linear** (only for ```Extended color light```)<br />
+  ```.state.hue```: the “hue” (a measure of color) to 10000 points (from 0 to 65535)
+
+More details on API calls and response parsing in the [```scripts/hw/generateObjectStructure.sh```](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.philips_hue/src/master/dists/resources/scripts/hw/generateObjectStructure.sh) script and on the [Philips Hue Hub APIs Documentation](https://developers.meethue.com/develop/get-started-2/#so-lets-get-started).

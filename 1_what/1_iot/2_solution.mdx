@@ -1,0 +1,79 @@
+---
+title: Solutions
+---
+# IoT Solutions
+
+IoT opens many possibilities to modern sectors like Home Automation, Factory 4.0, Smart Cities, etc...<br/>
+Every time we see a remote sensors, or any other connected object, we are looking a component of an IoT Solution.
+Behind the scenes there is one or more software (we call it services) that are collecting data from this sensor or interacting with the connected object.
+
+**An IoT Solutions is composed by the entire set of connected [objects](object) and [services](service)** required to reach the solution's purpose.
+
+For example in a CarSharing IoT Solution we consider as part of this solution, not only all connected cars, but also all software used by user as solutions services.
+Services like the mobile app for customers, a web dashboard for monitoring car's state, another web portal for user billing...
+
+As part of an IoT Solution, in addition to objects and services we also need to **consider all users as [actors](actor) and part of the IoT Solution**.
+The IoT Solution design process define also how those components must interact among them self and users.
+A well-designed solution includes also user's purposes, and the actions they need to take on the object (physically or remotely).
+
+Sometimes we need to run simultaneously many IoT Solutions with different purposes, but on the same object's set.
+That is possible if the **IoT Solutions share the same [IoT EcoSystem](ecosystem)**.
+
+**NB:** this IoT Solution's definition works great when you design the solution.
+For his implementation, you must go more deep on technical details like define the entire IoT EcoSystem and relative IT Infrastructure.
+
+---
+
+## Identify right components
+
+EcoSystem
+Objects
+Services
+
+---
+
+## Identify right objects
+
+Today, when we design an IoT solution **we choose the object to use depending on the available technology**.
+
+For example, we must develop smart home software using a specific gateway to communicate with multiple smart home devices (lights, shutters, doors...).
+In this case our software's features can involve only objects from that specific gateway.
+What about other connected objects from other manufacturer, or other home system, or even the user smartphone?<br/>
+We can decide to avoid complex features or integrate multiple systems to out software.
+Any of those integrations adds effort and problems to our solution development.
+
+Because of that, **choosing the right communication protocol is a critical requirements in IoT solution design**.
+
+On the other side, **from software prospective**, it's much more easy identify the right object to interact with.
+When the software receives the list of available objects, depending on his purpose, he can **choose the right object by object's capabilities** like sensors values or commands for actuators.
+
+With the same prospective, when you design your IoT Solution **specify which data and which commands object's must expose to the services**.
+So you can switch between objects from different manufacturers more easily without altering the software behaviour.
+
+Sometimes it happens that there is no product available that supply all our requirements already available on the market.
+So we must **design and build our connected object**.<br/>
+To do that we can consider using an [EcoSystem](ecosystem) from some IoT Platform on the market.<br/>
+But be careful, many platforms are developed around a specific hardware solution.
+Those platforms' speedup the prototyping phase, but they keep you connected to their hardware.
+Other platforms may not satisfy all your IoT Solution requirements, check out the [IoT EcoSystem](ecosystem) for more info on possible solution requirements.
+
+---
+
+## User-centric services
+
+The goal of almost any IoT Solution is to **support users in their tasks or decisions**.
+
+Keep it in mind when choose/develop the services for your solutions.
+Services are an important component that allow users improve his experience with connected objects or even with his entire environment (when multiple objects are available).
+For this reason the software will continue to be designed around the user, and will adapt depending on available objects.
+
+It often happens that **a connected object must be reached from different actors with different needs**.
+Depending on the IoT Solution actors can be varied and each one can have a different purpose, prefer different software installed on different devices, be physically near or far from the object...<br/>
+Then when design your IoT solution, define well how actors should interact with connected objects: physically/remote, from a smartphone/table/pc, they need realtime interactions or just the results of batch processing like analytics results.
+For example the end user prefers a mobile app to handle his objects, meanwhile the object's manufacturer prefer a web dashboard to display the reports about shelled products' usage.
+
+For your IoT Solutions you can **choose to develop your custom services or use 3rd party software**.
+For example the end user mobile app can be easily customized with your brand logo and colors, but the software dedicated to the remote assistance can be a commercial customer service software.
+
+If you decide to develop your own services, remember that the communication library and protocol that you must integrate in your software are part of the IoT EcoSystem.
+Depending on them your software can be able to 'talk' only with specific objects that talks the same protocol.

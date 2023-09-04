@@ -1,0 +1,35 @@
+# References
+
+## [JOD Template Scripts](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/tmpl/tmpl.md)
+
+Scripts that help maker to build, test, install and publish their own JOD Distriubutions. Those scripts and all their dependencies are provided within the JOD Distribution TEMPLATE's artifacts. So each distribution's project dir can be easily managed by Makers.
+
+* [build](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/tmpl/build.md): build the JOD Distribution
+* [install](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/tmpl/install.md): install the JOD Distribution in a local dir
+* [publish](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/tmpl/publish.md): generate the JOD Distribution's distributable file
+
+---
+
+## [JOD Template Distribution Scripts](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/dists.md)
+
+Scripts for End User included in each JOD Distribution publication. Those scripts are used by End User to manage (get state, start/stop, install/uninstall) a JOD installation.
+
+It provides a set of scripts to automate the JOD instance management.
+
+* [state](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/state.md): print the JOD instance state
+* [start](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/start.md): start current JOD instance
+* [stop](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/stop.md): stop current JOD instance
+* [install](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/install.md): install current JOD instance as a service/daemon
+* [uninstall](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/uninstall.md): uninstall current JOD instance as a service/daemon
+
+---
+
+## [Gradle project's tasks](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/gradle/gradle.md)
+
+Gradle's tasks to manage and publish JOD distribution TEMPLATE artifacts. Those tasks can be executed via Gradle Wrapper in the JOD Distribution TEMPLATE source code directory. *They are reserved for JOD Distribution TEMPLATE developers.*
+
+This gradle configs provide 3 main tasks:
+
+* [buildTMPL](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/gradle/buildTMPL.md): build the JOD Distribution TEMPLATE
+* [publishTMPL](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/gradle/publishTMPL.md): build and publish the JOD Distribution TEMPLATE
+* clean: remove all generated files

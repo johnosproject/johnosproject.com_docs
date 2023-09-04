@@ -1,0 +1,33 @@
+# JSL HTTP API implementation
+
+ToDo: write ... like 3_references/jsl/java.md, javascript.md...
+
+```
+    From /Home.md/Start withServices/John Service APIs
+    #### John Service APIs
+
+    The **[JCP JSL Web Bridge](3_references/jcp-jsl-wb/Home.md) service provides a set of HTTP APIs for IoT Services** implemented as web clients.
+
+    Because the JCP JSL Web Bridge component is provided by a John Cloud Platform, IoT services that use this APIs, always requires EcoSystems with the cloud component and can access only to Cloud Connected objects. So, JSL Web Bridge domain (and all API's urls) depends on which John EcoSystem to use.
+
+    The JCP JSL Web Bridge url for the Public JCP is the [jslwb.johnosproject.org](https://jslwb.johnosproject.org).
+
+    Before calling APIs methods you must initialize the JSL Session for current client:
+
+    1. ToDo: add jsl web bridge api init steps
+    1. Check JSL session status
+    1. Initialize JSL Session directly\
+    or Initialize JSL Session in-directly
+    1. [List](2_guides/developers.md#list-objects) or [filter available objects](2_guides/developers.md#filter-objects)
+    1. [Get object's state value](2_guides/developers.md#get-state-value)
+    or [register a listener for updates](2_guides/developers.md#listen-for-state-updates)
+    1. [Send an action request to object](2_guides/developers.md#send-action-to-object)
+
+    For example:
+
+        configure john object remote destination
+        deploy jod dist on jod object remote destination
+            ToDo: update jod deploy on remote object shell commands
+
+    There is also an experimental **JavaScript client** for the JSL WebBridge’s APIs. It’s developed and used in the JCP Front End project. You can navigate to source code [here](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/master/src/jcpFE/js/node/src).
+```

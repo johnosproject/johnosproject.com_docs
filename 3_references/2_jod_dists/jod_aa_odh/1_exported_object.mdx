@@ -1,0 +1,39 @@
+---
+title: Exported object
+---
+# Object exported by distribution
+
+The JOD AA ODH distribution, when executed, generate a new object's structure depending on [his configuration](distribution_configs).<br/>
+Object's specification are split in 2 groups:
+
+* [Object's info](#object-info):<br/>
+  model, brand and other generic info about the object exported
+* [Object's structure](#object-structure):<br/>
+  exported object's features as a hierarchical list of status and actions
+
+---
+
+## Object info
+
+* **Model**: AA OpenDataHub Station
+* **Brand**: Alto Adige OpenDataHub
+* **Description**: The '$JOD_AA_ODH_STATION_TYPE'(code: '$JOD_AA_ODH_STATION_CODE') data station that expose real-time sensors from 'opendatahub.bz.it'
+
+---
+
+## Object structure
+
+Object's structure is always a set of States contained in the root container of the object.<br/>
+Because each Alto Adige Open Data Hub's ```Station``` provides a different set of data depending on his type, also exported States varies depending on configured ```JOD_AA_ODH_STATION_TYPE``` value.
+
+On his startup, the JOD AA ODH generate a new object structure parsing the response of the following url.
+
+```
+https://mobility.api.opendatahub.bz.it/v2/tree%2Cnode/$JOD_AA_ODH_STATION_TYPE/%2A/latest?limit=200&where=scode.eq.$JOD_AA_ODH_STATION_CODE&distinct=true&timezone=UTC
+```
+
+This response is a JSON document that contains the ```data/$JOD_AA_ODH_STATION_TYPE/stations/$JOD_AA_ODH_STATION_CODE/sdatatypes``` element.
+This element contains the list of all values provided by that station and their description.<br/>
+The JOD AA ODH use those elements to generate the object's structure.
+
+For more info about object's structure generation check the [```scripts/hw/generateObjectStructure.sh```](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.aa_odh/src/master/dists/resources/scripts/hw/generateObjectStructure.sh) script.

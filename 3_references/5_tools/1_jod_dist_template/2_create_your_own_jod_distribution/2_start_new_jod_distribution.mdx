@@ -1,0 +1,93 @@
+# Start new JOD Distribution
+
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import CodeBlock from '@theme/CodeBlock';
+
+## Initialize a JOD Distribution project
+
+To create a new JOD Distribution you require latest JOD Distribution TEMPLATE's artifact, downloadable from [Downloads @ Bitbucket](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/downloads/).
+
+After extract it with your favourite decompression tool, rename extracted dir according to your distribution scope (p.e. 'JOD-MyLamp' or 'JOD-MQTT'). Then enter to the JOD Distribution project's folder.
+
+The ```jod_dist_configs.(sh|ps1)``` files contains the main distribution's configs like his name and version, the JOD version to use, the JCP credentials, etc... Populate all properties from both files and remove the "customization check" at the top of the files.
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+```shell title="Bash version"
+# Create new JOD Distribution
+$ curl -fo JOD_Dist_TMPL-{VER}.tgz https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/downloads/JOD_Dist_TMPL-{VER}.tgz
+$ tar zxvf JOD_Dist_TMPL-{VER}.tgz
+$ mv JOD_Dist_TMPL-{VER} {MY_JOD_DIST}
+$ cd {$MY_JOD_DIST}
+
+# Configure JOD Distribution
+# On both files delete "customization check" line and update variables according
+# to your needs (mandatory JCP_ID and JCP_SECRET).
+# For more customization option see the README.md file $ cat README.md
+$ nano configs/jod_dist_configs.sh
+$ nano configs/jod_dist_configs.ps1
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+```shell title="Powershell version"
+# Create new JOD Distribution
+$ Expand-Archive -Path JOD_Dist_TMPL-{VER}.zip
+$ mv JOD_Dist_TMPL-{VER} {MY_JOD_DIST}
+$ Rename-Item JOD_Dist_TMPL-{VER} {MY_JOD_DIST}
+$ cd {MY_JOD_DIST}
+
+# Configure JOD Distribution
+# On both files delete "customization check" line and update variables according
+# to your needs (mandatory JCP_ID and JCP_SECRET).
+# For more customization option see the README.md file $ cat README.md
+$ notepad configs/jod_dist_configs.sh
+$ notepad configs/jod_dist_configs.ps1
+```
+
+  </TabItem>
+</Tabs>
+
+Now you are able to build and test your own distribution.
+
+## Build your JOD Distribution
+
+The ```build``` script create a temporary folder that contains all files required by your JOD Distribution. You can check his content in ```{MY_JOD_DIST}/build/{MY_JOD_DIST}/{MY_JOD_DIST_VER}``` folder. You can also use this folder to run a test instance of your distribution, because it contains also all JOD Distribution Commands from JOD Dist TMPL. To run the JOD agent, you can use the FOREGROUND switch of the ```start.(sh|ps1)``` script, that run the instance with the JOD Shell enabled. That will be useful to test your JOD Distribution.
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+```shell title="Bash version"
+#Build JOD Distribution
+$ bash scripts/build.sh
+
+$ cd build/{MY_JOD_DIST}/{MY_JOD_DIST_VER}
+$ bash start.sh true        # FOREGROUND=true
+```
+
+  </TabItem>
+<TabItem value="powershell">
+
+```shell title="Powershell version"
+#Build JOD Distribution
+$ powershell scripts/build.ps1
+
+$ cd build/{MY_JOD_DIST}/{MY_JOD_DIST_VER}
+$ powershell start.ps1 FOREGROUND        # FOREGROUND=true
+```
+
+  </TabItem>
+</Tabs>
+
+**Built distribution will expose a test JOSP Object.**
+
+To customize how your distribution expose JOSP Objects features, please see [next](configuration/customize_jod_distribution) chapter.

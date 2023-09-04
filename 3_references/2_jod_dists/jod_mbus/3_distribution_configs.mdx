@@ -1,0 +1,32 @@
+---
+title: Configs
+---
+# Distribution configuration
+
+The JOD MBus distribution can be configured **setting the working mode ALL!SLAVE and the serial communication (via libmbus) to the MBus master** to represent with current JOSP Object.
+
+Edit the ```configs/configs.sh``` files and set ```JOD_MBUS_**``` properties.<br/>
+
+* ```JOD_MBUS_TYPE```: working mode selector, can be one of following values ```ALL``` or ```SLAVE```.
+* ```JOD_MBUS_DEV```: serial device where the MBus master is connected, example ```/dev/ttyAMA0```.
+* ```JOD_MBUS_BAUD```: serial port baud rate, example ```2400```.
+
+For ALL mode:
+
+* ```JOD_MBUS_ADDR_TYPE```: which MBus address to use, can be one of following values ```primary``` or ```secondary```.
+
+For SLAVE mode:
+
+* ```JOD_MBUS_SLAVE_ADDR```: slave's address, example ```394335734D6A8104``` or ```94782644C5140004```
+
+Once you set the ```configs/configs.sh``` file, you can [execute](usage) the JOSP Object.
+
+You can also **change configured MBus Master or slave after the JOSP Object startup**.
+Update the Hub's address, update your configs and restart the JOSP Object.
+It will be disconnected from all JOSP Service (and from the JCP Gateway), and then reconnected with the updated object's structure.
+
+:::tip
+For common JOD Distribution configs, please see the following page:
+
+* [JOD Distribution TEMPLATE/How to use a JOD Distribution/Configure a JOD Distribution](/docs/references/tools/jod_dist_template/how_to_use_a_jod_distribution/configure_a_jod_distribution)
+:::

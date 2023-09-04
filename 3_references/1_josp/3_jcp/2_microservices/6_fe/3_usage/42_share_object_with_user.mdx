@@ -1,0 +1,39 @@
+---
+title: Share object with users
+---
+# JCP Front End Share JOSP Object with other users
+
+import YoutubeVideo from '../../../../../_video_youtube.mdx'
+
+Once you [added a new JOSP Object](register_a_josp_object), you can edit the object's permission and share it with other users.
+
+From the ```Objects``` section of the JCP Front End, click on the JOSP Object's name to open the **object's page**.<br/>
+Here, on the top of the page, in the ```Details``` (3 vertical dots) menu, click on ```Access control``` link.
+
+To add new permission open the ```Share with``` menu and select one of the available options:
+
+* Share with a friend: open a add permission dialog with empty values
+* Make object public locally: open an add permission dialog with preset values to share the object with #All users and #All services only on LocalComm
+* Make object public globally: open an add permission dialog with preset values to share the object with #All users and #All services for LocalAndCloud
+
+Independently from which option you chose an 'add permission' dialog will be displayed and you can edit it before add the permission to the object.
+Here are displayed the 4 permission configs: Connection type, Access level, service and user ids.
+
+A user (user_id) using the JOSP Service (service_id) can access to a specific JOSP Object, only if that object have a permission that allow current service/user pair access to the object.
+Each permission define a server/user pair, the access level granted (None, State, Action, CoOwner) and the connection type to apply the permission.<br/>
+Service and user ids can be replaced with placeholders ('#All' and '#Owner' for user id and only '#All' for services), so the permission can be applied to multiple services and/or users.<br/>
+The connection type can limit the permission to JOSP Services connected only via Direct communication.
+
+More info on [JOSP Permission](/docs/what(josp/permissions) page.
+
+Once you configured the new permission, you can click on the ```create``` button.
+After a moment the new permission is added to the object' permission list.
+
+Because you can browse the object's also when it's offline (not connected to the JCP).
+You can display offline object's permissions but you can't edit them.
+
+You can download a copy of object's permissions clicking on the ```Download``` link in the ```Details``` (3 vertical dots) menu.
+
+---
+
+<YoutubeVideo videoId="y-XRlZ6guwg" />

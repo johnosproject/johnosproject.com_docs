@@ -1,0 +1,138 @@
+---
+slug: ./
+title: The Project
+---
+# John Operating System Project
+
+import WhatIntro from '../_what_intro.mdx'
+
+Every technology, however complex, must be simple to use, on pain of its uselessness.
+
+Today's IoT, offers already thousands of solutions for hundreds of different fields.
+Despite this, we are still a long way from IoT Solutions within everyone's reach.<br/>
+Considering the impact that connected objects and services will have on society, it made clear that we are still taking the first steps in the IoT (r)evolution.
+The best IoT solutions are only within reach of large companies or highly technological and specialized startups.
+This, in fact, limits the creation and adoption of new IoT solutions.
+<br/>
+
+<WhatIntro
+logo_path="/docs/img/logo/logo_text_full_250.png">
+<span style={{textAlign: 'center'}}>
+
+For this reason, the <span style={{fontSize: '1.2em'}}>John Operating System Project main gaol</span><br/>
+is to allow <span style={{fontSize: '1.2em'}}>**everybody to design and to build his own IoT Solutions**</span>.
+
+</span>
+</WhatIntro>
+<br/>
+
+When designing your personal IoT solution, regardless if you are a farmer, pastry chef or home user who simply wants to improve his smart home, you can use the [JOSP EcoSystem](ecosystem).
+It's simple as register your desired objects (as [JOSP Objects](object)) to an JOSP EcoSystem, then choose which software (the [JOSP Service](service)) must interact with those objects.<br/>
+**Your personal [IoT Solutions](solution) is done!**
+
+<br/>
+<span style={{textAlign: 'center', fontSize: '1.2em'}}>
+
+To make this possible, the JOSP Project provides all [software and tools](/references) to help  [End Users](actors/end_user) easily compose IoT solutions, but also to support [Makers](actors/maker) connect new objects and [Developers](actors/developer) implement software in no time.
+
+</span>
+<br/>
+
+The **JOSP Project is an Open Source project** and provides all those tools with GPLv3 or AGPLv3 licences.<br/>
+The project's main source code can be reachable at [com.robypomper.josp](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/master/) repository.
+
+---
+
+* Why can't a farmer customize the digital management of his field according to his needs?<br/>
+* Why can't a pastry chef control his ovens and mixers from a tablet regardless of the manufacturer?<br/>
+* Why can't a small craftsman find solutions at the right price to automate the supply of his warehouse?<br/>
+* Why can't a mid-sized manufacturer offer connected products and related IT infrastructure?<br/>
+* Why can't a single developer implements the best application for home lighting control that communicate with any connected lamp?
+
+To solve those problems and many more, the JOSP project introduce the **super-interoperability components**.<br/>
+That means, with the JOSP EcoSystem, you can create any kind of IoT Solution, composing it using any JOSP Object and any JOSP Service that fits your needs.
+JOSP Objects and Services are the two main components that compose an IoT Solution and represent respectively any object exposed by the John Object Daemon Agent and any software that include the John Software Library.
+
+There are **many ways to register a JOSP Objects**.
+Basically it depends on the object's nature.<br/>
+Some products may be sold with pre-installed JOD software, so just plug them into the power outlet and register your user as the object's owner.
+Other JOSP Objects can integrate 3rd party protocols/standard and represent all devices connected to specific gateway/hub.
+JOSP Objects supports also HTTP(s) 3rd part connected objects.<br/>
+In any case, once the JOD Agent is started, for each object it is necessary to register its user as the owner of the object.
+At a later time, you can also share the object with other users.
+
+Then you can **choose any JOSP Service that can interact with your JOSP Object**.
+Any software that interact with athe JOSP EcoSystem can be considered a JOSP Service.
+It's simply as including the JSL library in your source code.<br/>
+So, on designing your IoT Solution check which software, that included the JSL library, best fits your needs.
+Often, 3rd party software include the JSL Library through a plugin or an extension, please check the software's documentation for more info.
+
+You can always **connect as many JOSP Objects as you want and also use multiple JOSP Services at the same time**.
+This is especially helpful when we need to deliver large and complex IoT Solutions.
+In a JOSP EcoSystem, we can add objects and software one step at a time, without blocking normal operations.
+
+---
+
+## Super-Interoperability
+
+Thousands of new objects types will be connected in the next years and new ideas for objects interactions will be born every day.
+For each space there will be tens or hundreds of sensors and intelligent objects.<br/>
+IoT Services will increase their knowledge of the environment and the users thanks to all these connected objects.
+Each Service will provide more features more specific on his purpose.<br/>
+The result will be a complex web of many-to-many interconnections between services and objects, that depends on users needs.
+
+Differently from other IoT Solutions, **the JOSP EcoSystem is designed to be flexible and support user's needs over the time**.
+
+The JOSP EcoSystem helps users to manage all their JOSP Objects, because it can aggregate different objects regardless the technology used to connect them.
+All users, after register their objects, can also configure which service can interact with them for security and privacy purposes.
+Finally, each JOSP Service selected by user, can filter available objects and interact with them.
+
+As an example we can think of a smart home, to which motion sensors are initially added to be used in combination with an alarm system.
+Then smart thermostats are added to control the boiler and finally smart lamps are also added.<br/>
+Simply due to the fact that these objects are supplied by different manufacturers, it is already difficult to find a single software to monitor all these objects.<br/>
+If, in addition to simple monitoring, we demand more advanced functionalities, we are often forced to complex configurations of exotic and perhaps unsafe services, or even to implement an ad-hoc IoT service.
+How many alarm system manufacturers provide a mobile app that allows the end user to configure the switching on of smart lamps when the alarm is triggered, or how many boiler manufacturers allow to cross the data collected by thermostats and third-party motion sensors parts to improve the efficiency of the boiler.
+
+Within a JOSP EcoSystem, the home user should register all his connected objects (motion sensors, thermostats and smart lights) as JOSP Objects.
+Then any JOSP Service, after user's login, can access to all his objects regardless their type or manufacturer.
+There can be a JOSP Service for Home Energy management that looks for any thermostat, any motion sensor and/or any meteo station available to use their data to improve the boiler efficiency.
+There can be a JOSP Service for any feature that interact with multiple connected objects.
+
+To allow this **hi-level interoperability between objects and services**, the JOSP EcoSystem define objects as a set of features.
+Features that JOSP Services can use remotely.
+So, JOSP Services can filter all objects that expose specific features and then interact only with them.
+That make objects perfectly interoperable regardless of their manufacturer or to the technology used to connect them.
+
+---
+
+## Objects  and services
+
+**With many connected objects' comes many integrations methods.**<br/>
+Here the main object's integrations method provided by the JOSP project:
+
+* Natively an object contain itself the JOD Agent
+* Via a Gateway/Hub that runs the JOD Agent
+* Any other JOD Agent that can reach object's HW components (normally via network)
+
+Any objects (already connected or not) can be connected into a JOSP EcoSystem with the JOD Agent.
+This software is normally installed as a service/daemon on host operating system, and exposes a JOSP Object to rest of the EcoSystem.
+Each JOSP Object is defined by is info like name, model, brand... and his structure.
+**The object's structure contains a hierarchical list of object's features.**
+
+End Users, who customize his personal IoT Solution, can find JOSP Objects as purchasable products or as software to be installed whose requirements will depend on the object to be represented.
+For example, you can buy a lamp that already include the JOD Agent, then you'll need just to plugin it.
+Otherwise, you cal also already have SmartHome objects installed on your home.
+In this case, you just need to download and install the specific JOD Distribution for your SmartHome gateway.
+That allow you to integrate all available SmartHome's devices as JOSP Objects in one step.
+
+**The JOSPProject provides the tools required to Makers** like products manufacturers to create connected products, but it also allows anybody else to easily integrate existing protocols/standards or connected objects.
+On the other side, on the JOSP Services side, the JOSP Projects provide a lot of useful tools.
+From **generic JOSP Services** that allow end users monitoring, control and manage their JOSP Objects; to **software libraries for JOSP Services**' developers to integrate in 3rd party software.
+
+When an End User want permit a JOSP Service to interact with his objects, he needs to get the right object's access level to corresponding software.
+It's performed as a social login or with a direct access request.
+It's sound tricky, but it is demanded to software developers choose the right access request and customize the user experience for the best result.
+
+**Social login, access request, objects list and interaction methods are all provided by the JSL Library to Developers**.
+As a software development kit, the JSL library allow Developers to be free to implement their own services like Mobile or Desktop Apps, but also Cloud Services or batch process for analytics systems, and many others.
+With the aim to improve user experience among different services, we provide also a guidelines for service development.

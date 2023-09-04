@@ -1,0 +1,153 @@
+---
+slug: ./
+---
+# JOD Alto Adige OpenDataHub References
+
+import ReferenceIntro from '../../_references_intro.mdx'
+import ReferenceInfo from '../../_references_info.mdx'
+
+<ReferenceIntro
+  logo_path="JOD_AA_OpenDataHub_Logo_250.png">
+
+The __JOD Alto Adige OpenDataHub allow to transform a Dataset from [opendatahub.bz.it](https://opendatahub.bz.it/) in a JOSP Object__.
+
+From the [Alto Adige Open Data Hub](https://opendatahub.bz.it/):
+
+    Open Data Hub supports the implementation of an innovative platform,
+    where talents can use data and create innovative solutions for a SMART Green Region.
+
+</ReferenceIntro>
+
+<ReferenceInfo
+  proj_name="JOD AA ODH"
+  refs_dir="jod_dists/jod_aa_odh"
+  ver_stable="1.0"
+  ver_dev="1.1-DEV"
+  repo_name="com.robypomper.josp.jod.aa_odh"
+  />
+
+---
+
+**Distribution documentation**
+
+* [Exported object](exported_object)<br/>
+  distribution's specification like object's info and structure
+* [Requirements](requirements)<br/>
+  distribution specific requirements like software or hardware dependencies
+* [Distribution configs](distribution_configs)<br/>
+  how to configure this distribution
+* [Usage](usage)<br/>
+  how to manage current distribution
+
+---
+
+import YoutubeVideo from '../../_video_youtube.mdx'
+
+<YoutubeVideo videoId="pk3MIZi4Pbs" />
+
+---
+
+import Paper from '@mui/material/Paper';
+
+<Paper style={{
+  textAlign: "center",
+  width: "fit-content",
+  padding: "10px 30px",
+  margin: "auto",
+  backgroundColor: "#1976d2",
+  color: "#fff"
+  }}>
+    <b>Download latest JOD Alto Adige Open Data Hub</b><br/>
+    <a style={{
+      color: "#92dacb",
+      margin: "0 10px"
+      }}
+      href="https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.aa_odh/downloads/JOD-AA-OpenDataHub-1.0.zip">*.ZIP</a> |
+    <a style={{
+      color: "#92dacb",
+      margin: "0 10px"
+      }}
+      href="https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.aa_odh/downloads/JOD-AA-OpenDataHub-1.0.tgz">*.TGZ</a>
+</Paper>
+
+---
+
+The Alto Adige Open Data Hub is a public OpenData provider that expose many different [Dataset](https://opendatahub.bz.it/datasets/).
+This JOD AA ODH can handle all dataset from [Traffic & Mobility](https://opendatahub.readthedocs.io/en/latest/datasets.html#datasets-in-the-mobility-domain).<br/>
+Traffic & Mobility datasets provide their data in the form of station.
+Each [station can be exposed as a JOSP Object](exported_object) that provide different statuses depending on his ```StationType```.
+
+User's can [configure the JOD AA ODH distribution](distribution_configs) and choose station represent as JOSP Object.
+Edit the ```configs/configs.sh|ps1``` file and update following properties ```JOD_AA_ODH_STATION_TYPE``` and ```JOD_AA_ODH_STATION_CODE```.
+
+In the below list, for each data set (in bold), are listed all available ```StationType```s.
+Click on dataset's link for a short description of station types and his data providers.
+Click station type's link to show a list of all station of that type and their ```scode```.
+
+
+##### Station types list
+
+import Grid from '@mui/material/Grid';
+
+<Grid container spacing={4}>
+  <Grid item xs={12} md={4}>
+
+**Traffic:**
+
+* **[Bluetooth Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#bluetooth-dataset)**
+  * [BluetoothStation](https://mobility.api.opendatahub.bz.it/v2/flat/BluetoothStation)
+* **[Environment Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#environment-dataset)**
+  * [EnvironmentStation](https://mobility.api.opendatahub.bz.it/v2/flat/EnvironmentStation)
+* **[Link Station Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#linkstation-dataset)**
+  * [LinkStation](https://mobility.api.opendatahub.bz.it/v2/flat/LinkStation)
+* **[Parking Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#parking-dataset)**
+  * [ParkingStation](https://mobility.api.opendatahub.bz.it/v2/flat/ParkingStation)
+  * [ParkingSensor](https://mobility.api.opendatahub.bz.it/v2/flat/ParkingSensor)
+* **[RWIS Station Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#rwisstation-dataset)**
+  * [RWISstation](https://mobility.api.opendatahub.bz.it/v2/flat/RWISstation)
+* **[Street Element Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#streetelement-dataset)**
+  * [Streetstation](https://mobility.api.opendatahub.bz.it/v2/flat/Streetstation)
+* **[Traffic Station Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#trafficstation-dataset)**
+  * [traffic](https://mobility.api.opendatahub.bz.it/v2/flat/traffic)
+  * [TrafficSensor](https://mobility.api.opendatahub.bz.it/v2/flat/TrafficSensor)
+  * [Trafficstation](https://mobility.api.opendatahub.bz.it/v2/flat/Trafficstation)
+  * [TrafficStreetFactor](https://mobility.api.opendatahub.bz.it/v2/flat/TrafficStreetFactor)
+* **[Trafficstation VMS Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#trafficstation-vms-dataset)**
+  * [VMS](https://mobility.api.opendatahub.bz.it/v2/flat/VMS)
+* **[Weather Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#weather-dataset)**
+  * [MeteoStation](https://mobility.api.opendatahub.bz.it/v2/flat/MeteoStation)
+
+
+  </Grid>
+  <Grid item xs={12} md={4}>
+
+**Mobility:**
+
+* **[Bike Sharing Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#bikesharing-dataset)**
+  * [Bicycle](https://mobility.api.opendatahub.bz.it/v2/flat/Bicycle)
+  * [BikesharingStation](https://mobility.api.opendatahub.bz.it/v2/flat/BikesharingStation)
+  * [Bicyclestationbay](https://mobility.api.opendatahub.bz.it/v2/flat/Bicyclestationbay)
+* **[Car Pooling Hub Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#carpoolinghub-dataset)**
+  * [CarpoolingHub](https://mobility.api.opendatahub.bz.it/v2/flat/CarpoolingHub)
+  * [CarpoolingService](https://mobility.api.opendatahub.bz.it/v2/flat/CarpoolingService)
+  * [CarpoolingUser](https://mobility.api.opendatahub.bz.it/v2/flat/CarpoolingUser)
+* **[Car Sharing Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#carsharing-dataset)**
+  * [CarsharingStation](https://mobility.api.opendatahub.bz.it/v2/flat/CarsharingStation)
+* **[eCharging Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#echarging-dataset)**
+  * [EChargingPlug](https://mobility.api.opendatahub.bz.it/v2/flat/EChargingPlug)
+  * [EChargingStation](https://mobility.api.opendatahub.bz.it/v2/flat/EChargingStation)
+
+
+  </Grid>
+  <Grid item xs={12} md={4}>
+
+**Other domains:**
+
+* **[Creative Industries Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#creative-industries-dataset)**
+  * [CreativeIndustry](https://mobility.api.opendatahub.bz.it/v2/flat/CreativeIndustry)
+* **[NOI-Place Dataset](https://opendatahub.readthedocs.io/en/latest/datasets.html#noiplace-dataset)**
+  * [NOI-Place](https://mobility.api.opendatahub.bz.it/v2/flat/NOI-Place)
+
+
+  </Grid>
+</Grid>

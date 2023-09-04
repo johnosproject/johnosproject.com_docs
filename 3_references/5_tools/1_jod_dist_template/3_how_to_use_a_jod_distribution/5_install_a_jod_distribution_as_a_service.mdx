@@ -1,0 +1,44 @@
+# Install a JOD Distribution as a Service
+
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import CodeBlock from '@theme/CodeBlock';
+
+When you run a JOD Distribution with the ```start.sh|ps1``` [JOD Dist Cmd](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/dists.md), it can still run until the operating system reboots; but after that the distribution must be re-started manually.
+
+To avoid this operation, you can **install the JOD Distribution as a service in the working operating system**. That means the operating system take care to restart the distribution on each boot. So you can safely switch on/off the device where you installed the JOD Distribution, without worry to restart it each time.
+
+:::caution
+```install.sh|ps1``` and ```uninstall.sh|ps1``` JOD Dist Cmd require administrator permission on working machine. So during the process, they will ask you to grant admin access.
+:::
+
+Depending on where you [copied JOD Distribution's files](get_a_jod_distribution), you must [open a terminal session](run_a_jod_distribution#open-terminal-session) and execute the ```install.sh|ps1``` JOD Dist Cmd from ```$JOD_DIST_DIR``` folder.
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+```shell title="Install JOD Agent as a service"
+$JOD_DIST_DIR/ $ bash install.sh
+                 < Install command logs
+$JOD_DIST_DIR/ $ bash state.sh
+                 < JOD Agent state (IsInstalled, JOD Agent process id...)
+$JOD_DIST_DIR/ $ bash uninstall.sh
+                 < Uninstall command logs
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+```shell title="Install JOD Agent as a service"
+$JOD_DIST_DIR/ $ powershell install.ps1
+                 < Install command logs
+$JOD_DIST_DIR/ $ powershell state.ps1
+                 < JOD Agent state (IsInstalled, JOD Agent process id...)
+$JOD_DIST_DIR/ $ powershell uninstall.ps1
+                 < Uninstall command logs
+```
+
+  </TabItem>
+</Tabs>

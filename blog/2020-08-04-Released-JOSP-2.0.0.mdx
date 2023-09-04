@@ -1,0 +1,46 @@
+---
+title: Released JOSP v2.0.0
+description: Released JOSP project version 2.0.0
+slug: released-josp-2.0.0
+authors:
+- name: Roberto Pompermaier
+---
+
+I'm happy to announce the **John OS Platform version 2.0.0**.
+
+We published the first release of the 2.x.x series.<br/>
+It includes the JOD Agent, the JSL library and a minimal implementation of the JCP platform (JCP APIs and JCP GWs).<br/>
+With this version you can startup a JOSP EcoSystem with multiple JOSP Objects and Services that can communicate directly or via JCP.
+
+<!--truncate-->
+
+:::info
+**John O.S. Platform v 2.0.0**
+
+* [Source code](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.0.0/)
+* [Project docs](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.0.0/docs/INDEX.md)
+* [Published Libraries](https://search.maven.org/search?q=com.robypomper.josp)
+  :::
+
+The John OS Platform project provide a suit of software and tools to simplify the IoT solutions design. From his source code's ```README.md``` file:
+
+:::note The John O.S. Project (JOSP for friends) simplify the design and build process of modern [Internet of Things solutions](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.0.0/docs/josp_ecosystems.md):
+
+* reduces **smart object's creation a 5 minutes activity**, even without coding skills
+* it's possible integrate any kind of connected object, regardless of communication protocol used by the object
+* develop custom **software that easily interact with objects**
+* startups local and cloud connections between service and objects out-of-the-box
+* it provides communication **security and object's access control by design**
+* it's completely Open Source
+  :::
+
+This version introduces all 3 main components for a JOSP EcoSystem.
+
+* The **Object's agent [JOSP JOD](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.0.0/docs/jospJOD/README.md)** can be installed on a smart object and allow to expose all object's status and actions to services like the environment temperature or ths light status.
+* Services are **all software that include the [JOSP JSL](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.0.0/docs/jospJSL/README.md) library**. This library allows software easily interact with JOD objects:
+  1. listing and filter available objects,
+  1. getting status updates and
+  1. send action commands.
+* The **cloud components [JCP APIs](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.0.0/docs/jcpAPIs/README.md) and the [JOSP GWs](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.0.0/docs/jospGWs/README.md)** components allow objects and services to communicate also remotely via Cloud.
+
+To start experiment with your own IoT Eco-System see the [JOSP Project documentation](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.0.0/docs/INDEX.md).

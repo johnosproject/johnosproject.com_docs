@@ -1,0 +1,48 @@
+---
+title: Exported object
+---
+# Object exported by distribution
+
+The JOD MBus distribution, when executed, generate a new object's structure depending on slaves currently connected to the MBus master.<br/>
+This distribution can be configured to export all connected MBus slaves or only a single slave.<br/>
+Object's specification are split in 2 groups:
+
+* [Object's info](#object-info):<br/>
+  model, brand and other generic info about the object exported
+* [Object's structure](#object-structure):<br/>
+  exported object's features as a hierarchical list of status and actions
+
+---
+
+## Object info
+
+For ALL mode:
+
+* **Model**: MBus Gateway
+* **Brand**: John OS
+* **Description**: The MBus gateway (serial-device: '$JOD_MBUS_DEV')
+
+\* ```$JOD_MBUS_DEV``` values come from distribution's configs
+
+For SLAVE mode:
+
+* **Model**: MBus Slave
+* **Brand**: John OS
+* **Description**: The '$DEVICE_PRODUCT_NAME' (manufacturer: '$DEVICE_MANUFACTURER') MBus slave device
+
+\* ```$DEVICE_PRODUCT_NAME``` and ```$DEVICE_MANUFACTURER``` values come from MBus slave device
+
+---
+
+## Object structure
+
+Depending on the ```JOD_MBUS_TYPE``` configs, this distribution can expose all connected slaves (ALL mode) or only one of them (SLAVE mode).<br/>
+In both case at his startup, the JOD MBus distributions scan with the MBus Master available slaves to retrieve their info and generate the object's structure.
+
+When the ALL mode is set, this distribution query to the MBus Master all available slaves (```mbus-serial-scan```).
+Then, for each slave, create a container in the root component of the object's structure and populate it with the slave's states.<br/>
+On the other side, when the SLAVE mode is set, all slave's states are added directly to the root.
+
+Each MBus slave generate a different list of statuses depending on the 'DataRecord' fields returned by the slave itself (```mbus-serial-request-data```).
+
+More details on DataRecord2States transformation in the [```scripts/hw/generateObjectStructure_ALL.sh```](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.mbus/src/master/dists/resources/scripts/hw/generateObjectStructure_ALL.sh) and [```scripts/hw/generateObjectStructure_SLAVE.sh```](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.mbus/src/master/dists/resources/scripts/hw/generateObjectStructure_SLAVE.sh) scripts; or to the [```libmbus```](https://github.com/rscada/libmbus) home page.

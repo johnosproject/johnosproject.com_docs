@@ -1,0 +1,101 @@
+---
+title: Placeholders
+---
+# JOD Workers Placeholders
+
+With Worker Configs Placeholder, **Makers can setup dynamic configs for their [Pillar's](../pillars) firmware**.
+
+For example, using the worker's placeholders, you can setup a File Listener worker that use the Pillar's name (```%C_NAME%```) in the monitored file path.
+Or even you can configure a HTTP Puller to use the pillar's path (```%C_PATH```).
+
+Worker **Placeholders are substituted to Firmware Configs on worker initialization**.
+When worker parses the Firmware Configs String, from the pillar's definition in the [JOD Agent's structure](../structure).
+This string is defined by Maker in the object's configuration.<br/>
+Firmware Configs are parsed using the [AbsJODWorker::parseConfig{TYPE}(Map,String)](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/641d05e37c6aa0224dff2ff222fb99c16882a515/src/jospJOD/java/com/robypomper/josp/jod/executor/AbsJODWorker.java#lines-182) methods.
+Those methods substitute string config's value placeholders with [Pillar](#pillar) properties, then convert resulting value to required ```{TYPE}```. <br/>
+So any Firmware Configs is updated with Component properties.
+
+**Placeholders can are replaced also when the worker must done his work** (listen, pull a state or execute an action).<br/>
+Depending on worker implementation, it can update some Firmware Config with [State](#state) or  [Action](#action) (only on action execution) properties. <br/>
+Check the worker's documentation for placeholder replacement info.
+
+## Pillar
+
+This placeholder are replaced with properties from the Pillar that use current Worker.
+
+Those placeholders are always replaced in almost all Firmware Configs on worker initialization.
+
+| Placeholder | Replaced with |
+|---|---|
+| ```%C_NAME%```        | Pillar name |
+| ```%C_TYPE%```        | Pillar type ('BooleanState', 'RangeAction'...) |
+| ```%C_PATH%```        | Pillar full path |
+| ```%PARENT_NAME%```   | Pillar's parent name, 'N/A' for root component. |
+| ```%PARENT_PATH%```   | Pillar's parent full path, 'N/A' for root component. |
+
+## State
+
+States Placeholders allow to use Pillar's value in puller and executors workers.
+
+A puller can use current value to query the updated one.
+Or an executor should now current value before update the new one.
+
+Those placeholders are replaced only in certainly Firmware Configs during worker job execution (pulling or execute).<br/>
+Check the worker's Firmware Configs details for placeholder replacement info.
+
+Only for **Pillar of Boolean** type:
+
+| Placeholder | Replaced with |
+|---|---|
+| ```%VAL%``` | Pillar value that correspond to 'True' or 'False' strings. |
+| ```%VAL_BOOL%``` | Pillar value that correspond to 'True' or 'False' strings. |
+| ```%VAL_BIN%``` | Pillar value that correspond to '1' (true) or '0' (false). |
+
+Only for **Pillar of Range** type:
+
+| Placeholder | Replaced with |
+|---|---|
+| ```%VAL%``` | Pillar value that correspond to a valid number rendered with the [JavaFormatter.doubleToStr(double)](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/src/jospCommons/java/com/robypomper/java/JavaFormatter.java#lines-85) function. |
+| ```%VAL_COMMA%``` | Pillar value that correspond to a valid number rendered with the [JavaFormatter.doubleToStr_Point(double)](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/src/jospCommons/java/com/robypomper/java/JavaFormatter.java#lines-95) function. |
+| ```%VAL_POINT%``` | Pillar value that correspond to a valid number rendered with the [JavaFormatter.doubleToStr_Comma(double)](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/src/jospCommons/java/com/robypomper/java/JavaFormatter.java#lines-105) function. |
+
+## Action
+
+Action Placeholders allow to use Action Request params in executors workers.
+
+Action Request params include info such as the (new) value to set and the (old) current Pillar's state.
+Moreover you can find other info about Action Request like the JOSP Service's id that send the request and the User's id that was using the service.
+
+Those placeholders are replaced only in certainly Firmware Configs during executor job execution (execute).<br/>
+Check the worker's Firmware Configs details for placeholder replacement info.
+
+For **all Actions Requests**:
+
+| Placeholder | Replaced with |
+|---|---|
+| ```%SRV_ID%``` | JOSP Service's id that required the action execution. |
+| ```%USR_ID%``` | JOSP User's id that required the action execution. |
+
+Only for **Actions Requests on Pillar of Boolean Action** type:
+
+| Placeholder | Replaced with |
+|---|---|
+| ```%VAL%```           | Value to set, requested by Action Execution. This value can be one of the two 'true' or 'false' strings. |
+| ```%VAL_BOOL%```      | Value to set, requested by Action Execution. This value can be one of the two 'True' or 'False' strings. |
+| ```%VAL_BIN%```       | Value to set, requested by Action Execution. This value can be one of the two '1' (true) or '0' (false) strings. |
+| ```%VAL_OLD%```       | Current pillar value, before Action Execution. This value can be one of the two 'true' or 'false' strings. |
+| ```%VAL_OLD_BOOL%```  | Current pillar value, before Action Execution. This value can be one of the two 'True' or 'False' strings. |
+| ```%VAL_OLD_BIN%```   | Current pillar value, before Action Execution. This value can be one of the two '1' (true) or '0' (false) strings. |
+
+For **Actions Requests on Pillar of Range Action** type:
+
+| Placeholder | Replaced with |
+|---|---|
+| ```%VAL%```           | Value to set, requested by Action Execution. This value can be a valid number rendered with the [JavaFormatter.doubleToStr(double)](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/src/jospCommons/java/com/robypomper/java/JavaFormatter.java#lines-85) function. |
+| ```%VAL_POINT%```     | Value to set, requested by Action Execution. This value can be a valid number rendered with the [JavaFormatter.doubleToStr(double)](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/src/jospCommons/java/com/robypomper/java/JavaFormatter.java#lines-85) function. |
+| ```%VAL_COMMA%```     | Value to set, requested by Action Execution. This value can be a valid number rendered with the [JavaFormatter.doubleToStr(double)](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/src/jospCommons/java/com/robypomper/java/JavaFormatter.java#lines-85) function. |
+| ```%VAL_INT%```       | Value to set, requested by Action Execution. This value can be a valid number rendered with the [JavaFormatter.doubleToStr_Truncated(double)](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/src/jospCommons/java/com/robypomper/java/JavaFormatter.java#lines-118) function. |
+| ```%VAL_OLD%```       | Current pillar value, before Action Execution. This value can be a valid number rendered with the [JavaFormatter.doubleToStr(double)](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/src/jospCommons/java/com/robypomper/java/JavaFormatter.java#lines-85) function. |
+| ```%VAL_OLD_POINT%``` | Current pillar value, before Action Execution. This value can be a valid number rendered with the [JavaFormatter.doubleToStr(double)](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/src/jospCommons/java/com/robypomper/java/JavaFormatter.java#lines-85) function. |
+| ```%VAL_OLD_COMMA%``` | Current pillar value, before  Action Execution. This value can be a valid number rendered with the [JavaFormatter.doubleToStr(double)](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/src/jospCommons/java/com/robypomper/java/JavaFormatter.java#lines-85) function. |
+| ```%VAL_OLD_INT%```   | Current pillar value, before Action Execution. This value can be a valid number rendered with the [JavaFormatter.doubleToStr_Truncated(double)](https://bitbucket.org/johnosproject_shared/com.robypomper.josp/src/2.2.1/src/jospCommons/java/com/robypomper/java/JavaFormatter.java#lines-118) function. |

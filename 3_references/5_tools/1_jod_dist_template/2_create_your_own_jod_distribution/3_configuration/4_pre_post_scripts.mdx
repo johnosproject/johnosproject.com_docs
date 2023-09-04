@@ -1,0 +1,284 @@
+# Object PRE-POST scripts
+
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import CodeBlock from '@theme/CodeBlock';
+
+End Users use [JOD Distribution Commands](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/dists.md) to manage their JOD Distribution installation. They can start/stop, install/uninstall (as a service) and get his state.
+
+[JOD Distribution Commands](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/dists.md), during their execution, are configured to check for special scripts in the ```script``` folder; if those scripts exist, then they are executed.
+
+Those special scripts act as hooks and allow Makers to inject distribution's specific commands to be executed before or after start/stop, install/uninstall the distribution.
+
+Here the full list of JOD Distribution Commands, and the hook they try to call:
+
+| JOD Dist Cmd | PRE-Script | POST_Script |
+|---|---|---|
+| start             | ```scripts/pre-startup```   | ```scripts/post-startup```   |
+| start FOREGROUND  | ```scripts/pre-startup```   | ```scripts/post-shutdown```  |
+| stop              | ```scripts/pre-shutdown```  | ```scripts/post-shutdown```  |
+| install           | ```scripts/pre-install```   | ```scripts/post-install```   |
+| uninstall         | ```scripts/pre-uninstall``` | ```scripts/post-uninstall``` |
+
+:::note Depending on which version of the JOD Distribution Commands is executed (Bash or Powershell), corresponding PRE-POST script (sh or ps1) will be used as hook.<br/>
+So the PRE script executed by ```bash start.sh``` will be the ```scripts/pre-startup.sh``` scripts, meanwhile for the ```powershell uninstall.ps1``` command, the POST hook is the ```scripts/post-uninstall.ps1```.
+:::
+
+The ```start``` JOD Dist Cmd always call the ```scripts/pre-startup``` hook before the JOD agent execution. But, when the distribution startup as a FOREGROUND process, it does NOT call the ```scripts/post-startup``` hook as usual, instead it execute the ```scripts/post-shutdown``` hook. That assures Maker a place where put their startup/shutdown code independently to the ```start``` JOD Dist Cmd working mode (background or foreground).
+
+---
+
+## Common PRE-POST operations
+
+PRE and POST script are useful in many case to customize
+
+### Check working Operating System
+
+Many JOD Distribution are implemented to work only on a specific OS(s).<br/>
+If that's you case, we suggest adding an OS check to each PRE-hook.
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+```shell title="pre-XYZ.sh:wrong OS check"
+# Check supported OS
+supportedOS=("Unix" "BSD" "Solaris")
+failOnUnsupportedOS "${supportedOS[@]}"
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+```shell title="pre-XYZ.ps1:wrong OS check"
+# Check supported OS
+$supportedOS="Unix", "BSD", "Solaris"
+failOnUnsupportedOS $supportedOS
+```
+
+  </TabItem>
+</Tabs>
+
+In the previous example we added a check that fails if executing OS is not in the ```supportedOS``` list. With 'executing OS' we are referring to OS where your JOD Distribution were installed by End User.
+
+Available OS names are:
+
+* ```Unix```
+* ```MacOS```
+* ```BSD```
+* ```Solaris```
+* ```Win32```
+
+### Requirements checks
+
+If your distribution require special hardware configuration, 3rd party software or specific files installed on execution OS, you can add custom checks to the ```pre-startup``` and/or ```pre-install``` hooks. So if checks fail, End user can't startup/install the JOSP object and receive detailed message on what was wrong.
+
+**Check command availability:**
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+```shell title="dists/resources/scripts/pre-startup.sh:check 'top' command availability"
+# Check top
+if command -v top &>/dev/null; then
+  echo "'top' command installed"
+else
+  echo "Missing Java, please install it"
+  logFat "'top' command not installed, exit"
+fi
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+```shell title="dists/resources/scripts/pre-startup.ps1:check 'top' command availability"
+ToDo: Write dists/resources/scripts/pre-startup.ps1:check 'top' command availability
+```
+
+  </TabItem>
+</Tabs>
+
+A common tip, is to implement all requirements checks in the ```pre-startup``` script, then call it from the ```pre-install``` script. That allow you to write them only once. See [Hook script call another Hook script](#hook-script-call-another-hook-script).
+
+**Check Hardware configuration:**
+
+ToDo: Write Check Hardware configuration
+
+**Check Files exist:**
+
+ToDo: Write Check Hardware configuration
+
+### Execution environment setup
+
+Often occurs that a distribution must perform some setup to the environment where it will be executed by the End User.
+
+Here an example that set executable all script contained in the ```scripts/sendors``` directory.
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+```shell title="dists/resources/scripts/pre-startup.sh:setup execution environment"
+# Set sensors scripts executables
+chmod +x $SCRIPT_DIR/sensors/*
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+```shell title="dists/resources/scripts/pre-startup.ps1:setup execution environment"
+ToDo: Write dists/resources/scripts/pre-startup.ps1:setup execution environment
+```
+
+  </TabItem>
+</Tabs>
+
+Remember that the PRE-POST hooks are called every time the End User execute a JOD Dist Cmd, so if you would do some operations only once, please add some check before it to avoid repeating same operations each hook execution.
+
+### PreStartup initialization and PostShutdown cleanup
+
+Sometimes a JOD Distribution must perform some operations before his startup (init) and after his shutdown (clean). For example to enable and then disable some service required during the JOD agent execution.
+
+You can add initialization commands to the ```pre-startup``` hooks and the cleanup comands to ```post-shutdown```. Those commands will always be called during JOD Agent startup and shutdown even if it executed as foreground process or installed as a service.
+
+### Dynamic configurations (object info and struct)
+
+Another reason to use the PRE hooks is to generate a dynamic configurations for your distribution like the object's structure. That's made possible by adding generation commands to the ```pre-startup``` hook.
+
+Following example use the ```JOD_MWO_LOCATION``` value from [distribution specific configs](/docs/references/tools/jod_dist_template/create_your_own_jod_distribution/configuration/object_configs#jod-configs) and replace it with corresponding placeholder in the ```struct_TMPL.jod``` file, then save result to the ```configs/struct.jod``` file.
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+```shell title="dists/resources/scripts/pre-startup.sh:generate struct.jod file dynamically"
+JOD_STRUCT_TMPL=$JOD_DIR/struct_TMPL.jod
+JOD_STRUCT=$JOD_DIR/configs/struct.jod
+logInf "Update JOD instance's structure to Location = $JOD_MWO_LOCATION"
+sed -e "s/\${JOD_MWO_LOCATION}/$JOD_MWO_LOCATION/" $JOD_STRUCT_TMPL >$JOD_STRUCT
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+```shell title="dists/resources/scripts/pre-startup.ps1:generate struct.jod file dynamically"
+ToDo: Write dists/resources/scripts/pre-startup.ps1:generate struct.jod file dynamically
+```
+
+  </TabItem>
+</Tabs>
+
+More complex object's structure can be generated using the APIs from ```scripts/jod/struct/builder.sh``` script provided by the JOD Distribution TEMPLATE. **NB!*: This is an experimental feature, and it's available only for bash version.
+
+:::note You can generate dynamically not just the object's structure, but also any other script/configs/resource required by your distribution.
+:::
+
+### Hook script call another hook script
+
+When two or more Hook scripts must perform same operations, you can write all commands once in a single Hook script. Then call it from all other Hook scripts.
+
+Here the ```pre-install``` script example that call the ```pre-startup``` hook:
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+```shell title="pre-install.sh:call pre-startup.sh hook"
+logInf "Execute pre-startup.sh..."
+if [ -f "$JOD_DIR/scripts/pre-startup.sh" ]; then
+execScriptCommand $JOD_DIR/scripts/pre-startup.sh || ( [ "$?" -gt "0" ] \
+&& logWar "Error executing PRE startup script, exit $?" && exit $? \
+|| logWar "Error executing PRE startup script, continue $?" )
+else
+logDeb "PRE startup script not found, skipped (missing $JOD_DIR/scripts/pre-startup.sh)"
+fi
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+```shell title="pre-install.ps1:call pre-startup.ps1 hook"
+ToDo: Write pre-install.ps1:call pre-startup.ps1 hook
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Distribution specific configs
+
+The PRE-POST scripts in conjunction with the [JOD Configs](/docs/references/tools/jod_dist_template/create_your_own_jod_distribution/configuration/object_configs#jod-configs) file are a powerful tool to create JOD Distribution that can adapt their self to the execution environment and end user needs.
+
+Just declaring your variables in the ```dists/configs/jod_configs.sh|ps1``` file from your distribution project dir, they will be available also to the PRE-POST scripts. Then, End user can easily configure distribution behaviour simply editing the JOD Config file.
+
+### Define distribution config
+
+Define ```JOD_MWO_LOCATION``` variable to the ```dists/configs/jod_configs.sh|ps1``` file with a default value.
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+```shell title="dists/configs/jod_configs.sh:define distribution specific configs"
+# ############### #
+# MyDist's config #
+# ############### #
+
+# My Dist XY config
+# Config desription and values examples
+# set a value as default value or keep it as empty string ""
+export JOD_MWO_LOCATION="Rome"
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+```shell title="dists/configs/jod_configs.ps1:define distribution specific configs"
+ToDo: Write dists/configs/jod_configs.ps1:define distribution specific configs
+```
+
+  </TabItem>
+</Tabs>
+
+### Use distribution config from a PRE-POST script
+
+Read ```JOD_MWO_LOCATION``` variable value from the ```dists/resources/scripts/pre-startup.sh|ps1``` script.
+
+<Tabs groupId="os-shell"
+defaultValue="bash"
+values={[
+{label: 'Linux/Mac', value: 'bash'}, {label: 'Windows', value: 'powershell'},
+]}>
+<TabItem value="bash">
+
+```shell title="dists/resources/scripts/pre-startup.sh:read distribution specific configs"
+logInf "Update JOD instance's structure to Location = $JOD_MWO_LOCATION"
+```
+
+  </TabItem>
+  <TabItem value="powershell">
+
+```shell title="dists/resources/scripts/pre-startup.ps1:read distribution specific configs"
+ToDo: Write dists/resources/scripts/pre-startup.ps1:read distribution specific configs
+```
+
+  </TabItem>
+</Tabs>

@@ -1,0 +1,72 @@
+---
+slug: ./
+---
+# JOD Philips Hue References
+
+import ReferenceIntro from '../../_references_intro.mdx'
+import ReferenceInfo from '../../_references_info.mdx'
+
+<ReferenceIntro
+  logo_path="JOD_Philips_Hue_Logo_250.png">
+
+The __JOD Philips Hue represent all devices connected to a Philips Hue Hub as a JOSP Object__.
+
+This distribution expose a single JOSP Object with Actions and Statues grouped by light connected to the Philips Hub.<br/>
+**This JOD distribution and the Philips Hue Hub must run on the same local network.**
+That means the Philips Hub must be reachable via local network from the machine where we install and run this distribution.
+
+This JOD Distribution interact with local Philips Hue hub via HTTPS requests.
+</ReferenceIntro>
+
+<ReferenceInfo
+  proj_name="JOD Philips Hue"
+  refs_dir="jod_dists/philips_hue"
+  ver_stable="1.0"
+  ver_dev="1.1-DEV"
+  repo_name="com.robypomper.josp.jod.philips_hue"
+  />
+
+---
+
+**Distribution documentation**
+
+* [Exported object](exported_object)<br/>
+  distribution's specification like object's info and structure
+* [Requirements](requirements)<br/>
+  distribution specific requirements like software or hardware dependencies
+* [Distribution configs](distribution_configs)<br/>
+  how to configure this distribution
+* [Usage](usage)<br/>
+  how to manage current distribution
+
+---
+
+import YoutubeVideo from '../../_video_youtube.mdx'
+
+<YoutubeVideo videoId="9wPoEweUVJI" />
+ToDo Update video url JOD Philips Hue
+
+---
+
+import Paper from '@mui/material/Paper';
+
+<Paper style={{
+  textAlign: "center",
+  width: "fit-content",
+  padding: "10px 30px",
+  margin: "auto",
+  backgroundColor: "#1976d2",
+  color: "#fff"
+  }}>
+    <b>Download latest JOD Philips Hue</b><br/>
+    <a style={{
+      color: "#92dacb",
+      margin: "0 10px"
+      }}
+      href="https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.meteo_web/downloads/JOD-Meteo-Web-1.0.zip">*.ZIP</a> |
+    <a style={{
+      color: "#92dacb",
+      margin: "0 10px"
+      }}
+      href="https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.meteo_web/downloads/JOD-Meteo-Web-1.0.tgz">*.TGZ</a>
+</Paper>

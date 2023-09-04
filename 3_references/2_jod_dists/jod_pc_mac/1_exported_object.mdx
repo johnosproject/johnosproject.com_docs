@@ -1,0 +1,32 @@
+---
+title: Exported object
+---
+# Object exported by distribution
+
+The JOD PC Mac distribution, when executed, use always the same object's specification.<br/>
+Object's specification are split in 2 groups:
+
+* [Object's info](#object-info):<br/>
+  model, brand and other generic info about the object exported
+* [Object's structure](#object-structure):<br/>
+  exported object's features as a hierarchical list of status and actions
+
+---
+
+## Object info
+
+* **Model**: MacOS JOSP Object
+* **Brand**: Apple inc.
+* **Description**: A MacOS computer that expose his features to JOSP's services.
+
+---
+
+## Object structure
+
+* *[RangeAction]* **Volume** <br />
+  Control 0-100% for PC's audio volume, his value is pulled each second.
+* *[BooleanAction]* **Volume Mute** <br />
+  Control On/Off for PC's audio volume mute, his value is pulled each second.
+  When On, the PC's volume is muted, otherwise it's unmuted.
+* *[RangeState]* **CPU** <br />
+  State 0-100% of CPU usage (via 'top' command), his value is pulled every 30 seconds.

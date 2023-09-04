@@ -1,0 +1,12 @@
+import Grid from '@mui/material/Grid';
+
+<Grid container spacing={4}>
+  <Grid item xs={2}>
+    <img src={props.logo_path} width="200" />
+  </Grid>
+  <Grid item xs={10}>
+    <div >
+      {props.children}
+    </div>
+  </Grid>
+</Grid>

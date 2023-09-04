@@ -1,0 +1,43 @@
+---
+title: Exported object
+---
+# Object exported by distribution
+
+The JOD Meteo Web distribution, when executed, use always the same object's specification.<br/>
+Object's specification are split in 2 groups:
+
+* [Object's info](#object-info):<br/>
+  model, brand and other generic info about the object exported
+* [Object's structure](#object-structure):<br/>
+  exported object's features as a hierarchical list of status and actions
+
+---
+
+## Object info
+
+* **Model**: Meteo JOSP Object
+* **Brand**: John OS
+* **Description**: A meteo station that expose real time data from 'openweathermap.org' for ${JOD_MWO_LOCATION}
+
+---
+
+## Object structure
+
+Object's structure is always a set of the same States contained in the root container of the object.<br/>
+States are a collection of values returned by [Open Weather API](https://openweathermap.org/current#current_JSON), here the list of exposed statues:
+
+
+* *[RangeState]* **Temperature** <br />
+  ```.main.temp```: Temperature, Celsius
+* *[RangeState]* **Pressure** <br />
+  ```.main.pressure```: Atmospheric pressure (on the sea level, if there is no sea_level or grnd_level data), hPa
+* *[RangeState]* **Humidity** <br />
+  ```.main.humidity```: Humidity, %
+* *[RangeState]* **Visibility** <br />
+  ```.visibility```: Visibility, meter
+* *[RangeState]* **Wind Speed** <br />
+  ```.wind.speed```: Wind speed, meter/sec
+* *[RangeState]* **Wind Orientation** <br />
+  ```.wind.deg```: Wind direction, degrees (meteorological)
+
+More details on API calls and response parsing in the [```struct_TMPL.jod```](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.meteo_web/src/master/dists/resources/struct_TMPL.jod) file.

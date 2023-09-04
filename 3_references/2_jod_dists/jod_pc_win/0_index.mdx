@@ -1,0 +1,66 @@
+---
+slug: ./
+---
+# JOD PC Windows References
+
+import ReferenceIntro from '../../_references_intro.mdx'
+import ReferenceInfo from '../../_references_info.mdx'
+
+<ReferenceIntro
+  logo_path="JOD_PC_Windows_Logo_250.png">
+
+The __JOD PC Windows allow to transform a Windows computer in a JOSP Object__.
+
+This distribution is configured to starts background scripts contained in the ```scripts/hw/listeners``` directory before the JOD Agent startup.
+Those scripts will query values to the Windows OS and write them to a temporary file. Then the object's structure is configured to use [Listener File](/docs/references/josp/jod/specs/workers/listener_file) and listen for temporary files changes.
+</ReferenceIntro>
+
+<ReferenceInfo
+  proj_name="JOD PC Windows"
+  refs_dir="jod_dists/jod_pc_win"
+  ver_stable="1.0"
+  ver_dev="1.1-DEV"
+  repo_name="com.robypomper.josp.jod.pc.windows"
+  />
+
+---
+
+import YoutubeVideo from '../../_video_youtube.mdx'
+
+<YoutubeVideo videoId="Yb7YxgwdWDE" />
+
+---
+
+**Distribution documentation**
+
+* [Exported object](exported_object)<br/>
+  distribution's specification like object's info and structure
+* [Requirements](requirements)<br/>
+  distribution specific requirements like software or hardware dependencies
+* [Distribution configs](distribution_configs)<br/>
+  how to configure this distribution
+* [Usage](usage)<br/>
+  how to manage current distribution
+
+import Paper from '@mui/material/Paper';
+
+<Paper style={{
+  textAlign: "center",
+  width: "fit-content",
+  padding: "10px 30px",
+  margin: "auto",
+  backgroundColor: "#1976d2",
+  color: "#fff"
+  }}>
+    <b>Download latest JOD PC Windows</b><br/>
+    <a style={{
+      color: "#92dacb",
+      margin: "0 10px"
+      }}
+      href="https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.pc.windows/downloads/JOD-PC-Windows-1.0.zip">*.ZIP</a> |
+    <a style={{
+      color: "#92dacb",
+      margin: "0 10px"
+      }}
+      href="https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.pc.windows/downloads/JOD-PC-Windows-1.0.tgz">*.TGZ</a>
+</Paper>

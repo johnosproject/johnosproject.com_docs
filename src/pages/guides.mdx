@@ -1,0 +1,108 @@
+---
+title: Guides
+---
+# User Guides
+
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+
+Each IoT solution require a perfect coordination between different actors:
+* [Maker](/docs/what/josp/actors/maker): how design the connected object
+* [Developer](/docs/what/josp/actors/developer): how implement the software that interact with connected objects
+* [End User](/docs/what/josp/actors/end_user): how will use objects and software created by Makers and Developers
+
+**The JOSP EcoSystem, with his tools and guidelines, allow those actors work independently.**
+
+Remember that in a [JOSP EcoSystem](/docs/what/josp/ecosystem), the End User is free to compose his solutions.<br/>
+He can look for the [JOSP Service](/docs/what/josp/service) that accomplish with his requirements *(p.e. manage smart home light, collect data from environment sensors, perform predictive maintenance analysis...)*,
+then allow desired software interact with [JOSP Object](/docs/what/josp/object) *(p.e. lights, sensor devices, industrial machines)*.
+
+**The JOSP Docs split the JOSP user's guides by actors:**
+
+export const paper_style = {
+  textAlign: 'center',
+  padding: '10px',
+  overflow: 'scroll'
+}
+export const paper_style_large = {
+  ...paper_style,
+  width: '70%',
+  margin: 'auto'
+}
+export const image_style = {
+  width: '40%',
+  margin: '20px',
+  maxWidth: '150px'
+}
+export const image_style_large = {
+  ...image_style,
+  width: '80%',
+  margin: '20px'
+}
+
+<Grid container spacing={4}>
+  <Grid item xs={12}>
+    <a href={"/docs/guides/end_users/"}>
+      <Paper style={paper_style_large}>
+        <Grid container spacing={4} alignItems="center">
+          <Grid item xs={12} md={4}>
+            <img src="/docs/img/icons/End_User_Icon_250.png" style={image_style_large}/>
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <Typography variant="button" component="h3" gutterBottom>
+              End Users
+            </Typography>
+            <Typography variant="caption" component="div" color="text.secondary" gutterBottom style={{}}>
+              In the End User guides you can find all day-by-day operations instructions like: list and interact with JOSP Objects, register a new JOSP object, add/revoke JOSP Services permissions, manage your account...
+            </Typography>
+          </Grid>
+        </Grid>
+      </Paper>
+    </a>
+  </Grid>
+  <Grid item xs={12} md={6}>
+    <a href={"/docs/guides/makers/"}>
+      <Paper style={paper_style}>
+        <Grid container spacing={4} alignItems="center">
+          <Grid item xs={12} md={4}>
+            <img src="/docs/img/icons/Maker_Icon_250.png" style={image_style_large}/>
+          </Grid>
+          <Grid item xs={12} md={8} style={{margin: '20px 0'}}>
+            <Typography variant="button" component="h3" gutterBottom>
+              Makers
+            </Typography>
+            <Typography variant="caption" component="div" color="text.secondary" gutterBottom style={{}}>
+              Here you can find all guides about creating a custom object or integrate existing standard or 3rd party connected object. You can also find guidelines to help developer to interact with your objects.
+            </Typography>
+          </Grid>
+        </Grid>
+      </Paper>
+    </a>
+  </Grid>
+  <Grid item xs={12} md={6}>
+    <a href={"/docs/guides/developers/"}>
+      <Paper style={paper_style}>
+        <Grid container spacing={4} alignItems="center">
+          <Grid item xs={12} md={4}>
+            <img src="/docs/img/icons/Developer_Icon_250.png" style={image_style_large}/>
+          </Grid>
+          <Grid item xs={12} md={8} style={{margin: '20px 0'}}>
+            <Typography variant="button" component="h3" gutterBottom>
+              Developers
+            </Typography>
+            <Typography variant="caption" component="div" color="text.secondary" gutterBottom style={{}}>
+              Here are explained how to use the JSL library in your software. Fom including the library in your sources, to interact with objects. But also how to manage object's permission or user account, etc...
+            </Typography>
+          </Grid>
+        </Grid>
+      </Paper>
+    </a>
+  </Grid>
+</Grid>
+
+
+<br/>
+<br/>
+
+For any suggestion or fix request about JOSP User's guides please [contact us](mailto:tech@johnosproject.com).
