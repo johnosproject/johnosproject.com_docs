@@ -152,10 +152,6 @@ module.exports = {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
     },
-    gtag: {
-      trackingID: 'G-M87963X1RP',
-      anonymizeIP: false,
-    },
   },
   presets: [
     [
@@ -174,6 +170,10 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
+        },
+        gtag: {
+          trackingID: 'G-M87963X1RP',
+          anonymizeIP: false,
         },
       },
     ],
