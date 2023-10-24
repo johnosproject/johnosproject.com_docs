@@ -18,7 +18,7 @@ Each one using a different technology and a different mobile app to control them
 Users can register all of those smart lights as JOSP Objects and **use all of them from a single mobile app** (or any other JOSP Service), regardless the technology used by each single smart light.
 
 ⏩ Check out the [What JOSP Object can represent](../new_objects/what_object_represent) page for an overview of JOSP Objects<br/>
-⏩ or go directly to the [official JOD Distributions list](/docs/references/jod_dists/) for a list of available JOSP Objects as downloadable JOD Distribution.
+⏩ or go directly to the [official JOD Distributions list](/references/jod_dists/) for a list of available JOSP Objects as downloadable JOD Distribution.
 
 * ### One EcoSystem for any object's type
 
@@ -29,7 +29,7 @@ This service can monitor home consumptions reading data from counters for househ
 Then display those data as daily report to the user.
 A more advanced version of this service can also analyze consumption data with an AI/ML algorithm and predict users needs by acting on other JOSP Objects such as boilers, photovoltaic panels, accumulators...
 
-⏩ Discover JOSP Services on the [official JOSP Services list](/docs/references/jsl_services/)<br/>
+⏩ Discover JOSP Services on the [official JOSP Services list](/references/jsl_services/)<br/>
 ⏩ and [enable JOSP support on desired services](../new_objects/what_object_represent)
  
 * ### Which service, can interact with which object
@@ -37,11 +37,11 @@ A more advanced version of this service can also analyze consumption data with a
 When user is the owner of the JOSP Object, he can update the object's permissions.
 
 Each JOSP Object check his permission table before any interaction with a JOSP Service.
-A permission can grant a specific access level ([NONE](/docs/what/josp/specs/permissions#none), [STATE](/docs/what/josp/specs/permissions#state), [ACTION](/docs/what/josp/specs/permissions#action), [OWNER](/docs/what/josp/specs/permissions#owner)) to a specific JOSP Service/User pair.
+A permission can grant a specific access level ([NONE](/what/josp/specs/permissions#none), [STATE](/what/josp/specs/permissions#state), [ACTION](/what/josp/specs/permissions#action), [OWNER](/what/josp/specs/permissions#owner)) to a specific JOSP Service/User pair.
 That means a **JOSP Service (and his current logged user) can interact with a JOSP Object if and only if they have the right access level required for the interaction**.
 For example a JOSP Service (and his user) must have at lest the STATE access level to receive status updates from an object.
 Instead, to update the object's permission table, the service/user need the OWNER access level.
-You can find more details on required access levels on [JOSP Permission](/docs/what/josp/specs/permissions) page.
+You can find more details on required access levels on [JOSP Permission](/what/josp/specs/permissions) page.
 
 ⏩ Check out [How to set JOSP Object permission](../manage_services/set_permissions) for specific JOSP Service.
 

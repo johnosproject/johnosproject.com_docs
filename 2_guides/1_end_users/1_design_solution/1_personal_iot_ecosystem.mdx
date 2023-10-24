@@ -3,8 +3,8 @@ title: Personal IoT EcoSystem
 ---
 # A Personal IoT EcoSystem as main IoT tool
 
-An [IoT Ecosystem](/docs/what/iot/ecosystem) is a tool that helps users manage their [IoT Solutions](/docs/what/iot/solution), made up of connected [objects](/docs/what/iot/object) and [software](/docs/what/iot/service) that interact with them.
-In a [JOSP EcoSystem](/docs/what/josp/ecosystem), objects are represented by [JOSP Objects](/docs/what/josp/object), while software is called [JOSP Services](/docs/what/josp/service).
+An [IoT Ecosystem](/what/iot/ecosystem) is a tool that helps users manage their [IoT Solutions](/what/iot/solution), made up of connected [objects](/what/iot/object) and [software](/what/iot/service) that interact with them.
+In a [JOSP EcoSystem](/what/josp/ecosystem), objects are represented by [JOSP Objects](/what/josp/object), while software is called [JOSP Services](/what/josp/service).
 
 
 <div style={{
@@ -16,12 +16,12 @@ In a [JOSP EcoSystem](/docs/what/josp/ecosystem), objects are represented by [JO
   />
 </div>
 
-Special JOSP services are the [Johnny Services](/docs/references/jsl_services/#johnny-services), a set of software provided by the JOSP project for multiple platforms (mobile, desktop, web, voice).
+Special JOSP services are the [Johnny Services](/references/jsl_services/#johnny-services), a set of software provided by the JOSP project for multiple platforms (mobile, desktop, web, voice).
 Their purpose is the **management of the JOSP EcoSystem** by the user.
 With those services, users can list JOSP Objects and manage their permission, and enable 3rd part JOSP Service access them.
 
 JOSP Objects can represent different types of objects, such as physical objects (lamps, doors, washing machines, sensors, industrial machinery ...) but also objects connected with other technologies, protocols or standards.
-See [What objects can be represented?](../new_objects/what_object_represent.mdx) for more details on object's nature.
+See [What objects can be represented?](../new_objects/what_object_represent) for more details on object's nature.
 
 Once you connected your object to your JOSP EcoSystem, you can start using them via 3rd part JOSP Services.
 Look for **which JOSP Service satisfy your needs** and allow it to access to your JOSP objects.
@@ -49,14 +49,14 @@ If you already have a JOSP account, you can skip this step and [login to the ser
 3. ### Register a JOSP Object
 
 Depending on object's nature there are different methods to startup and register a JOSP Object.
-Please review the [What objects can be represented?](../new_objects/what_object_represent.mdx) page for more details on object's nature, and the [poweron JOSP Object](../new_objects/poweron_object) or [run JOD Distribution](../new_objects/run_distribution) pages to startup a JOSP Object.<br/>
+Please review the [What objects can be represented?](../new_objects/what_object_represent) page for more details on object's nature, and the [poweron JOSP Object](../new_objects/poweron_object) or [run JOD Distribution](../new_objects/run_distribution) pages to startup a JOSP Object.<br/>
 When the JOSP Object is up and running, you can proceed with the [object's registration](../new_objects/register_object).
 
 4. ### Allow a JOSP Service access to object
 
 After registering your JOSP Objects you can set their permission and allow [JOSP Service to interact with them](../manage_services/set_permissions).<br/>
 For each JOSP Object, you must add a permission to allow desired JOSP Service to access to that object.
-[JOSP Permissions](/docs/what/josp/specs/permissions) have been designed to guarantee a high degree of customization.
+[JOSP Permissions](/what/josp/specs/permissions) have been designed to guarantee a high degree of customization.
 Check out next chapters for detailed examples of JOSP Permissions usage in different context [domestic](domestic), [professional](professional) and [enterprise](enterprise).
 
 Sometimes, you'll need the JOSP Service's id to set a permission.

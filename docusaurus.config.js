@@ -107,7 +107,7 @@ module.exports = {
             },
             {
               label: 'JOSP Docs',
-              href: 'https://www.johnosproject.org/docs/index.html',
+              href: 'https://docs.johnosproject.org',
             },
             {
               label: 'Public JCP',
@@ -115,7 +115,7 @@ module.exports = {
             },
             {
               label: 'JOSP Source Code',
-              href: 'https://bitbucket.org/johnosproject_shared/com.robypomper.josp',
+              href: 'https://github.com/johnosproject',
             },
           ],
         },
@@ -124,7 +124,7 @@ module.exports = {
           items: [
             {
               label: 'Report issue',
-              href: 'https://bitbucket.org/johnosproject_shared/com.robypomper.josp/issues/new',
+              href: 'https://github.com/johnosproject/collaborate/issues',
             },
             {
               label: 'Contact',
@@ -146,7 +146,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} John O.S. Project<br/><a href="https://www.johnosproject.org/privacy.html">Privacy Policy</a> | <a href="https://www.johnosproject.org/terms.html">Terms and Conditions</a> | <a href="https://www.johnosproject.org/licence.html">Licences</a>`,
+      copyright: `Copyright © ${new Date().getFullYear()} John O.S. Project<br/><a href="https://docs.johnosproject.org/privacy.html">Privacy Policy</a> | <a href="https://www.johnosproject.org/terms.html">Terms and Conditions</a> | <a href="https://www.johnosproject.org/licence.html">Licences</a>`,
     },
     prism: {
       theme: lightCodeTheme,

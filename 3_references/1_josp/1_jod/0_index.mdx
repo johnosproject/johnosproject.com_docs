@@ -7,12 +7,12 @@ import ReferenceIntro from '../../_references_intro.mdx'
 import ReferenceInfo from '../../_references_info.mdx'
 
 <ReferenceIntro
-  logo_path="/docs/img/icons/JOD_Icon_250.png">
+  logo_path="/img/icons/JOD_Icon_250.png">
 
-The **John Object Daemon is software that expose a [JOSP Object](/docs/what/josp/object) to the [JOSP EcoSystem](/docs/what/josp/ecosystem)**.
+The **John Object Daemon is software that expose a [JOSP Object](/what/josp/object) to the [JOSP EcoSystem](/what/josp/ecosystem)**.
 It can be installed on computers, embedded devices, servers, etc...
 
-**NB!**: normally it's distributed within a [JOD Distribution](/docs/references/jod_dists/) designed by [Makers](/docs/what/josp/actors/maker).
+**NB!**: normally it's distributed within a [JOD Distribution](/references/jod_dists/) designed by [Makers](/what/josp/actors/maker).
 
 </ReferenceIntro>
 
@@ -24,18 +24,18 @@ It can be installed on computers, embedded devices, servers, etc...
   repo_name="com.robypomper.josp"
   />
 
-The JOD Agent read object's structure from ```configs/struct.jod``` file and expose that structure to the [JOSP EcoSystem](/docs/what/josp/ecosystem) and then to [JOSP Services](/docs/what/josp/service) as a [JOSP Object](/docs/what/josp/object).
-Only JOSP Services with the right [permission](/docs/what/josp/specs/permissions) can access to the exposed JOSP Object. Depending on their permissions, they can:
+The JOD Agent read object's structure from ```configs/struct.jod``` file and expose that structure to the [JOSP EcoSystem](/what/josp/ecosystem) and then to [JOSP Services](/what/josp/service) as a [JOSP Object](/what/josp/object).
+Only JOSP Services with the right [permission](/what/josp/specs/permissions) can access to the exposed JOSP Object. Depending on their permissions, they can:
 
-* if permission=[STATE](/docs/what/josp/specs/permissions#state): read object's structure and contained [Pillar's states](specs/pillars#states)
-* if permission=[ACTION](/docs/what/josp/specs/permissions#action): require [Pillar's actions](specs/pillars#actions) executions
-* if permission=[OWNER](/docs/what/josp/specs/permissions#owner): edit object's name, owner or permissions
-* if permission=[NONE](/docs/what/josp/specs/permissions#none): list object but can't get object's info or structure
+* if permission=[STATE](/what/josp/specs/permissions#state): read object's structure and contained [Pillar's states](specs/pillars#states)
+* if permission=[ACTION](/what/josp/specs/permissions#action): require [Pillar's actions](specs/pillars#actions) executions
+* if permission=[OWNER](/what/josp/specs/permissions#owner): edit object's name, owner or permissions
+* if permission=[NONE](/what/josp/specs/permissions#none): list object but can't get object's info or structure
 
 In the JOSP EcoSystem **each JOSP Object is identified by his ID**. The [Object's ID](specs/object_id), if not yet set, is generated automatically at JOD Agent startup. This, normally happens on object's first startup.
 The only other circumstance when the object's ID changes, is when the object's change his owner. That happen on object's owner registration or when current owner 'sell' the object to another user.
 
-At startup, the JOD Agent loads the [object's structure](specs/structure) and initialize all required object's [Pillars](specs/pillars) and relative [Workers](specs/workers). Then checks if configured [JCP](/docs/references/josp/jcp) is reachable, if it's available, the object opens a connection with returned [JCP Gateways](/docs/references/josp/jcp/microservices/gws).<br/>
+At startup, the JOD Agent loads the [object's structure](specs/structure) and initialize all required object's [Pillars](specs/pillars) and relative [Workers](specs/workers). Then checks if configured [JCP](/references/josp/jcp) is reachable, if it's available, the object opens a connection with returned [JCP Gateways](/references/josp/jcp/microservices/gws).<br/>
 Finally, it startup a local server for direct communication
 
 It's possible to **customize the exposed object** changing the [JOD Agent behaviour](specs/configs) with his main configs file  ```configs/jod.yml``` or editing the ```configs/struct.jod``` file to alter his [structure](specs/structure).

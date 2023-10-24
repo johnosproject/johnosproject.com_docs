@@ -8,7 +8,7 @@ A JOSP Object expose to the JOSP EcoSystem all features defined in his structure
 The **object's structure** contained in the ```configs/struct.jod``` file is a hierarchical list of the features that the JOD Agent must expose to the JOSP EcoSystem.<br/>
 Each feature can be defined as a State or an Action. States can wait for firmware's value updates and update JOSP Services on value changes. Actions are like States, but they can also receive commands requests from JOSP Services and translate those command to firmware calls.<br/>
 
-<img alt="JOD Distribution TEMPLATE Build process diagram" src="/docs/references/josp/jod/specs/JODDistTMPL_ActionStates.png" title="JOD Distribution TEMPLATE Build process" style={{maxHeight: "600px", display: "block", marginLeft: "auto", marginRight: "auto"}}/><br/>
+<img alt="JOD Distribution TEMPLATE Build process diagram" src="/references/josp/jod/specs/JODDistTMPL_ActionStates.png" title="JOD Distribution TEMPLATE Build process" style={{maxHeight: "600px", display: "block", marginLeft: "auto", marginRight: "auto"}}/><br/>
 
 States and Actions, depending on what they must expose to the JOSP EcoSystem, they can be of different types. We call this types **Pillars**.<br/>
 For example if you are designing a JOD Distribution for a connected lamp, probably you would expose the On/Off control as object's feature. To do that, you must add a ```BooleanAction``` pillar to the object's structure. Then configure it as "On/Off switch".<br/>
@@ -55,7 +55,7 @@ Object's structure is a hierarchical list of object's features.
 
 In the ```struct.jod``` file, each feature is defined as a Pillar element. Pillars can be contained in Container elements. The ```contains``` element from ```struct.jod``` files is the root container of the object's structure. Container can contain other containers and create multi-level hierarchy.
 
-<img alt="JOD Distribution TEMPLATE Build process diagram" src="/docs/references/josp/jod/specs/JODDistTMPL_Struct.png" title="JOD Distribution TEMPLATE Build process" style={{maxHeight: "600px", display: "block", marginLeft: "auto", marginRight: "auto"}}/><br/>
+<img alt="JOD Distribution TEMPLATE Build process diagram" src="/references/josp/jod/specs/JODDistTMPL_Struct.png" title="JOD Distribution TEMPLATE Build process" style={{maxHeight: "600px", display: "block", marginLeft: "auto", marginRight: "auto"}}/><br/>
 
 Here an example of complete ```struct.jod``` file:
 

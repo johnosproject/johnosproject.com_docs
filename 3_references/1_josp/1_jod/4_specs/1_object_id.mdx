@@ -3,7 +3,7 @@ title: Object's ID
 ---
 # JOD Object's ID
 
-**The Object ID is the unique code that identify a [JOSP Object](/docs/what/josp/object) in a [JOSP EcoSystem](/docs/what/josp/ecosystem)**.
+**The Object ID is the unique code that identify a [JOSP Object](/what/josp/object) in a [JOSP EcoSystem](/what/josp/ecosystem)**.
 
 This code is generated on first object's startup and it's updated only when a user change his owner.
 
@@ -19,17 +19,17 @@ XXXXX-XXXXX-XXXXX
 JOD Agent store his object's id in the main config file ```configs/jod.yml``` with the property ```jod.obj.id_cloud```.
 
 :::info
-If you are using the JOD Agent inside a [JOD Distribution](/docs/references/tools/jod_dist_template/) you can execute the ```state.sh|ps1``` [JOD Dist Cmds](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/dists.md) to print corresponding object's id.
+If you are using the JOD Agent inside a [JOD Distribution](/references/tools/jod_dist_template/) you can execute the ```state.sh|ps1``` [JOD Dist Cmds](https://bitbucket.org/johnosproject_shared/com.robypomper.josp.jod.template/src/develop/docs/dists/dists.md) to print corresponding object's id.
 :::
 
 ---
 
 ## Uniqueness
 
-To guarantee that each JOSP Object have an unique id, the code generation is demanded to the [John Cloud Platform](/docs/references/josp/jcp/).
+To guarantee that each JOSP Object have an unique id, the code generation is demanded to the [John Cloud Platform](/references/josp/jcp/).
 
 Each time a JOD Agent starts, check the ```jod.obj.id_cloud``` property in the ```configs/jod.yml``` file.
-If it's empty or not set, then the JOD Agent ask the [JCP APIs](/docs/references/josp/jcp/microservices/apis/) for a new unique code.
+If it's empty or not set, then the JOD Agent ask the [JCP APIs](/references/josp/jcp/microservices/apis/) for a new unique code.
 
 Generated code will always starts with the ```jod.obj.id_hw``` property from ```configs/jod.yml``` file.
 Because the 'id_hw' property, never change, that allow JOSP Services identify the object across object's id switches.

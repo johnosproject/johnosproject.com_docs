@@ -153,7 +153,7 @@ You can add initialization commands to the ```pre-startup``` hooks and the clean
 
 Another reason to use the PRE hooks is to generate a dynamic configurations for your distribution like the object's structure. That's made possible by adding generation commands to the ```pre-startup``` hook.
 
-Following example use the ```JOD_MWO_LOCATION``` value from [distribution specific configs](/docs/references/tools/jod_dist_template/create_your_own_jod_distribution/configuration/object_configs#jod-configs) and replace it with corresponding placeholder in the ```struct_TMPL.jod``` file, then save result to the ```configs/struct.jod``` file.
+Following example use the ```JOD_MWO_LOCATION``` value from [distribution specific configs](/references/tools/jod_dist_template/create_your_own_jod_distribution/configuration/object_configs#jod-configs) and replace it with corresponding placeholder in the ```struct_TMPL.jod``` file, then save result to the ```configs/struct.jod``` file.
 
 <Tabs groupId="os-shell"
 defaultValue="bash"
@@ -222,7 +222,7 @@ ToDo: Write pre-install.ps1:call pre-startup.ps1 hook
 
 ## Distribution specific configs
 
-The PRE-POST scripts in conjunction with the [JOD Configs](/docs/references/tools/jod_dist_template/create_your_own_jod_distribution/configuration/object_configs#jod-configs) file are a powerful tool to create JOD Distribution that can adapt their self to the execution environment and end user needs.
+The PRE-POST scripts in conjunction with the [JOD Configs](/references/tools/jod_dist_template/create_your_own_jod_distribution/configuration/object_configs#jod-configs) file are a powerful tool to create JOD Distribution that can adapt their self to the execution environment and end user needs.
 
 Just declaring your variables in the ```dists/configs/jod_configs.sh|ps1``` file from your distribution project dir, they will be available also to the PRE-POST scripts. Then, End user can easily configure distribution behaviour simply editing the JOD Config file.
 
